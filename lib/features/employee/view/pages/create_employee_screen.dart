@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 
-class CreateEmployee extends StatefulWidget {
+class CreateEmployeeScreen extends StatefulWidget {
   static final route = '/create-emp';
 
-  const CreateEmployee({super.key});
+  const CreateEmployeeScreen({super.key});
 
   @override
-  State<CreateEmployee> createState() => _CreateEmployeeState();
+  State<CreateEmployeeScreen> createState() => _CreateEmployeeScreenState();
 }
 
-class _CreateEmployeeState extends State<CreateEmployee> {
+class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -27,7 +27,14 @@ class _CreateEmployeeState extends State<CreateEmployee> {
           size: 24,
           color: Palette.primaryColor,
         ),
-        title: Text('Create Employee'),
+        title: Text(
+          'Create Employee',
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Padding(
