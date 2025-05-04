@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
@@ -72,7 +74,12 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
               SizedBox(height: 18),
-              LargeButton(text: 'Login'),
+              LargeButton(
+                text: 'Login',
+                onPressed: () {
+                  context.go(HomeScreen.route);
+                },
+              ),
             ],
           ),
         ),

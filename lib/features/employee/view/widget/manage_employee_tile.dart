@@ -23,7 +23,6 @@ class ManageEmployeeTile extends StatefulWidget {
 
 class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
   bool isExpanded = false;
-  bool isRotated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -116,11 +115,10 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                         onTap: () {
                           setState(() {
                             isExpanded = !isExpanded;
-                            isRotated = !isRotated;
                           });
                         },
                         child: AnimatedRotation(
-                          turns: isRotated ? 0.5 : 0,
+                          turns: isExpanded ? 0.5 : 0,
                           duration: Duration(milliseconds: 200),
                           child: Container(
                             decoration: BoxDecoration(

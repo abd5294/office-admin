@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/employee/view/pages/employee_screen.dart';
+import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
+import 'package:office/features/festival/view/pages/festival_leaves_screen.dart';
+import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -66,34 +71,54 @@ class HomeScreen extends StatelessWidget {
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 2,
                           mainAxisExtent: 140,
-                          child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
-                            backgroundColor: Colors.black,
+                          child: GestureDetector(
+                            onTap: () {
+                              context.push(EmployeeScreen.route);
+                            },
+                            child: CustomCard(
+                              title: 'Employee Page',
+                              subTitle: 'View your employees',
+                              backgroundColor: Colors.black,
+                            ),
                           ),
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
                           mainAxisExtent: 140,
-                          child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
+                          child: GestureDetector(
+                            onTap: () {
+                              context.push(LeaveApplicationScreen.route);
+                            },
+                            child: CustomCard(
+                              title: 'Leave Applications',
+                              subTitle: 'View leave applications',
+                            ),
                           ),
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
                           mainAxisExtent: 140,
-                          child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
+                          child: GestureDetector(
+                            onTap: () {
+                              context.push(ManageEmployeeScreen.route);
+                            },
+                            child: CustomCard(
+                              title: 'Manage Employee',
+                              subTitle: 'Manage your employees',
+                            ),
                           ),
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
                           mainAxisExtent: 140,
-                          child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
+                          child: GestureDetector(
+                            onTap: () {
+                              context.push(FestivalLeavesScreen.route);
+                            },
+                            child: CustomCard(
+                              title: 'Festival Leaves',
+                              subTitle: 'Manage festival leaves',
+                            ),
                           ),
                         ),
                       ],

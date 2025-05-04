@@ -10,7 +10,6 @@ class ExpandableTile extends StatefulWidget {
 
 class _ExpandableTileState extends State<ExpandableTile> {
   bool isExpanded = false;
-  bool isRotated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -87,11 +86,10 @@ class _ExpandableTileState extends State<ExpandableTile> {
                         onTap: () {
                           setState(() {
                             isExpanded = !isExpanded;
-                            isRotated = !isRotated;
                           });
                         },
                         child: AnimatedRotation(
-                          turns: isRotated ? 0.5 : 0,
+                          turns: isExpanded ? 0.5 : 0,
                           duration: Duration(milliseconds: 200),
                           child: Container(
                             decoration: BoxDecoration(

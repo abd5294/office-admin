@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/employee/view/widget/leave_timeline.dart';
+import 'package:office/features/festival/view/pages/create_festival_screen.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 
@@ -18,7 +20,9 @@ class FestivalLeavesScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              context.push(CreateFestivalScreen.route);
+            },
             shape: CircleBorder(),
             backgroundColor: Palette.primaryColor,
             child: Icon(Icons.add, color: Colors.white),

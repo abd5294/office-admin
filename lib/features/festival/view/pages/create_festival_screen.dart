@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
@@ -81,7 +82,12 @@ class _CreateFestivalScreenState extends State<CreateFestivalScreen> {
             SizedBox(height: 8),
             CustomTextField(controller: noteController, hintText: 'Enter Note'),
             Spacer(),
-            LargeButton(text: 'Create Festival'),
+            LargeButton(
+              text: 'Create Festival',
+              onPressed: () {
+                context.pop();
+              },
+            ),
           ],
         ),
       ),

@@ -13,22 +13,30 @@ import 'package:office/features/employee/view/pages/employee_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: LeaveApplicationScreen.route,
+  initialLocation: AuthScreen.route,
   routes: [
     GoRoute(path: AuthScreen.route, builder: (context, state) => AuthScreen()),
     GoRoute(path: HomeScreen.route, builder: (context, state) => HomeScreen()),
+
+    GoRoute(
+      path: ManageEmployeeScreen.route,
+      builder: (context, state) => ManageEmployeeScreen(),
+    ),
     GoRoute(
       path: FestivalLeavesScreen.route,
       builder: (context, state) => FestivalLeavesScreen(),
     ),
+
+    GoRoute(
+      path: EmployeeScreen.route,
+      builder: (context, state) => EmployeeScreen(),
+    ),
+
     GoRoute(
       path: LeaveApplicationScreen.route,
       builder: (context, state) => LeaveApplicationScreen(),
     ),
-    GoRoute(
-      path: CreateFestivalScreen.route,
-      builder: (context, state) => CreateFestivalScreen(),
-    ),
+
     GoRoute(
       path: CreateEmployeeScreen.route,
       builder: (context, state) => CreateEmployeeScreen(),
@@ -37,10 +45,12 @@ final GoRouter router = GoRouter(
       path: EditEmployeeScreen.route,
       builder: (context, state) => EditEmployeeScreen(),
     ),
+
     GoRoute(
-      path: ManageEmployeeScreen.route,
-      builder: (context, state) => ManageEmployeeScreen(),
+      path: CreateFestivalScreen.route,
+      builder: (context, state) => CreateFestivalScreen(),
     ),
+
     GoRoute(
       path: CheckInIndividualScreen.route,
       builder: (context, state) => CheckInIndividualScreen(),
@@ -52,10 +62,6 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: EmployeeDetailsScreen.route,
       builder: (context, state) => EmployeeDetailsScreen(),
-    ),
-    GoRoute(
-      path: EmployeeScreen.route,
-      builder: (context, state) => EmployeeScreen(),
     ),
   ],
 );

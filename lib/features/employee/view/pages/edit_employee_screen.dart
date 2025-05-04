@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
@@ -116,7 +117,9 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
               hintText: 'Enter employee\'s role',
             ),
             Spacer(),
-            LargeButton(text: 'Edit Employee'),
+            LargeButton(text: 'Edit Employee', onPressed: (){
+              context.pop();
+            },),
           ],
         ),
       ),

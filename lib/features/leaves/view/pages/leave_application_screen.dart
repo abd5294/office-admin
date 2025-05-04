@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/leaves/view/widgets/leave_application_tile.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 
 class LeaveApplicationScreen extends StatelessWidget {
-  static final route = '/leave-application';
+  static final route = '/leave';
 
   const LeaveApplicationScreen({super.key});
 
@@ -54,6 +55,23 @@ class LeaveApplicationScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 12),
+                  Expanded(
+                    child: ListView.separated(
+                      itemBuilder:
+                          (context, index) => LeaveApplicationTile(
+                            name: 'Abdur Rahman',
+                            dateOfLeave: '12/12/2025',
+                            reason: 'lorem ipsum',
+                            remainingLeave: '21',
+                            totalApprovedLeaves: '4',
+                            totalUnApprovedLeaves: '3',
+                            typeOfLeave: 'Casual',
+                          ),
+                      separatorBuilder:
+                          (context, index) => SizedBox(height: 12),
+                      itemCount: 2,
+                    ),
+                  ),
                 ],
               ),
             ),
