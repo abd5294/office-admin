@@ -5,15 +5,20 @@ import 'package:office/features/checkin/view/pages/check_in_individual_screen.da
 import 'package:office/features/employee/view/pages/create_employee_screen.dart';
 import 'package:office/features/employee/view/pages/edit_employee_screen.dart';
 import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
+import 'package:office/features/festival/view/pages/festival_leaves_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/pages/employee_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: EditEmployeeScreen.route,
+  initialLocation: FestivalLeavesScreen.route,
   routes: [
     GoRoute(path: AuthScreen.route, builder: (context, state) => AuthScreen()),
     GoRoute(path: HomeScreen.route, builder: (context, state) => HomeScreen()),
+    GoRoute(
+      path: FestivalLeavesScreen.route,
+      builder: (context, state) => FestivalLeavesScreen(),
+    ),
     GoRoute(
       path: CreateEmployeeScreen.route,
       builder: (context, state) => CreateEmployeeScreen(),

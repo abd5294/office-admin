@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_item.dart';
 
 class LeaveTimeline extends StatelessWidget {
-  const LeaveTimeline({super.key});
+  final bool isFestival;
+
+  const LeaveTimeline({super.key, this.isFestival = false});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class LeaveTimeline extends StatelessWidget {
         Positioned(
           left: 17,
           child: Container(
-            width: 2,
+            width: 1,
             height: MediaQuery.of(context).size.height,
             color: Colors.grey,
           ),
@@ -19,7 +21,12 @@ class LeaveTimeline extends StatelessWidget {
         ListView.separated(
           shrinkWrap: true,
           itemBuilder:
-              (context, index) => LeaveTimelineItem(date: '16th March'),
+              (context, index) => LeaveTimelineItem(
+                date: '16th March',
+                isFestival: true,
+                message: 'Holiday on account of EID',
+                note: 'Enjoy your holiday',
+              ),
           separatorBuilder: (context, index) => SizedBox(height: 12),
           itemCount: 4,
         ),
