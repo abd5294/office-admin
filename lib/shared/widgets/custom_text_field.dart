@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
                 ? Icon(Icons.remove_red_eye_sharp, color: Colors.grey.shade400)
                 : null,
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey.shade600),
+        hintStyle: TextStyle(color: Colors.grey.shade600, fontSize: 16),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: Colors.grey.shade300, width: 2),

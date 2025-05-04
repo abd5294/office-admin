@@ -2,16 +2,21 @@ import 'package:go_router/go_router.dart';
 import 'package:office/features/auth/view/auth_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_individual_screen.dart';
+import 'package:office/features/employee/view/pages/create_employee.dart';
 import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/pages/employee_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: ManageEmployeeScreen.route,
+  initialLocation: CreateEmployee.route,
   routes: [
     GoRoute(path: AuthScreen.route, builder: (context, state) => AuthScreen()),
     GoRoute(path: HomeScreen.route, builder: (context, state) => HomeScreen()),
+    GoRoute(
+      path: CreateEmployee.route,
+      builder: (context, state) => CreateEmployee(),
+    ),
     GoRoute(
       path: ManageEmployeeScreen.route,
       builder: (context, state) => ManageEmployeeScreen(),
