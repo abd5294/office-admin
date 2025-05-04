@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/employee/view/widget/manage_employee_tile.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 
-class ManageEmployeeScreen extends StatelessWidget {
-  static const route = '/manage-emp';
+class LeaveApplicationScreen extends StatelessWidget {
+  static final route = '/leave-application';
 
-  const ManageEmployeeScreen({super.key});
+  const LeaveApplicationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +16,6 @@ class ManageEmployeeScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            shape: CircleBorder(),
-            backgroundColor: Palette.primaryColor,
-            child: Icon(Icons.add, color: Colors.white),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.endContained,
           appBar: PreferredSize(
             preferredSize: Size(0, 60),
             child: CustomAppBar(),
@@ -36,12 +27,13 @@ class ManageEmployeeScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 36),
                 Text(
-                  'Manage Employee',
-                  style: Theme.of(context).textTheme.headlineLarge
-                      ?.copyWith(fontWeight: FontWeight.w600),
+                  'Leave Application',
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Text(
-                  'Modify details or add employees',
+                  'Provide leave for your employees',
                   style: Theme.of(
                     context,
                   ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
@@ -56,27 +48,12 @@ class ManageEmployeeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Employee List',
+                    'Leave Application List',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   SizedBox(height: 12),
-                  Expanded(
-                    child: ListView.separated(
-                      itemBuilder:
-                          (context, index) => ManageEmployeeTile(
-                            name: 'Abdur Rahman',
-                            email: 'asdf@gmail.com',
-                            phone: '999-333-4444',
-                            bloodGroup: 'B+',
-                            role: 'Employee',
-                          ),
-                      separatorBuilder:
-                          (context, index) => SizedBox(height: 8),
-                      itemCount: 2,
-                    ),
-                  ),
                 ],
               ),
             ),

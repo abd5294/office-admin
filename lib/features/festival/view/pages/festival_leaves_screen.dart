@@ -17,6 +17,14 @@ class FestivalLeavesScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            shape: CircleBorder(),
+            backgroundColor: Palette.primaryColor,
+            child: Icon(Icons.add, color: Colors.white),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.endContained,
           appBar: PreferredSize(
             preferredSize: Size(0, 60),
             child: CustomAppBar(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
+import 'package:office/shared/widgets/large_button.dart';
 
 class CreateEmployeeScreen extends StatefulWidget {
   static final route = '/create-emp';
@@ -114,6 +115,8 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
               controller: roleController,
               hintText: 'Enter employee\'s role',
             ),
+            Spacer(),
+            LargeButton(text: 'Create Employee'),
           ],
         ),
       ),
