@@ -5,10 +5,10 @@ import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
 
-class HomeScreen extends StatelessWidget {
-  static const route = '/home';
+class EmployeeDetails extends StatelessWidget {
+  static const route = '/emp-details';
 
-  const HomeScreen({super.key});
+  const EmployeeDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +30,13 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 36),
                 Text(
-                  'Morning Abdur,',
+                  'Abdur Rahman',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
-                  'Let\'s be productive',
+                  'Employee Details',
                   style: Theme.of(
                     context,
                   ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Actions',
+                    'Employee Details',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -66,11 +66,7 @@ class HomeScreen extends StatelessWidget {
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 2,
                           mainAxisExtent: 140,
-                          child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
-                            backgroundColor: Colors.black,
-                          ),
+                          child:
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
 
-class CustomBottomBar extends StatelessWidget {
+class CustomBottomSheet extends StatelessWidget {
   final Widget child;
 
-  const CustomBottomBar({super.key, required this.child});
+  const CustomBottomSheet({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
