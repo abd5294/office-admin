@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/manage_employee/view/widget/employee_card.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -65,31 +66,48 @@ class EmployeeDetails extends StatelessWidget {
                       children: [
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 2,
-                          mainAxisExtent: 140,
-                          child:
+                          mainAxisExtent: 230,
+                          child: EmployeeInfoCard(
+                            name: 'Abdur Rahman',
+                            email: 'asdf@gmail.com',
+                            phone: '999-333-4444',
+                            bloodGroup: 'B+',
+                            role: 'Employee',
+                          ),
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
                           mainAxisExtent: 140,
-                          child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
+                          child: EmployeeLeaveCard(
+                            type: 'approved',
+                            count: 10,
+                            totalCount: 3,
+                          ),
+                        ),
+                        StaggeredGridTile.extent(
+                          crossAxisCellCount: 1,
+                          mainAxisExtent: 140,
+                          child: EmployeeLeaveCard(
+                            type: 'unapproved',
+                            count: 23,
+                            totalCount: 45,
+                          ),
+                        ),
+                        StaggeredGridTile.extent(
+                          crossAxisCellCount: 1,
+                          mainAxisExtent: 140,
+                          child: EmployeeLeaveCard(
+                            type: 'remaining',
+                            count: 3,
+                            totalCount: 6,
                           ),
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
                           mainAxisExtent: 140,
                           child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
-                          ),
-                        ),
-                        StaggeredGridTile.extent(
-                          crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
-                          child: CustomCard(
-                            title: 'Employee Page',
-                            subTitle: 'View your employees',
+                            title: 'Check In details',
+                            subTitle: 'View Check In details',
                           ),
                         ),
                       ],
