@@ -28,13 +28,13 @@ class EmployeeScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 36),
                 Text(
-                  'Manage Employee,',
+                  'Your employees',
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
-                  'Modify details or add employees',
+                  'View your employees',
                   style: Theme.of(
                     context,
                   ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
@@ -49,7 +49,7 @@ class EmployeeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Employee List',
+                    'Employees',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 
 class ExpandableTile extends StatefulWidget {
   const ExpandableTile({super.key});
@@ -33,7 +35,10 @@ class _ExpandableTileState extends State<ExpandableTile> {
                 ),
               ],
             ),
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             child: Row(
               children: [
                 ClipRRect(
@@ -63,7 +68,11 @@ class _ExpandableTileState extends State<ExpandableTile> {
                   children: [
                     Text(
                       'Employee Name',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: Colors.grey.shade700,
                       ),
@@ -106,7 +115,9 @@ class _ExpandableTileState extends State<ExpandableTile> {
                       ),
                       SizedBox(width: 12),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.push(EmployeeDetailsScreen.route);
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             color: Palette.primaryColor,
@@ -129,7 +140,7 @@ class _ExpandableTileState extends State<ExpandableTile> {
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             child:
-                isExpanded ? ExpandedTile(attendance: '45') : SizedBox.shrink(),
+            isExpanded ? ExpandedTile(attendance: '45') : SizedBox.shrink(),
           ),
         ],
       ),
@@ -145,7 +156,10 @@ class ExpandedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width - 100,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width - 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),

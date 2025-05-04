@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/checkin/view/pages/check_in_individual_screen.dart';
 
 class CheckInCard extends StatelessWidget {
   final int index;
@@ -64,7 +66,9 @@ class CheckInCard extends StatelessWidget {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.push(CheckInIndividualScreen.route);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: Palette.primaryColor,

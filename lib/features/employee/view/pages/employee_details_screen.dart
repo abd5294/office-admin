@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/employee/view/widget/employee_card.dart';
 import 'package:office/features/employee/view/widget/leave_timeline.dart';
+import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -106,9 +109,15 @@ class EmployeeDetailsScreen extends StatelessWidget {
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
                           mainAxisExtent: 130,
-                          child: CustomCard(
-                            title: 'Check In details',
-                            subTitle: 'View Check In details',
+                          child: GestureDetector(
+                            onTap: () {
+                              context.go(HomeScreen.route);
+                              context.push(CheckInListScreen.route);
+                            },
+                            child: CustomCard(
+                              title: 'Check In details',
+                              subTitle: 'View Check In details',
+                            ),
                           ),
                         ),
                       ],

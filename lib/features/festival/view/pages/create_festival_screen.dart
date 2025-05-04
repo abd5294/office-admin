@@ -83,7 +83,7 @@ class _CreateFestivalScreenState extends State<CreateFestivalScreen> {
             CustomTextField(controller: noteController, hintText: 'Enter Note'),
             Spacer(),
             LargeButton(
-              text: 'Create Festival',
+              text: 'Create Holiday',
               onPressed: () {
                 context.pop();
               },

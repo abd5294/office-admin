@@ -69,9 +69,11 @@ class LeaveTimelineItem extends StatelessWidget {
                             color: Palette.primaryColor,
                             shape: BoxShape.circle,
                           ),
+                          padding: EdgeInsets.all(4),
                           child: Icon(
-                            Icons.keyboard_arrow_up_rounded,
+                            Icons.edit_rounded,
                             color: Colors.white,
+                            size: 16,
                           ),
                         ),
                       ],
