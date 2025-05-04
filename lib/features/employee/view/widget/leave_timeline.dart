@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:office/features/manage_employee/view/widget/leave_timeline_item.dart';
+import 'package:office/features/employee/view/widget/leave_timeline_item.dart';
 
 class LeaveTimeline extends StatelessWidget {
   const LeaveTimeline({super.key});

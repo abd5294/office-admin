@@ -33,7 +33,7 @@ class EmployeeInfoCard extends StatelessWidget {
             Text(
               'Name',
               style: TextStyle(
-                color: Colors.grey.shade500,
+                color: Colors.grey.shade600,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -49,7 +49,7 @@ class EmployeeInfoCard extends StatelessWidget {
             Text(
               'Email',
               style: TextStyle(
-                color: Colors.grey.shade500,
+                color: Colors.grey.shade600,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -65,7 +65,7 @@ class EmployeeInfoCard extends StatelessWidget {
             Text(
               'Phone',
               style: TextStyle(
-                color: Colors.grey.shade500,
+                color: Colors.grey.shade600,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -81,7 +81,7 @@ class EmployeeInfoCard extends StatelessWidget {
             Text(
               'Blood Group',
               style: TextStyle(
-                color: Colors.grey.shade500,
+                color: Colors.grey.shade600,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),
@@ -97,7 +97,7 @@ class EmployeeInfoCard extends StatelessWidget {
             Text(
               'Role',
               style: TextStyle(
-                color: Colors.grey.shade500,
+                color: Colors.grey.shade600,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
               ),

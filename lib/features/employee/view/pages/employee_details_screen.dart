@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/manage_employee/view/widget/employee_card.dart';
-import 'package:office/features/manage_employee/view/widget/leave_timeline.dart';
+import 'package:office/features/employee/view/widget/employee_card.dart';
+import 'package:office/features/employee/view/widget/leave_timeline.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
 
-class EmployeeDetails extends StatelessWidget {
+class EmployeeDetailsScreen extends StatelessWidget {
   static const route = '/emp-details';
 
-  const EmployeeDetails({super.key});
+  const EmployeeDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
