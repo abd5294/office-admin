@@ -19,14 +19,22 @@ class ManageEmployeeScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              context.push(CreateEmployeeScreen.route);
-            },
-            shape: CircleBorder(),
-            backgroundColor: Palette.primaryColor,
-            child: Icon(Icons.add, color: Colors.white),
+          floatingActionButton: Transform.translate(
+            offset: Offset(-20, -40),
+            child: SizedBox(
+              width: 70,
+              height: 70,
+              child: FloatingActionButton(
+                onPressed: () {
+                  context.push(CreateEmployeeScreen.route);
+                },
+                shape: CircleBorder(),
+                backgroundColor: Palette.primaryColor,
+                child: Icon(Icons.add, color: Colors.white, size: 40),
+              ),
+            ),
           ),
+
           floatingActionButtonLocation:
               FloatingActionButtonLocation.endContained,
           appBar: PreferredSize(
@@ -41,8 +49,9 @@ class ManageEmployeeScreen extends StatelessWidget {
                 SizedBox(height: 36),
                 Text(
                   'Manage Employee',
-                  style: Theme.of(context).textTheme.headlineLarge
-                      ?.copyWith(fontWeight: FontWeight.w600),
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Text(
                   'Modify details or add employees',
@@ -76,8 +85,7 @@ class ManageEmployeeScreen extends StatelessWidget {
                             bloodGroup: 'B+',
                             role: 'Employee',
                           ),
-                      separatorBuilder:
-                          (context, index) => SizedBox(height: 8),
+                      separatorBuilder: (context, index) => SizedBox(height: 8),
                       itemCount: 2,
                     ),
                   ),

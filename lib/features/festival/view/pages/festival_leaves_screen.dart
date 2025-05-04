@@ -19,13 +19,23 @@ class FestivalLeavesScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              context.push(CreateFestivalScreen.route);
-            },
-            shape: CircleBorder(),
-            backgroundColor: Palette.primaryColor,
-            child: Icon(Icons.add, color: Colors.white),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 30.0,
+            ),
+            child: SizedBox(
+              width: 70,
+              height: 70,
+              child: FloatingActionButton(
+                onPressed: () {
+                  context.push(CreateFestivalScreen.route);
+                },
+                shape: CircleBorder(),
+                backgroundColor: Palette.primaryColor,
+                child: Icon(Icons.add, color: Colors.white, size: 40),
+              ),
+            ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.endContained,
