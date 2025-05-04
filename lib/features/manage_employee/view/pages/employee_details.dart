@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/manage_employee/view/widget/employee_card.dart';
+import 'package:office/features/manage_employee/view/widget/leave_timeline.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -48,18 +49,18 @@ class EmployeeDetails extends StatelessWidget {
           bottomSheet: CustomBottomSheet(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Employee Details',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Employee Details',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 12),
-                  Expanded(
-                    child: StaggeredGrid.extent(
+                    SizedBox(height: 12),
+                    StaggeredGrid.extent(
                       maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
                       mainAxisSpacing: 12,
                       crossAxisSpacing: 12,
@@ -77,7 +78,7 @@ class EmployeeDetails extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 120,
                           child: EmployeeLeaveCard(
                             type: 'approved',
                             count: 10,
@@ -86,7 +87,7 @@ class EmployeeDetails extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 120,
                           child: EmployeeLeaveCard(
                             type: 'unapproved',
                             count: 23,
@@ -95,7 +96,7 @@ class EmployeeDetails extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 130,
                           child: EmployeeLeaveCard(
                             type: 'remaining',
                             count: 3,
@@ -104,7 +105,7 @@ class EmployeeDetails extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 130,
                           child: CustomCard(
                             title: 'Check In details',
                             subTitle: 'View Check In details',
@@ -112,8 +113,17 @@ class EmployeeDetails extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    SizedBox(height: 12),
+                    Text(
+                      'Timeline Of Leaves',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    LeaveTimeline(),
+                  ],
+                ),
               ),
             ),
           ),
