@@ -3,9 +3,11 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
+import 'package:office/features/employee/model/employee_details_model.dart';
 import 'package:office/features/employee/view/widget/employee_card.dart';
 import 'package:office/features/employee/view/widget/leave_timeline.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
+import 'package:office/shared/models/employee.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -17,6 +19,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final employeeModel = EmployeeDetails().getEmployeeDetails();
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -35,7 +38,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 36),
                 Text(
-                  'Abdur Rahman',
+                  employeeModel.name,
                   style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -72,11 +75,11 @@ class EmployeeDetailsScreen extends StatelessWidget {
                           crossAxisCellCount: 2,
                           mainAxisExtent: 230,
                           child: EmployeeInfoCard(
-                            name: 'Abdur Rahman',
-                            email: 'asdf@gmail.com',
-                            phone: '999-333-4444',
-                            bloodGroup: 'B+',
-                            role: 'Employee',
+                            name: employeeModel.name,
+                            email: employeeModel.email ?? '',
+                            phone: employeeModel.phone ?? '',
+                            bloodGroup: employeeModel.bloodGroup ?? '',
+                            role: employeeModel.role ?? '',
                           ),
                         ),
                         StaggeredGridTile.extent(
@@ -84,8 +87,8 @@ class EmployeeDetailsScreen extends StatelessWidget {
                           mainAxisExtent: 120,
                           child: EmployeeLeaveCard(
                             type: 'approved',
-                            count: 10,
-                            totalCount: 3,
+                            count: employeeModel.approvedLeave ?? 3,
+                            totalCount: employeeModel.totalLeaves ?? 3,
                           ),
                         ),
                         StaggeredGridTile.extent(
@@ -93,8 +96,9 @@ class EmployeeDetailsScreen extends StatelessWidget {
                           mainAxisExtent: 120,
                           child: EmployeeLeaveCard(
                             type: 'unapproved',
-                            count: 23,
-                            totalCount: 45,
+                            count: employeeModel.unapprovedLeave ?? 3,
+                            totalCount:
+                                employeeModel.totalAllowedUnapproved ?? 3,
                           ),
                         ),
                         StaggeredGridTile.extent(
@@ -102,8 +106,8 @@ class EmployeeDetailsScreen extends StatelessWidget {
                           mainAxisExtent: 130,
                           child: EmployeeLeaveCard(
                             type: 'remaining',
-                            count: 3,
-                            totalCount: 6,
+                            count: employeeModel.remainingLeave ?? 3,
+                            totalCount: employeeModel.totalLeaves ?? 3,
                           ),
                         ),
                         StaggeredGridTile.extent(

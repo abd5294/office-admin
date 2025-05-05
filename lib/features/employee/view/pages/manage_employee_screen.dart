@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/employee/view/pages/create_employee_screen.dart';
+import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/widget/manage_employee_tile.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
@@ -19,14 +19,17 @@ class ManageEmployeeScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButton: Transform.translate(
-            offset: Offset(-20, -40),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 30.0,
+            ),
             child: SizedBox(
               width: 70,
               height: 70,
               child: FloatingActionButton(
                 onPressed: () {
-                  context.push(CreateEmployeeScreen.route);
+                  context.push(EmployeeDetailsScreen.route);
                 },
                 shape: CircleBorder(),
                 backgroundColor: Palette.primaryColor,

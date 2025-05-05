@@ -56,6 +56,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: nameController,
               hintText: 'Enter employee\'s name',
+              onChange: (value){},
             ),
             SizedBox(height: 20),
             Text(
@@ -70,6 +71,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: emailController,
               hintText: 'Enter employee\'s Email',
+              onChange: (value){},
             ),
             SizedBox(height: 20),
 
@@ -85,6 +87,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: phoneController,
               hintText: 'Enter employee\'s Phone Number',
+              onChange: (value){},
             ),
             SizedBox(height: 20),
 
@@ -100,6 +103,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: bloodGroupController,
               hintText: 'Enter employee\'s Blood group',
+              onChange: (value){},
             ),
             SizedBox(height: 20),
 
@@ -115,6 +119,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: roleController,
               hintText: 'Enter employee\'s role',
+              onChange: (value){},
             ),
             Spacer(),
             LargeButton(

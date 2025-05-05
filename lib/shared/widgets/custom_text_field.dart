@@ -4,11 +4,13 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final bool isObscured;
+  final Function(String) onChange;
 
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
+    required this.onChange,
     this.isObscured = false,
   });
 
@@ -17,7 +19,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       style: TextStyle(color: Colors.black),
       controller: controller,
-      onChanged: (value) {},
+      onChanged: onChange,
       decoration: InputDecoration(
         suffixIcon:
             isObscured

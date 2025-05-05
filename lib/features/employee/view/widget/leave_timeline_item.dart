@@ -28,7 +28,14 @@ class LeaveTimelineItem extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20.0),
             child: CircleAvatar(
               radius: 10,
-              backgroundColor: isFestival ? Colors.green : Colors.orange,
+              backgroundColor:
+                  isFestival
+                      ? Colors.green
+                      : type == 'Approved'
+                      ? Colors.green
+                      : type == 'Half leave'
+                      ? Colors.orange
+                      : Colors.redAccent,
             ),
           ),
           SizedBox(width: 12),
@@ -49,7 +56,10 @@ class LeaveTimelineItem extends StatelessWidget {
                           children: [
                             Text(
                               date,
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                             SizedBox(height: 4),
                             Text(
@@ -78,7 +88,7 @@ class LeaveTimelineItem extends StatelessWidget {
                         ),
                       ],
                     )
-                    : Text('Approved leave on $date'),
+                    : Text('$type leave on $date'),
           ),
         ],
       ),

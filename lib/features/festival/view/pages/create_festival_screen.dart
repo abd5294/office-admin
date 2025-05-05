@@ -54,6 +54,7 @@ class _CreateFestivalScreenState extends State<CreateFestivalScreen> {
             CustomTextField(
               controller: festivalController,
               hintText: 'Enter Festival\'s name',
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
             Text(
@@ -68,6 +69,7 @@ class _CreateFestivalScreenState extends State<CreateFestivalScreen> {
             CustomTextField(
               controller: dateController,
               hintText: 'Enter Festival\'s Date',
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
 
@@ -80,7 +82,11 @@ class _CreateFestivalScreenState extends State<CreateFestivalScreen> {
               ),
             ),
             SizedBox(height: 8),
-            CustomTextField(controller: noteController, hintText: 'Enter Note'),
+            CustomTextField(
+              controller: noteController,
+              hintText: 'Enter Note',
+              onChange: (value) {},
+            ),
             Spacer(),
             LargeButton(
               text: 'Create Holiday',

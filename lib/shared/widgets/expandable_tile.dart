@@ -4,7 +4,16 @@ import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 
 class ExpandableTile extends StatefulWidget {
-  const ExpandableTile({super.key});
+  final String employeeName;
+  final int index;
+  final int attendance;
+
+  const ExpandableTile({
+    super.key,
+    required this.employeeName,
+    required this.index,
+    required this.attendance,
+  });
 
   @override
   State<ExpandableTile> createState() => _ExpandableTileState();
@@ -35,10 +44,7 @@ class _ExpandableTileState extends State<ExpandableTile> {
                 ),
               ],
             ),
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             child: Row(
               children: [
                 ClipRRect(
@@ -52,7 +58,7 @@ class _ExpandableTileState extends State<ExpandableTile> {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          '1',
+                          widget.index.toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -68,17 +74,13 @@ class _ExpandableTileState extends State<ExpandableTile> {
                   children: [
                     Text(
                       'Employee Name',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: Colors.grey.shade700,
                       ),
                     ),
                     Text(
-                      'Abdur Rahman',
+                      widget.employeeName,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
@@ -140,7 +142,9 @@ class _ExpandableTileState extends State<ExpandableTile> {
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             child:
-            isExpanded ? ExpandedTile(attendance: '45') : SizedBox.shrink(),
+                isExpanded
+                    ? ExpandedTile(attendance: widget.attendance.toString())
+                    : SizedBox.shrink(),
           ),
         ],
       ),
@@ -156,10 +160,7 @@ class ExpandedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width - 100,
+      width: MediaQuery.of(context).size.width - 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),

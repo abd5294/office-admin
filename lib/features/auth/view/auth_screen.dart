@@ -55,12 +55,14 @@ class _AuthScreenState extends State<AuthScreen> {
               CustomTextField(
                 controller: emailController,
                 hintText: 'Enter your email',
+                onChange: (value){},
               ),
               SizedBox(height: 12),
               CustomTextField(
                 controller: passwordController,
                 hintText: 'Enter your password',
                 isObscured: true,
+                onChange: (value){},
               ),
               SizedBox(height: 12),
               InkWell(

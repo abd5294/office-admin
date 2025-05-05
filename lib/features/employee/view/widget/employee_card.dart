@@ -148,18 +148,21 @@ class EmployeeLeaveCard extends StatelessWidget {
             ),
             RichText(
               text: TextSpan(
-                text: totalCount.toString(),
+                text: '${totalCount.toString()} ',
                 style: TextStyle(
                   color: Palette.primaryColor,
                   fontWeight: FontWeight.w600,
                 ),
                 children: [
                   TextSpan(
-                    text: ' Total Leaves',
+                    text:
+                        type == 'unapproved'
+                            ? 'Allowed unapproved leaves'
+                            : 'Total leaves',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
                   ),
                 ],
@@ -171,7 +174,7 @@ class EmployeeLeaveCard extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  totalCount.toString(),
+                  count.toString(),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 28,

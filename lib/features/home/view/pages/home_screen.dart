@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                               context.push(EmployeeScreen.route);
                             },
                             child: CustomCard(
-                              title: 'Employee Page',
+                              title: 'Employees Page',
                               subTitle: 'View your employees',
                               backgroundColor: Colors.black,
                             ),
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                               context.push(ManageEmployeeScreen.route);
                             },
                             child: CustomCard(
-                              title: 'Manage Employee',
+                              title: 'Manage Employees',
                               subTitle: 'Manage your employees',
                             ),
                           ),

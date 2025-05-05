@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:office/features/employee/model/employee_timeline_model.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_item.dart';
 
 class LeaveTimeline extends StatelessWidget {
@@ -8,6 +9,7 @@ class LeaveTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final leaveTimelineModel = EmployeeTimeLineModel().getEmployeeTimeLine();
     return Stack(
       children: [
         Positioned(
@@ -22,13 +24,11 @@ class LeaveTimeline extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder:
               (context, index) => LeaveTimelineItem(
-                date: '16th March',
-                isFestival: true,
-                message: 'Holiday on account of EID',
-                note: 'Enjoy your holiday',
+                date: leaveTimelineModel[index].date,
+                type: leaveTimelineModel[index].type,
               ),
           separatorBuilder: (context, index) => SizedBox(height: 12),
-          itemCount: 4,
+          itemCount: leaveTimelineModel.length,
         ),
       ],
     );

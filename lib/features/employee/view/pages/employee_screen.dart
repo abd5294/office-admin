@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/employee/model/employee_screen_model.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/expandable_tile.dart';
@@ -11,6 +12,9 @@ class EmployeeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    EmployeeModel employeeModel = EmployeeModel();
+    List employees = employeeModel.getEmployees();
+
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -57,9 +61,14 @@ class EmployeeScreen extends StatelessWidget {
                   SizedBox(height: 12),
                   Expanded(
                     child: ListView.separated(
-                      itemBuilder: (context, index) => ExpandableTile(),
+                      itemBuilder:
+                          (context, index) => ExpandableTile(
+                            employeeName: employees[index].name,
+                            index: index + 1,
+                            attendance: employees[index].attendance,
+                          ),
                       separatorBuilder: (context, index) => SizedBox(height: 8),
-                      itemCount: 2,
+                      itemCount: employees.length,
                     ),
                   ),
                 ],
