@@ -7,8 +7,9 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 13),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             padding: EdgeInsets.all(12),
@@ -16,13 +17,12 @@ class CustomAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               color: Palette.secondary,
             ),
-            child: Icon(Icons.menu),
+            child: Icon(Icons.menu, size: 24),
           ),
-          Spacer(),
           CircleAvatar(
             radius: 24,
             backgroundColor: Palette.secondary,
-            child: Icon(Icons.person, color: Colors.black),
+            child: Icon(Icons.person, color: Colors.black, size: 24),
           ),
         ],
       ),

@@ -16,27 +16,34 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      style: TextStyle(color: Colors.black),
-      controller: controller,
-      onChanged: onChange,
-      decoration: InputDecoration(
-        suffixIcon:
-            isObscured
-                ? Icon(Icons.remove_red_eye_sharp, color: Colors.grey.shade400)
-                : null,
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey.shade600, fontSize: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey.shade300, width: 2),
+    return SizedBox(
+      height: 48,
+      child: TextFormField(
+        style: TextStyle(color: Colors.black),
+        controller: controller,
+        onChanged: onChange,
+        decoration: InputDecoration(
+          suffixIcon:
+              isObscured
+                  ? Icon(
+                    Icons.remove_red_eye_sharp,
+                    color: Colors.grey.shade400,
+                    size: 16,
+                  )
+                  : null,
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey.shade300, width: 2),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey.shade300, width: 2),
+          ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.grey.shade300, width: 2),
-        ),
+        obscureText: isObscured,
       ),
-      obscureText: isObscured,
     );
   }
 }

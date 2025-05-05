@@ -20,12 +20,11 @@ class HomeScreen extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: SafeArea(
-        top: true,
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: PreferredSize(
-            preferredSize: Size(0, 60),
+            preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
           body: Padding(
@@ -33,18 +32,22 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 36),
+                SizedBox(height: 46),
                 Text(
                   'Morning Abdur,',
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  style: TextStyle(
+                    fontSize: 24,
                     fontWeight: FontWeight.w600,
+                    height: 1,
                   ),
                 ),
                 Text(
                   'Let\'s be productive',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    height: 1,
+                  ),
                 ),
               ],
             ),
@@ -57,20 +60,22 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Actions',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    style: TextStyle(
                       fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      height: 1,
                     ),
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: 17),
                   Expanded(
                     child: StaggeredGrid.extent(
                       maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 17,
+                      crossAxisSpacing: 9,
                       children: [
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 2,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 108,
                           child: GestureDetector(
                             onTap: () {
                               context.push(EmployeeScreen.route);
@@ -84,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 124,
                           child: GestureDetector(
                             onTap: () {
                               context.push(LeaveApplicationScreen.route);
@@ -97,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 124,
                           child: GestureDetector(
                             onTap: () {
                               context.push(ManageEmployeeScreen.route);
@@ -110,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 140,
+                          mainAxisExtent: 124,
                           child: GestureDetector(
                             onTap: () {
                               context.push(FestivalLeavesScreen.route);

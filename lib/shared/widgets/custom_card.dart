@@ -47,14 +47,17 @@ class CustomCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 8,
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 56,
-                    width: 56,
+                    height: 48,
+                    width: 48,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -67,11 +70,10 @@ class CustomCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    padding: const EdgeInsets.all(12),
                     child: Icon(
                       Icons.folder,
                       color: Color(0xFFE3B10F),
-                      size: 30,
+                      size: 28,
                     ),
                   ),
                   SizedBox(height: 8),
@@ -79,14 +81,16 @@ class CustomCard extends StatelessWidget {
                     title,
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
                     ),
                   ),
                   Text(
                     subTitle,
                     style: TextStyle(
                       color: Colors.white.withAlpha(150),
-                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 8,
                     ),
                   ),
                 ],
