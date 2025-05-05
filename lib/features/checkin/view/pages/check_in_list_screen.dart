@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/checkin/controller/check_in_list_controller.dart';
+import 'package:office/features/checkin/model/check_in_list_model.dart';
 import 'package:office/features/checkin/view/widgets/check_in_card.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
@@ -11,6 +13,8 @@ class CheckInListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<CheckInListModel> checkInList =
+        CheckInListController().getCheckInList();
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -58,10 +62,12 @@ class CheckInListScreen extends StatelessWidget {
                   ListView.separated(
                     shrinkWrap: true,
                     itemBuilder:
-                        (context, index) =>
-                            CheckInCard(index: index + 1, date: '17th march'),
+                        (context, index) => CheckInCard(
+                          index: index + 1,
+                          date: checkInList[index].date,
+                        ),
                     separatorBuilder: (context, index) => SizedBox(height: 12),
-                    itemCount: 2,
+                    itemCount: checkInList.length,
                   ),
                 ],
               ),
