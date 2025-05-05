@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/employee/view/widget/leave_timeline.dart';
+import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
+import 'package:office/features/festival/controller/festival_leave_contorller.dart';
 import 'package:office/features/festival/view/pages/create_festival_screen.dart';
+import 'package:office/shared/models/leave_timeline_model.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 
@@ -13,6 +15,8 @@ class FestivalLeavesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<LeaveTimeLineModel> festivalTimeLine =
+        FestivalLeaveController().getFestivalLeaves();
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -78,7 +82,9 @@ class FestivalLeavesScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 12),
 
-                  Expanded(child: LeaveTimeline(isFestival: true)),
+                  Expanded(
+                    child: LeaveTimeLineList(isFestival: true, timeLine: festivalTimeLine),
+                  ),
                 ],
               ),
             ),

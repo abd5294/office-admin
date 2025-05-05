@@ -1,6 +1,6 @@
 import 'package:office/shared/models/employee.dart';
 
-class EmployeeDetails {
+class EmployeeDetailsController {
   Employee getEmployeeDetails() {
     return Employee(
       'Abdur Rahman',

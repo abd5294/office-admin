@@ -34,8 +34,8 @@ class LeaveTimelineItem extends StatelessWidget {
                       : type == 'Approved'
                       ? Colors.green
                       : type == 'Half leave'
-                      ? Colors.orange
-                      : Colors.redAccent,
+                      ? Colors.yellowAccent
+                      : Colors.red,
             ),
           ),
           SizedBox(width: 12),
@@ -68,7 +68,7 @@ class LeaveTimelineItem extends StatelessWidget {
                             ),
                             SizedBox(height: 4),
                             Text(
-                              note,
+                              'Note: $note',
                               style: TextStyle(fontWeight: FontWeight.w500),
                             ),
                           ],

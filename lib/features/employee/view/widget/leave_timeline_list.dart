@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:office/features/employee/model/employee_timeline_model.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_item.dart';
+import 'package:office/shared/models/leave_timeline_model.dart';
 
-class LeaveTimeline extends StatelessWidget {
+class LeaveTimeLineList extends StatelessWidget {
   final bool isFestival;
+  final List<LeaveTimeLineModel> timeLine;
 
-  const LeaveTimeline({super.key, this.isFestival = false});
+  const LeaveTimeLineList({
+    super.key,
+    this.isFestival = false,
+    required this.timeLine,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final leaveTimelineModel = EmployeeTimeLineModel().getEmployeeTimeLine();
     return Stack(
       children: [
         Positioned(
@@ -24,11 +28,14 @@ class LeaveTimeline extends StatelessWidget {
           shrinkWrap: true,
           itemBuilder:
               (context, index) => LeaveTimelineItem(
-                date: leaveTimelineModel[index].date,
-                type: leaveTimelineModel[index].type,
+                date: timeLine[index].date,
+                type: timeLine[index].type ?? '',
+                isFestival: isFestival,
+                note: timeLine[index].note ?? '',
+                message: timeLine[index].message ?? '',
               ),
           separatorBuilder: (context, index) => SizedBox(height: 12),
-          itemCount: leaveTimelineModel.length,
+          itemCount: timeLine.length,
         ),
       ],
     );

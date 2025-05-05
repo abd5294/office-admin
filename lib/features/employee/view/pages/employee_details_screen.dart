@@ -3,9 +3,10 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
-import 'package:office/features/employee/model/employee_details_model.dart';
+import 'package:office/features/employee/controller/employee_details_controller.dart';
+import 'package:office/features/employee/controller/employee_timeline_controller.dart';
 import 'package:office/features/employee/view/widget/employee_card.dart';
-import 'package:office/features/employee/view/widget/leave_timeline.dart';
+import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/models/employee.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
@@ -19,7 +20,8 @@ class EmployeeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final employeeModel = EmployeeDetails().getEmployeeDetails();
+    final employeeModel = EmployeeDetailsController().getEmployeeDetails();
+    final leaveTimeline = EmployeeTimeLineController().getEmployeeTimeLine();
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -86,7 +88,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                           crossAxisCellCount: 1,
                           mainAxisExtent: 120,
                           child: EmployeeLeaveCard(
-                            type: 'approved',
+                            type: 'Approved',
                             count: employeeModel.approvedLeave ?? 3,
                             totalCount: employeeModel.totalLeaves ?? 3,
                           ),
@@ -134,7 +136,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 8),
-                    LeaveTimeline(),
+                    LeaveTimeLineList(timeLine: leaveTimeline),
                   ],
                 ),
               ),
