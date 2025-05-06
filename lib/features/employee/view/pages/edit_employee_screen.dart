@@ -23,7 +23,9 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: Icon(
           Icons.arrow_back_ios_new_rounded,
           size: 24,
@@ -56,7 +58,7 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
             CustomTextField(
               controller: nameController,
               hintText: 'Enter employee\'s name',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
             Text(
@@ -71,7 +73,7 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
             CustomTextField(
               controller: emailController,
               hintText: 'Enter employee\'s Email',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
 
@@ -87,7 +89,7 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
             CustomTextField(
               controller: phoneController,
               hintText: 'Enter employee\'s Phone Number',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
 
@@ -103,7 +105,7 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
             CustomTextField(
               controller: bloodGroupController,
               hintText: 'Enter employee\'s Blood group',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
 
@@ -119,12 +121,15 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
             CustomTextField(
               controller: roleController,
               hintText: 'Enter employee\'s role',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             Spacer(),
-            LargeButton(text: 'Edit Employee', onPressed: (){
-              context.pop();
-            },),
+            LargeButton(
+              text: 'Edit Employee',
+              onPressed: () {
+                context.pop();
+              },
+            ),
           ],
         ),
       ),
