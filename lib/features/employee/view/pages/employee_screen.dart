@@ -4,6 +4,7 @@ import 'package:office/features/employee/controller/employee_screen_controller.d
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/expandable_tile.dart';
+import 'package:office/shared/widgets/main_text_column.dart';
 
 class EmployeeScreen extends StatelessWidget {
   static const route = '/emp-screen';
@@ -22,28 +23,14 @@ class EmployeeScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: PreferredSize(
-            preferredSize: Size(0, 60),
+            preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 36),
-                Text(
-                  'Your employees',
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'View your employees',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
-                ),
-              ],
+            child: MainTextColumn(
+              title: 'Your Employees',
+              subTitle: 'View your employees',
             ),
           ),
           bottomSheet: CustomBottomSheet(
@@ -53,9 +40,11 @@ class EmployeeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Employees',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    'List of Employees',
+                    style: TextStyle(
                       fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      height: 1,
                     ),
                   ),
                   SizedBox(height: 12),

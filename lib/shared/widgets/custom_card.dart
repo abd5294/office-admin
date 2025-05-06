@@ -7,6 +7,7 @@ class CustomCard extends StatelessWidget {
   final Color backgroundColor;
   final int crossAxis;
   final bool isIconRight;
+  final bool isCheckInDetails;
 
   const CustomCard({
     super.key,
@@ -14,6 +15,7 @@ class CustomCard extends StatelessWidget {
     required this.subTitle,
     this.backgroundColor = Palette.primaryColor,
     this.crossAxis = 1,
+    this.isCheckInDetails = false,
     this.isIconRight = false,
   });
 
@@ -31,7 +33,7 @@ class CustomCard extends StatelessWidget {
             Image.asset(
               'assets/images/texture.png',
               fit: BoxFit.cover,
-              height: 90,
+              height: isCheckInDetails ? 70 : 90,
             ),
             Container(
               decoration: BoxDecoration(
@@ -56,8 +58,8 @@ class CustomCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: 48,
-                    width: 48,
+                    height: isCheckInDetails ? 40 : 48,
+                    width: isCheckInDetails ? 40 : 48,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -70,13 +72,14 @@ class CustomCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Icon(
-                      Icons.folder,
-                      color: Color(0xFFE3B10F),
-                      size: 28,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/folder_icon.webp',
+                        height: isCheckInDetails ? 24 : 32,
+                        width: isCheckInDetails ? 24 : 32,
+                      ),
                     ),
                   ),
-                  SizedBox(height: 8),
                   Text(
                     title,
                     style: TextStyle(

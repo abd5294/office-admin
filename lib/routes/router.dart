@@ -13,7 +13,7 @@ import 'package:office/features/employee/view/pages/employee_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: AuthScreen.route,
+  initialLocation: HomeScreen.route,
   routes: [
     GoRoute(path: AuthScreen.route, builder: (context, state) => AuthScreen()),
     GoRoute(path: HomeScreen.route, builder: (context, state) => HomeScreen()),

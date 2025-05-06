@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/shared/widgets/custom_alert_dialog.dart';
 
 class LeaveApplicationTile extends StatefulWidget {
   final String name;
@@ -9,9 +10,11 @@ class LeaveApplicationTile extends StatefulWidget {
   final String remainingLeave;
   final String totalApprovedLeaves;
   final String totalUnApprovedLeaves;
+  final int index;
 
   const LeaveApplicationTile({
     super.key,
+    required this.index,
     required this.name,
     required this.reason,
     required this.dateOfLeave,
@@ -64,11 +67,11 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          '1',
+                          widget.index.toString(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
@@ -80,16 +83,17 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                   children: [
                     Text(
                       'Employee Name',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey.shade700,
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black.withAlpha(123),
                       ),
                     ),
                     Text(
                       'Abdur Rahman',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                     ),
                   ],
@@ -128,35 +132,11 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return AlertDialog(
-                                title: Text('Cancel Application?'),
-                                content: Text(
-                                  'Are you sure you want to cancel this application?',
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('Cancel'),
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Palette.primaryColor,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      'Reject',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ],
+                              return CustomAlertDialog(
+                                title: 'Cancel Application?',
+                                subTitle:
+                                    'Are you sure you want to cancel this application?',
+                                buttonText: 'Reject',
                               );
                             },
                           );
@@ -180,35 +160,11 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return AlertDialog(
-                                title: Text('Accept Application?'),
-                                content: Text(
-                                  'Are you sure you want to Accept this application?',
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('Cancel'),
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Palette.primaryColor,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text(
-                                      'Accept',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ],
+                              return CustomAlertDialog(
+                                title: 'Accept Application?',
+                                subTitle:
+                                    'Are you sure you want to Accept this application?',
+                                buttonText: 'Accept',
                               );
                             },
                           );

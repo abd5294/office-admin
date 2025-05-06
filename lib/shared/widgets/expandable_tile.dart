@@ -34,15 +34,16 @@ class _ExpandableTileState extends State<ExpandableTile> {
         children: [
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
-                  spreadRadius: 3,
+                  spreadRadius: 6,
                   blurRadius: 15,
+                  offset: Offset(2, 2),
                 ),
               ],
+              borderRadius: BorderRadius.circular(12),
             ),
             width: MediaQuery.of(context).size.width,
             child: Row(
@@ -160,7 +161,7 @@ class ExpandedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width - 100,
+      width: MediaQuery.of(context).size.width - 70,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),
@@ -169,7 +170,7 @@ class ExpandedTile extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.only(left: 12, right: 12, top: 4, bottom: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(4, (index) {

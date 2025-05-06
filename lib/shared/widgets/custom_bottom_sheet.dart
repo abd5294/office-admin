@@ -9,7 +9,7 @@ class CustomBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height - 234,
+      height: MediaQuery.of(context).size.height - 228,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Palette.secondary,

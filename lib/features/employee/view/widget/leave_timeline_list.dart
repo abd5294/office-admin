@@ -25,6 +25,7 @@ class LeaveTimeLineList extends StatelessWidget {
           ),
         ),
         ListView.separated(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder:
               (context, index) => LeaveTimelineItem(

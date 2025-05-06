@@ -12,6 +12,7 @@ import 'package:office/shared/models/employee.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
+import 'package:office/shared/widgets/main_text_column.dart';
 
 class EmployeeDetailsScreen extends StatelessWidget {
   static const route = '/emp-details';
@@ -30,28 +31,14 @@ class EmployeeDetailsScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: PreferredSize(
-            preferredSize: Size(0, 60),
+            preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 36),
-                Text(
-                  employeeModel.name,
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'Employee Details',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
-                ),
-              ],
+            child: MainTextColumn(
+              title: employeeModel.name,
+              subTitle: 'Employee Details',
             ),
           ),
           bottomSheet: CustomBottomSheet(
@@ -63,19 +50,21 @@ class EmployeeDetailsScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Employee Details',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        height: 1,
                       ),
                     ),
                     SizedBox(height: 12),
                     StaggeredGrid.extent(
                       maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 7,
                       children: [
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 2,
-                          mainAxisExtent: 230,
+                          mainAxisExtent: 172,
                           child: EmployeeInfoCard(
                             name: employeeModel.name,
                             email: employeeModel.email ?? '',
@@ -86,7 +75,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 120,
+                          mainAxisExtent: 96,
                           child: EmployeeLeaveCard(
                             type: 'Approved',
                             count: employeeModel.approvedLeave ?? 3,
@@ -95,7 +84,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 120,
+                          mainAxisExtent: 96,
                           child: EmployeeLeaveCard(
                             type: 'unapproved',
                             count: employeeModel.unapprovedLeave ?? 3,
@@ -105,7 +94,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 130,
+                          mainAxisExtent: 96,
                           child: EmployeeLeaveCard(
                             type: 'remaining',
                             count: employeeModel.remainingLeave ?? 3,
@@ -114,7 +103,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                         ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
-                          mainAxisExtent: 130,
+                          mainAxisExtent: 96,
                           child: GestureDetector(
                             onTap: () {
                               context.go(HomeScreen.route);
@@ -123,6 +112,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                             child: CustomCard(
                               title: 'Check In details',
                               subTitle: 'View Check In details',
+                              isCheckInDetails: true,
                             ),
                           ),
                         ),
@@ -131,9 +121,10 @@ class EmployeeDetailsScreen extends StatelessWidget {
                     SizedBox(height: 12),
                     Text(
                       'Timeline Of Leaves',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
-                      ),
+                        fontSize: 16,
+                       ),
                     ),
                     SizedBox(height: 8),
                     LeaveTimeLineList(timeLine: leaveTimeline),

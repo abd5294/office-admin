@@ -26,16 +26,16 @@ class EmployeeInfoCard extends StatelessWidget {
         boxShadow: [BoxShadow(color: Colors.black12)],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Name',
               style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Text(
@@ -43,15 +43,16 @@ class EmployeeInfoCard extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
+                fontSize: 12,
               ),
             ),
             SizedBox(height: 4),
             Text(
               'Email',
               style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Text(
@@ -59,15 +60,16 @@ class EmployeeInfoCard extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
+                fontSize: 12,
               ),
             ),
             SizedBox(height: 4),
             Text(
               'Phone',
               style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Text(
@@ -75,15 +77,16 @@ class EmployeeInfoCard extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
+                fontSize: 12,
               ),
             ),
             SizedBox(height: 4),
             Text(
               'Blood Group',
               style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Text(
@@ -91,15 +94,16 @@ class EmployeeInfoCard extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
+                fontSize: 12,
               ),
             ),
             SizedBox(height: 4),
             Text(
               'Role',
               style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Text(
@@ -107,6 +111,7 @@ class EmployeeInfoCard extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
+                fontSize: 12,
               ),
             ),
             SizedBox(height: 4),
@@ -144,14 +149,17 @@ class EmployeeLeaveCard extends StatelessWidget {
           children: [
             Text(
               'No of $type leaves',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
             ),
             RichText(
               text: TextSpan(
                 text: '${totalCount.toString()} ',
                 style: TextStyle(
+                  height: 1.3,
                   color: Palette.primaryColor,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.italic,
                 ),
                 children: [
                   TextSpan(
@@ -161,8 +169,9 @@ class EmployeeLeaveCard extends StatelessWidget {
                             : 'Total leaves',
                     style: TextStyle(
                       color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 10,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
                 ],
@@ -177,7 +186,7 @@ class EmployeeLeaveCard extends StatelessWidget {
                   count.toString(),
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 28,
+                    fontSize: 24,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -187,7 +196,7 @@ class EmployeeLeaveCard extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black54,
                     fontWeight: FontWeight.w900,
-                    fontSize: 18,
+                    fontSize: 14,
                   ),
                 ),
               ],

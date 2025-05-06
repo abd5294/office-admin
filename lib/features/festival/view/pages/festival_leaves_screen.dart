@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/employee/view/pages/create_employee_screen.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
 import 'package:office/features/festival/controller/festival_leave_contorller.dart';
 import 'package:office/features/festival/view/pages/create_festival_screen.dart';
 import 'package:office/shared/models/leave_timeline_model.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
+import 'package:office/shared/widgets/main_text_column.dart';
 
 class FestivalLeavesScreen extends StatelessWidget {
   static const route = '/festival-leaves';
@@ -23,49 +25,29 @@ class FestivalLeavesScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10.0,
-              vertical: 30.0,
-            ),
-            child: SizedBox(
-              width: 70,
-              height: 70,
-              child: FloatingActionButton(
-                onPressed: () {
-                  context.push(CreateFestivalScreen.route);
-                },
-                shape: CircleBorder(),
-                backgroundColor: Palette.primaryColor,
-                child: Icon(Icons.add, color: Colors.white, size: 40),
-              ),
+          floatingActionButton: SizedBox(
+            width: 50,
+            height: 50,
+            child: FloatingActionButton(
+              onPressed: () {
+                context.push(CreateFestivalScreen.route);
+              },
+              shape: CircleBorder(),
+              backgroundColor: Palette.primaryColor,
+              child: Icon(Icons.add, color: Colors.white, size: 20),
             ),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.endContained,
           appBar: PreferredSize(
-            preferredSize: Size(0, 60),
+            preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 36),
-                Text(
-                  'Festival Leaves,',
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'Enjoy your holidays!',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
-                ),
-              ],
+            child: MainTextColumn(
+              title: 'Festival Leaves',
+              subTitle: 'Enjoy your holidays!',
             ),
           ),
           bottomSheet: CustomBottomSheet(
@@ -76,14 +58,19 @@ class FestivalLeavesScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Timeline of leaves',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    style: TextStyle(
                       fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      height: 1,
                     ),
                   ),
                   SizedBox(height: 12),
 
                   Expanded(
-                    child: LeaveTimeLineList(isFestival: true, timeLine: festivalTimeLine),
+                    child: LeaveTimeLineList(
+                      isFestival: true,
+                      timeLine: festivalTimeLine,
+                    ),
                   ),
                 ],
               ),

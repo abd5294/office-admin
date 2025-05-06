@@ -9,6 +9,7 @@ import 'package:office/features/leaves/view/pages/leave_application_screen.dart'
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
+import 'package:office/shared/widgets/main_text_column.dart';
 
 class HomeScreen extends StatelessWidget {
   static const route = '/home';
@@ -29,27 +30,9 @@ class HomeScreen extends StatelessWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 46),
-                Text(
-                  'Morning Abdur,',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    height: 1,
-                  ),
-                ),
-                Text(
-                  'Let\'s be productive',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                    height: 1,
-                  ),
-                ),
-              ],
+            child: MainTextColumn(
+              title: 'Morning Abdur,',
+              subTitle: 'Let\'s be productive',
             ),
           ),
           bottomSheet: CustomBottomSheet(

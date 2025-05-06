@@ -35,8 +35,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: SizedBox(
-                    height: 130,
-                    width: 130,
+                    height: 96,
+                    width: 96,
                     child: Image.network(
                       'https://thumbs.dreamstime.com/b/background-office-workplace-computer-table-chair-vector-flat-design-illustration-square-layout-71438088.jpg?w=768',
                     ),
@@ -46,23 +46,20 @@ class _AuthScreenState extends State<AuthScreen> {
               SizedBox(height: 40),
               Text(
                 'Welcome!',
-                style: theme.textTheme.headlineLarge?.copyWith(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
               ),
               SizedBox(height: 20),
               CustomTextField(
                 controller: emailController,
                 hintText: 'Enter your email',
-                onChange: (value){},
+                onChange: (value) {},
               ),
               SizedBox(height: 12),
               CustomTextField(
                 controller: passwordController,
                 hintText: 'Enter your password',
                 isObscured: true,
-                onChange: (value){},
+                onChange: (value) {},
               ),
               SizedBox(height: 12),
               InkWell(
@@ -72,6 +69,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   style: TextStyle(
                     color: Palette.primaryColor,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
               ),

@@ -14,24 +14,22 @@ class LargeButton extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {
-          context.push(HomeScreen.route);
-        },
-        child: Container(
+        onTap: onPressed,
+        child: Ink(
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Palette.primaryColor,
           ),
           child: Text(
-            text,
-            textAlign: TextAlign.center,
+            'Login',
             style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
               color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
       ),

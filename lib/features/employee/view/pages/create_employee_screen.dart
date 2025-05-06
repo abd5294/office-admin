@@ -23,7 +23,9 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: Icon(
           Icons.arrow_back_ios_new_rounded,
           size: 24,
@@ -56,7 +58,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: nameController,
               hintText: 'Enter employee\'s name',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
             Text(
@@ -71,7 +73,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: emailController,
               hintText: 'Enter employee\'s Email',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
 
@@ -87,7 +89,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: phoneController,
               hintText: 'Enter employee\'s Phone Number',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
 
@@ -103,7 +105,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: bloodGroupController,
               hintText: 'Enter employee\'s Blood group',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             SizedBox(height: 20),
 
@@ -119,7 +121,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
             CustomTextField(
               controller: roleController,
               hintText: 'Enter employee\'s role',
-              onChange: (value){},
+              onChange: (value) {},
             ),
             Spacer(),
             LargeButton(
