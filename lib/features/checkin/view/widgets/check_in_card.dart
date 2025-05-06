@@ -36,8 +36,8 @@ class CheckInCard extends StatelessWidget {
                     index.toString(),
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
@@ -49,14 +49,11 @@ class CheckInCard extends StatelessWidget {
             children: [
               Text(
                 'Date',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey.shade700,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 10),
               ),
               Text(
                 date,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
               ),
             ],
           ),

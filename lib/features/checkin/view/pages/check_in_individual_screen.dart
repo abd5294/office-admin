@@ -3,6 +3,7 @@ import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/checkin/view/widgets/detail_check_in.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
+import 'package:office/shared/widgets/main_text_column.dart';
 
 class CheckInIndividualScreen extends StatelessWidget {
   static const route = '/check-in-individual';
@@ -18,28 +19,14 @@ class CheckInIndividualScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: PreferredSize(
-            preferredSize: Size(0, 60),
+            preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 36),
-                Text(
-                  'Abdur Rahman',
-                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'Employee Details',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleMedium?.copyWith(color: Palette.appGrey),
-                ),
-              ],
+            child: MainTextColumn(
+              title: 'Abdur Rahman',
+              subTitle: 'Check In details for the day',
             ),
           ),
           bottomSheet: CustomBottomSheet(
@@ -50,8 +37,10 @@ class CheckInIndividualScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Check In Details',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    style: TextStyle(
                       fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      height: 1,
                     ),
                   ),
                   SizedBox(height: 12),

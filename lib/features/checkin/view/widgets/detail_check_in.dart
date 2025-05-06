@@ -24,7 +24,7 @@ class DetailCheckIn extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
       ),
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -33,14 +33,15 @@ class DetailCheckIn extends StatelessWidget {
             children: [
               Text(
                 'Check In Time',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
               RichText(
                 text: TextSpan(
                   text: totalTopCount.toString(),
                   style: TextStyle(
                     color: Palette.primaryColor,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 10,
                   ),
                   children: [
                     TextSpan(
@@ -48,7 +49,7 @@ class DetailCheckIn extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     ),
                   ],
@@ -61,31 +62,32 @@ class DetailCheckIn extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w900,
-                    fontSize: 28,
+                    fontSize: 24,
                   ),
                   children: [
                     TextSpan(
                       text: session,
                       style: TextStyle(
-                        color: Colors.grey.shade700,
+                        color: Color(0xFF71727A),
                         fontWeight: FontWeight.w900,
-                        fontSize: 28,
+                        fontSize: 14,
                       ),
                     ),
                   ],
                 ),
               ),
-              Spacer(),
+              SizedBox(height: 84),
               Text(
                 'Checkout Image',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
               RichText(
                 text: TextSpan(
                   text: totalBottomCount.toString(),
                   style: TextStyle(
+                    fontSize: 10,
                     color: Palette.primaryColor,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w700,
                   ),
                   children: [
                     TextSpan(
@@ -93,7 +95,7 @@ class DetailCheckIn extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     ),
                   ],
@@ -106,11 +108,9 @@ class DetailCheckIn extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: Container(
-                height: 200,
-                width: 150,
-                decoration: BoxDecoration(
-                  color: Color(0xFFd9d9d9),
-                ),
+                height: 181,
+                width: 134,
+                decoration: BoxDecoration(color: Color(0xFFd9d9d9)),
                 child: Image.network(
                   'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740',
                   fit: BoxFit.cover,

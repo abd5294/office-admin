@@ -49,10 +49,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                 ),
               ],
             ),
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             child: Row(
               children: [
                 ClipRRect(
@@ -69,8 +66,8 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                           '1',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
@@ -82,20 +79,16 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                   children: [
                     Text(
                       'Employee Name',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey.shade700,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 10,
                       ),
                     ),
                     Text(
                       'Abdur Rahman',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                     ),
                   ],
@@ -172,15 +165,15 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             child:
-            isExpanded
-                ? ManageEmployeeExpandedTile(
-              name: widget.name,
-              email: widget.email,
-              phone: widget.phone,
-              bloodGroup: widget.bloodGroup,
-              role: widget.role,
-            )
-                : SizedBox.shrink(),
+                isExpanded
+                    ? ManageEmployeeExpandedTile(
+                      name: widget.name,
+                      email: widget.email,
+                      phone: widget.phone,
+                      bloodGroup: widget.bloodGroup,
+                      role: widget.role,
+                    )
+                    : SizedBox.shrink(),
           ),
         ],
       ),
@@ -207,10 +200,7 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width - 100,
+      width: MediaQuery.of(context).size.width - 60,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),
@@ -227,16 +217,16 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
             boxShadow: [BoxShadow(color: Colors.black12)],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Name',
                   style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black.withAlpha(123),
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -244,15 +234,16 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
                 Text(
                   'Email',
                   style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black.withAlpha(123),
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -260,15 +251,16 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
                 Text(
                   'Phone',
                   style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black.withAlpha(123),
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -276,15 +268,16 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
                 Text(
                   'Blood Group',
                   style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black.withAlpha(123),
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -292,15 +285,16 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
                 Text(
                   'Role',
                   style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black.withAlpha(123),
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -308,6 +302,7 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
