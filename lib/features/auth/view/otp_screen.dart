@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/view/fotget_password.dart';
+import 'package:office/features/auth/view/confirm_password_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class AuthScreen extends StatefulWidget {
-  static final route = '/auth';
+class OtpScreen extends StatefulWidget {
+  static final route = '/otp-screen';
 
-  const AuthScreen({super.key});
+  const OtpScreen({super.key});
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  State<OtpScreen> createState() => _OtpScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+class _OtpScreenState extends State<OtpScreen> {
+  final otpController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) => ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Email Sent'), duration: Duration(seconds: 5)),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,29 +54,34 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               SizedBox(height: 40),
               Text(
-                'Welcome!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                'Enter the OTP',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  height: 1,
+                ),
+              ),
+              Text(
+                'Please check your mail and enter the OTP',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w800,
+                  height: 1.8,
+                  color: Color(0xFF666666),
+                ),
               ),
               SizedBox(height: 20),
               CustomTextField(
-                controller: emailController,
-                hintText: 'Enter your email',
+                controller: otpController,
+                hintText: 'Enter OTP',
                 onChange: (value) {},
+                isNumeric: true,
               ),
-              SizedBox(height: 12),
-              CustomTextField(
-                controller: passwordController,
-                hintText: 'Enter your password',
-                isObscured: true,
-                onChange: (value) {},
-              ),
-              SizedBox(height: 12),
+              SizedBox(height: 2),
               InkWell(
-                onTap: () {
-                  context.push(ForgotPasswordScreen.route);
-                },
+                onTap: () {},
                 child: Text(
-                  'Forget Password?',
+                  'Resend OTP?',
                   style: TextStyle(
                     color: Palette.primaryColor,
                     fontWeight: FontWeight.w600,
@@ -75,11 +89,11 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 18),
+              SizedBox(height: 12),
               LargeButton(
-                text: 'Login',
+                text: 'Confirm',
                 onPressed: () {
-                  context.go(HomeScreen.route);
+                  context.push(ConfirmPasswordScreen.route);
                 },
               ),
             ],

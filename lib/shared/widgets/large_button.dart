@@ -23,7 +23,7 @@ class LargeButton extends StatelessWidget {
             color: Palette.primaryColor,
           ),
           child: Text(
-            'Login',
+            text,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,

@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/view/fotget_password.dart';
+import 'package:office/features/auth/view/auth_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class AuthScreen extends StatefulWidget {
-  static final route = '/auth';
+class ConfirmPasswordScreen extends StatefulWidget {
+  static final route = '/confirm-password';
 
-  const AuthScreen({super.key});
+  const ConfirmPasswordScreen({super.key});
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  State<ConfirmPasswordScreen> createState() => _ConfirmPasswordScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
+  final otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,41 +44,32 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               SizedBox(height: 40),
               Text(
-                'Welcome!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                'Enter Your New Password',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  height: 1,
+                ),
               ),
               SizedBox(height: 20),
               CustomTextField(
-                controller: emailController,
-                hintText: 'Enter your email',
+                controller: otpController,
+                hintText: 'New password',
                 onChange: (value) {},
+                isNumeric: true,
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 8),
               CustomTextField(
-                controller: passwordController,
-                hintText: 'Enter your password',
-                isObscured: true,
+                controller: otpController,
+                hintText: 'Re-Enter New password',
                 onChange: (value) {},
+                isNumeric: true,
               ),
               SizedBox(height: 12),
-              InkWell(
-                onTap: () {
-                  context.push(ForgotPasswordScreen.route);
-                },
-                child: Text(
-                  'Forget Password?',
-                  style: TextStyle(
-                    color: Palette.primaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-              SizedBox(height: 18),
               LargeButton(
-                text: 'Login',
+                text: 'Confirm',
                 onPressed: () {
-                  context.go(HomeScreen.route);
+                  context.go(AuthScreen.route);
                 },
               ),
             ],

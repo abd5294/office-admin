@@ -4,6 +4,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final bool isObscured;
+  final bool isNumeric;
   final Function(String) onChange;
 
   const CustomTextField({
@@ -11,6 +12,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.onChange,
+    this.isNumeric = false,
     this.isObscured = false,
   });
 
@@ -20,6 +22,7 @@ class CustomTextField extends StatelessWidget {
       height: 48,
       child: TextFormField(
         style: TextStyle(color: Colors.black),
+        keyboardType: isNumeric ? TextInputType.number : TextInputType.text,
         controller: controller,
         onChanged: onChange,
         decoration: InputDecoration(

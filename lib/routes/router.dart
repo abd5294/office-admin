@@ -1,5 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:office/features/auth/view/auth_screen.dart';
+import 'package:office/features/auth/view/confirm_password_screen.dart';
+import 'package:office/features/auth/view/fotget_password.dart';
+import 'package:office/features/auth/view/otp_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_individual_screen.dart';
 import 'package:office/features/employee/view/pages/create_employee_screen.dart';
@@ -13,10 +16,19 @@ import 'package:office/features/employee/view/pages/employee_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: HomeScreen.route,
+  initialLocation: ForgotPasswordScreen.route,
   routes: [
     GoRoute(path: AuthScreen.route, builder: (context, state) => AuthScreen()),
     GoRoute(path: HomeScreen.route, builder: (context, state) => HomeScreen()),
+    GoRoute(
+      path: ForgotPasswordScreen.route,
+      builder: (context, state) => ForgotPasswordScreen(),
+    ),
+    GoRoute(path: OtpScreen.route, builder: (context, state) => OtpScreen()),
+    GoRoute(
+      path: ConfirmPasswordScreen.route,
+      builder: (context, state) => ConfirmPasswordScreen(),
+    ),
 
     GoRoute(
       path: ManageEmployeeScreen.route,
