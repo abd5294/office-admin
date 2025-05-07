@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class CheckInScreen extends StatelessWidget {
-  static const route = '/check-in';
+class CheckInOutScreen extends StatelessWidget {
+  static const route = '/check-in-out-employee';
 
-  const CheckInScreen({super.key});
+  const CheckInOutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,7 @@ import 'package:office/features/auth/view/fotget_password.dart';
 import 'package:office/features/auth/view/otp_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_individual_screen.dart';
+import 'package:office/features/checkin/view/pages/check_in_out_screen.dart';
 import 'package:office/features/employee/view/pages/create_employee_screen.dart';
 import 'package:office/features/employee/view/pages/edit_employee_screen.dart';
 import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
@@ -74,6 +75,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: CheckInListScreen.route,
       builder: (context, state) => CheckInListScreen(),
+    ),
+    GoRoute(
+      path: CheckInOutScreen.route,
+      builder: (context, state) => CheckInOutScreen(),
     ),
     GoRoute(
       path: EmployeeDetailsScreen.route,

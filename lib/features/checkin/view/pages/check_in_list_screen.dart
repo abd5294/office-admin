@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/checkin/controller/check_in_list_controller.dart';
 import 'package:office/features/checkin/model/check_in_list_model.dart';
 import 'package:office/features/checkin/view/widgets/check_in_card.dart';
@@ -8,7 +7,7 @@ import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
 class CheckInListScreen extends StatelessWidget {
-  static final route = '/check-in-page';
+  static final route = '/check-in-screen';
 
   const CheckInListScreen({super.key});
 
