@@ -23,10 +23,15 @@ class _EditLeaveScreenState extends State<EditLeaveScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          size: 24,
-          color: Palette.primaryColor,
+        leading: GestureDetector(
+          onTap: () {
+            context.pop();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 24,
+            color: Palette.primaryColor,
+          ),
         ),
         title: Text(
           'Edit Leave Application',

@@ -26,10 +26,15 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          size: 24,
-          color: Palette.primaryColor,
+        leading: GestureDetector(
+          onTap: () {
+            context.pop();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 24,
+            color: Palette.primaryColor,
+          ),
         ),
         title: Text(
           'Create Employee',

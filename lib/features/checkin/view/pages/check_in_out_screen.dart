@@ -14,10 +14,15 @@ class CheckInOutScreen extends StatelessWidget {
       backgroundColor: Palette.secondary,
       appBar: AppBar(
         backgroundColor: Palette.secondary,
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          size: 24,
-          color: Palette.primaryColor,
+        leading: GestureDetector(
+          onTap: () {
+            context.pop();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 24,
+            color: Palette.primaryColor,
+          ),
         ),
         title: Text(
           'Check In',
