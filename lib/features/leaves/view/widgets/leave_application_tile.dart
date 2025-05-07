@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/auth/model/user_model.dart';
 import 'package:office/shared/widgets/custom_alert_dialog.dart';
 
 class LeaveApplicationTile extends StatefulWidget {
   final String name;
   final String reason;
+  final String status;
   final String dateOfLeave;
   final String typeOfLeave;
   final String remainingLeave;
   final String totalApprovedLeaves;
   final String totalUnApprovedLeaves;
   final int index;
+  final UserModel user;
 
   const LeaveApplicationTile({
     super.key,
     required this.index,
+    required this.status,
     required this.name,
+    required this.user,
     required this.reason,
     required this.dateOfLeave,
     required this.typeOfLeave,
@@ -53,7 +58,10 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                 ),
               ],
             ),
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             child: Row(
               children: [
                 ClipRRect(
@@ -127,7 +135,8 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                         ),
                       ),
                       SizedBox(width: 12),
-                      GestureDetector(
+                      widget.user.role == 'admin'
+                          ? GestureDetector(
                         onTap: () {
                           showDialog(
                             context: context,
@@ -135,7 +144,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                               return CustomAlertDialog(
                                 title: 'Cancel Application?',
                                 subTitle:
-                                    'Are you sure you want to cancel this application?',
+                                'Are you sure you want to cancel this application?',
                                 buttonText: 'Reject',
                               );
                             },
@@ -153,9 +162,29 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                             color: Colors.white,
                           ),
                         ),
+                      )
+                          : GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                            widget.status == 'Accepted'
+                                ? Colors.green
+                                : Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: EdgeInsets.all(4),
+                          child: Icon(
+                            widget.status == 'Accepted'
+                                ? Icons.check : Icons.close,
+                            size: 18,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                       SizedBox(width: 12),
-                      GestureDetector(
+                      widget.user.role == 'admin'
+                          ? GestureDetector(
                         onTap: () {
                           showDialog(
                             context: context,
@@ -163,7 +192,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                               return CustomAlertDialog(
                                 title: 'Accept Application?',
                                 subTitle:
-                                    'Are you sure you want to Accept this application?',
+                                'Are you sure you want to Accept this application?',
                                 buttonText: 'Accept',
                               );
                             },
@@ -181,6 +210,23 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                             color: Colors.white,
                           ),
                         ),
+                      )
+                          : GestureDetector(
+                        onTap: () {
+
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Palette.primaryColor,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: EdgeInsets.all(6),
+                          child: Icon(
+                            Icons.edit_rounded,
+                            size: 14,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -192,17 +238,19 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             child:
-                isExpanded
-                    ? LeaveApplicationExpandedTile(
-                      name: widget.name,
-                      reason: widget.reason,
-                      dateOfLeave: widget.dateOfLeave,
-                      typeOfLeave: widget.typeOfLeave,
-                      remainingLeave: widget.remainingLeave,
-                      totalApprovedLeaves: widget.totalApprovedLeaves,
-                      totalUnApprovedLeaves: widget.totalUnApprovedLeaves,
-                    )
-                    : SizedBox.shrink(),
+            isExpanded
+                ? LeaveApplicationExpandedTile(
+              name: widget.name,
+              user: widget.user,
+              status: widget.status,
+              reason: widget.reason,
+              dateOfLeave: widget.dateOfLeave,
+              typeOfLeave: widget.typeOfLeave,
+              remainingLeave: widget.remainingLeave,
+              totalApprovedLeaves: widget.totalApprovedLeaves,
+              totalUnApprovedLeaves: widget.totalUnApprovedLeaves,
+            )
+                : SizedBox.shrink(),
           ),
         ],
       ),
@@ -213,6 +261,8 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
 class LeaveApplicationExpandedTile extends StatelessWidget {
   final String name;
   final String reason;
+  final String status;
+  final UserModel user;
   final String dateOfLeave;
   final String typeOfLeave;
   final String remainingLeave;
@@ -221,7 +271,9 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
 
   const LeaveApplicationExpandedTile({
     super.key,
+    required this.user,
     required this.name,
+    required this.status,
     required this.reason,
     required this.dateOfLeave,
     required this.typeOfLeave,
@@ -233,7 +285,10 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width - 70,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width - 70,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),
@@ -254,12 +309,34 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                user.role == 'user'
+                    ? Column(
+                  children: [
+                    Text(
+                      'Status',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 8,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      status,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                )
+                    : SizedBox.shrink(),
                 Text(
                   'Name',
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -267,6 +344,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -274,8 +352,8 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   'Reason',
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -283,6 +361,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -290,8 +369,8 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   'Date of leave',
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -299,6 +378,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -306,8 +386,8 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   'Type of leave',
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -315,6 +395,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -322,8 +403,8 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   'Remaining Leave',
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
 
@@ -332,6 +413,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -339,8 +421,8 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   'Total approved leaves taken so far',
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -348,6 +430,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -355,8 +438,8 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   'Total unapproved leaves taken so far',
                   style: TextStyle(
                     color: Colors.grey.shade600,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
@@ -364,6 +447,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 4),

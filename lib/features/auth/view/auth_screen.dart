@@ -45,7 +45,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               SizedBox(height: 40),
               Text(
-                'Welcome!',
+                'Welcome Back!',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
               ),
               SizedBox(height: 20),
