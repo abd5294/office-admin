@@ -48,68 +48,68 @@ class _CreateLeaveScreenState extends State<CreateLeaveScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Name',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Colors.black,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: nameController,
               hintText: 'Enter profile\'s name',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               'Reason',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Colors.black,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: reasonController,
               hintText: 'Enter the reason',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 8),
 
-            Text(
+            const Text(
               'Date Of Leave',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Colors.black,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: dateController,
               hintText: 'Enter your Phone Number',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 8),
 
-            Text(
+            const Text(
               'Type of leave',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Colors.black,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: typeController,
               hintText: 'Enter Type (Half or Full day)',
               onChange: (value) {},
             ),
-            Spacer(),
+            const Spacer(),
             LargeButton(
               text: 'Send Application',
               onPressed: () {

@@ -62,7 +62,7 @@ class _EditLeaveScreenState extends State<EditLeaveScreen> {
               hintText: 'Enter profile\'s name',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
             Text(
               'Reason',
               style: TextStyle(
@@ -77,7 +77,7 @@ class _EditLeaveScreenState extends State<EditLeaveScreen> {
               hintText: 'Enter the reason',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
 
             Text(
               'Date Of Leave',
@@ -93,7 +93,7 @@ class _EditLeaveScreenState extends State<EditLeaveScreen> {
               hintText: 'Enter your Phone Number',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 8),
 
             Text(
               'Type of leave',
