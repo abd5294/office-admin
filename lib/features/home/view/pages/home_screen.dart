@@ -72,7 +72,10 @@ class HomeScreen extends ConsumerWidget {
                                   user.role == 'admin'
                                       ? 'Employees Page'
                                       : 'Check In / Check Out',
-                              subTitle: 'View your employees',
+                              subTitle:
+                                  user.role == 'admin'
+                                      ? 'View your employees'
+                                      : 'Click to Check In / Check Out',
                               backgroundColor: Colors.black,
                             ),
                           ),
@@ -104,7 +107,10 @@ class HomeScreen extends ConsumerWidget {
                                   user.role == 'admin'
                                       ? 'Manage Employees'
                                       : 'Profile Page',
-                              subTitle: 'Manage your employees',
+                              subTitle:
+                                  user.role == 'admin'
+                                      ? 'Manage your employees'
+                                      : 'View my profile',
                             ),
                           ),
                         ),
@@ -117,7 +123,7 @@ class HomeScreen extends ConsumerWidget {
                             },
                             child: CustomCard(
                               title: 'Festival Leaves',
-                              subTitle: 'Manage festival leaves',
+                              subTitle: 'See my chill days',
                             ),
                           ),
                         ),
