@@ -43,30 +43,30 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
-              Text(
+              const SizedBox(height: 40),
+              const Text(
                 'Welcome Back!',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomTextField(
                 controller: emailController,
                 hintText: 'Enter your email',
                 onChange: (value) {},
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               CustomTextField(
                 controller: passwordController,
                 hintText: 'Enter your password',
                 isObscured: true,
                 onChange: (value) {},
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               InkWell(
                 onTap: () {
                   context.push(ForgotPasswordScreen.route);
                 },
-                child: Text(
+                child: const Text(
                   'Forget Password?',
                   style: TextStyle(
                     color: Palette.primaryColor,
@@ -75,7 +75,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 18),
+              const SizedBox(height: 18),
               LargeButton(
                 text: 'Login',
                 onPressed: () {

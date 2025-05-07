@@ -38,7 +38,7 @@ class LeaveTimelineItem extends StatelessWidget {
                       : Colors.red,
             ),
           ),
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Container(
             width: MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
@@ -61,12 +61,12 @@ class LeaveTimelineItem extends StatelessWidget {
                                 fontSize: 16,
                               ),
                             ),
-                            SizedBox(height: 4),
+                            const SizedBox(height: 4),
                             Text(
                               message,
                               style: TextStyle(fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(height: 4),
+                            const SizedBox(height: 4),
                             Text(
                               'Note: $note',
                               style: TextStyle(fontWeight: FontWeight.w500),

@@ -16,7 +16,7 @@ class CheckInCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
         boxShadow: [
-          BoxShadow(color: Colors.black12, spreadRadius: 3, blurRadius: 15),
+          const BoxShadow(color: Colors.black12, spreadRadius: 3, blurRadius: 15),
         ],
       ),
       width: MediaQuery.of(context).size.width,
@@ -47,7 +47,7 @@ class CheckInCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Date',
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 10),
               ),
@@ -67,11 +67,11 @@ class CheckInCard extends StatelessWidget {
                     context.push(CheckInIndividualScreen.route);
                   },
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Palette.primaryColor,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.keyboard_arrow_right_rounded,
                       size: 24,
                       color: Colors.white,

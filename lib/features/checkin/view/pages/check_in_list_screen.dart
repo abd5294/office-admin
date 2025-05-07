@@ -38,7 +38,7 @@ class CheckInListScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Check In Details',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -54,7 +54,7 @@ class CheckInListScreen extends StatelessWidget {
                           index: index + 1,
                           date: checkInList[index].date,
                         ),
-                    separatorBuilder: (context, index) => SizedBox(height: 12),
+                    separatorBuilder: (context, index) =>const SizedBox(height: 12),
                     itemCount: checkInList.length,
                   ),
                 ],

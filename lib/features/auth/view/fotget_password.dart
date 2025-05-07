@@ -42,8 +42,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
-              Text(
+              const SizedBox(height: 40),
+              const Text(
                 'Forgot Password?',
                 style: TextStyle(
                   fontSize: 24,
@@ -51,7 +51,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 1,
                 ),
               ),
-              Text(
+              const Text(
                 'No worries, Enter your email to receive OTP',
                 style: TextStyle(
                   fontSize: 14,
@@ -60,13 +60,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   color: Color(0xFF666666),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomTextField(
                 controller: emailController,
                 hintText: 'Enter your email',
                 onChange: (value) {},
               ),
-              SizedBox(height: 18),
+              const SizedBox(height: 18),
               LargeButton(text: 'Send OTP', onPressed: () {
                 context.push(OtpScreen.route);
               }),

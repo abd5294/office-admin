@@ -46,7 +46,7 @@ class EmployeeInfoCard extends StatelessWidget {
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               'Email',
               style: TextStyle(
@@ -63,7 +63,7 @@ class EmployeeInfoCard extends StatelessWidget {
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               'Phone',
               style: TextStyle(
@@ -80,7 +80,7 @@ class EmployeeInfoCard extends StatelessWidget {
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               'Blood Group',
               style: TextStyle(
@@ -97,7 +97,7 @@ class EmployeeInfoCard extends StatelessWidget {
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               'Role',
               style: TextStyle(
@@ -114,7 +114,7 @@ class EmployeeInfoCard extends StatelessWidget {
                 fontSize: 12,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
           ],
         ),
       ),
@@ -190,7 +190,7 @@ class EmployeeLeaveCard extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                SizedBox(width: 4),
+                const SizedBox(width: 4),
                 Text(
                   'Leaves',
                   style: TextStyle(

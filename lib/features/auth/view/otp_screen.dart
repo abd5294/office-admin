@@ -52,8 +52,8 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
-              Text(
+              const SizedBox(height: 40),
+              const Text(
                 'Enter the OTP',
                 style: TextStyle(
                   fontSize: 24,
@@ -61,7 +61,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   height: 1,
                 ),
               ),
-              Text(
+              const Text(
                 'Please check your mail and enter the OTP',
                 style: TextStyle(
                   fontSize: 14,
@@ -70,14 +70,14 @@ class _OtpScreenState extends State<OtpScreen> {
                   color: Color(0xFF666666),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomTextField(
                 controller: otpController,
                 hintText: 'Enter OTP',
                 onChange: (value) {},
                 isNumeric: true,
               ),
-              SizedBox(height: 2),
+              const SizedBox(height: 2),
               InkWell(
                 onTap: () {},
                 child: Text(
@@ -89,7 +89,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               LargeButton(
                 text: 'Confirm',
                 onPressed: () {

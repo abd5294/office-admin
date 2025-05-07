@@ -35,7 +35,7 @@ class LeaveTimeLineList extends StatelessWidget {
                 note: timeLine[index].note ?? '',
                 message: timeLine[index].message ?? '',
               ),
-          separatorBuilder: (context, index) => SizedBox(height: 12),
+          separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemCount: timeLine.length,
         ),
       ],

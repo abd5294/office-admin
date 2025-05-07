@@ -39,7 +39,7 @@ class EmployeeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'List of Employees',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -47,7 +47,7 @@ class EmployeeScreen extends StatelessWidget {
                       height: 1,
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Expanded(
                     child: ListView.separated(
                       itemBuilder:

@@ -24,27 +24,27 @@ class DetailCheckIn extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Check In Time',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
               RichText(
                 text: TextSpan(
                   text: totalTopCount.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Palette.primaryColor,
                     fontWeight: FontWeight.w700,
                     fontSize: 10,
                   ),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: ' Total Leaves',
                       style: TextStyle(
                         color: Colors.black,
@@ -67,7 +67,7 @@ class DetailCheckIn extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: session,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF71727A),
                         fontWeight: FontWeight.w900,
                         fontSize: 14,
@@ -77,7 +77,7 @@ class DetailCheckIn extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 84),
-              Text(
+              const Text(
                 'Checkout Image',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
@@ -90,7 +90,7 @@ class DetailCheckIn extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: ' Total Leaves',
                       style: TextStyle(
                         color: Colors.black,

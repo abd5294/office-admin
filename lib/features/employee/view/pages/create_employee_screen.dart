@@ -30,13 +30,13 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
           onTap: () {
             context.pop();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new_rounded,
             size: 24,
             color: Palette.primaryColor,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Create Employee',
           style: TextStyle(
             color: Colors.black87,
@@ -51,86 +51,86 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Name',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Color(0xFF2F3036),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: nameController,
               hintText: 'Enter employee\'s name',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Email',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Color(0xFF2F3036),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: emailController,
               hintText: 'Enter employee\'s Email',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            Text(
+            const Text(
               'Phone',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Color(0xFF2F3036),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: phoneController,
               hintText: 'Enter employee\'s Phone Number',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            Text(
+            const Text(
               'Blood Group',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Color(0xFF2F3036),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: bloodGroupController,
               hintText: 'Enter employee\'s Blood group',
               onChange: (value) {},
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            Text(
+            const Text(
               'Role',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
-                color: Colors.grey.shade700,
+                color: Color(0xFF2F3036),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               controller: roleController,
               hintText: 'Enter employee\'s role',
               onChange: (value) {},
             ),
-            Spacer(),
+            const Spacer(),
             LargeButton(
-              text: 'Create Employee',
+              text: 'Add Employee',
               onPressed: () {
                 context.pop();
               },

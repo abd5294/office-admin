@@ -18,7 +18,7 @@ class CheckInIndividualScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: PreferredSize(
+          appBar: const PreferredSize(
             preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
@@ -35,7 +35,7 @@ class CheckInIndividualScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Check In Details',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,

@@ -33,7 +33,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: PreferredSize(
+          appBar: const PreferredSize(
             preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
@@ -52,7 +52,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Employee Details',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -60,7 +60,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                         height: 1,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     StaggeredGrid.extent(
                       maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
                       mainAxisSpacing: 16,
@@ -122,15 +122,15 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 12),
-                    Text(
+                    const SizedBox(height: 12),
+                    const Text(
                       'Timeline Of Leaves',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     LeaveTimeLineList(timeLine: leaveTimeline),
                   ],
                 ),

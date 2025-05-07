@@ -30,7 +30,7 @@ class ManageEmployeeScreen extends StatelessWidget {
               },
               shape: CircleBorder(),
               backgroundColor: Palette.primaryColor,
-              child: Icon(Icons.add, color: Colors.white, size: 20),
+              child: const Icon(Icons.add, color: Colors.white, size: 20),
             ),
           ),
 
@@ -53,7 +53,7 @@ class ManageEmployeeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Employee List',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -61,7 +61,7 @@ class ManageEmployeeScreen extends StatelessWidget {
                       height: 1,
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Expanded(
                     child: ListView.separated(
                       itemBuilder:
@@ -72,7 +72,7 @@ class ManageEmployeeScreen extends StatelessWidget {
                             bloodGroup: 'B+',
                             role: 'Employee',
                           ),
-                      separatorBuilder: (context, index) => SizedBox(height: 8),
+                      separatorBuilder: (context, index) => const SizedBox(height: 8),
                       itemCount: 2,
                     ),
                   ),

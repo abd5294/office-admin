@@ -42,8 +42,8 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 40),
-              Text(
+              const SizedBox(height: 40),
+              const Text(
                 'Enter Your New Password',
                 style: TextStyle(
                   fontSize: 24,
@@ -51,21 +51,21 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                   height: 1,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomTextField(
                 controller: otpController,
                 hintText: 'New password',
                 onChange: (value) {},
                 isNumeric: true,
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               CustomTextField(
                 controller: otpController,
                 hintText: 'Re-Enter New password',
                 onChange: (value) {},
                 isNumeric: true,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               LargeButton(
                 text: 'Confirm',
                 onPressed: () {

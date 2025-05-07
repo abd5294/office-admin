@@ -18,13 +18,13 @@ class CheckInOutScreen extends StatelessWidget {
           onTap: () {
             context.pop();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios_new_rounded,
             size: 24,
             color: Palette.primaryColor,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Check In',
           style: TextStyle(
             color: Colors.black87,
@@ -40,8 +40,8 @@ class CheckInOutScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Icon(Icons.image_rounded, size: 300, color: Color(0xFFb4dbff)),
-                Spacer(),
+                const Icon(Icons.image_rounded, size: 300, color: Color(0xFFb4dbff)),
+                const Spacer(),
                 LargeButton(
                   text: 'Click to Check in',
                   onPressed: () {

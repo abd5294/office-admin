@@ -77,7 +77,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Employee Name',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
@@ -108,14 +108,14 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                             shape: BoxShape.circle,
                           ),
                           padding: EdgeInsets.all(6),
-                          child: Icon(
+                          child: const Icon(
                             Icons.edit_rounded,
                             size: 14,
                             color: Colors.white,
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -130,7 +130,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                               color: Palette.primaryColor,
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.keyboard_arrow_down_rounded,
                               size: 24,
                               color: Colors.white,
@@ -138,7 +138,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       GestureDetector(
                         onTap: () {
                           context.push(EmployeeDetailsScreen.route);
@@ -148,7 +148,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                             color: Palette.primaryColor,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.keyboard_arrow_right_rounded,
                             size: 24,
                             color: Colors.white,
@@ -173,7 +173,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                       bloodGroup: widget.bloodGroup,
                       role: widget.role,
                     )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
           ),
         ],
       ),
@@ -237,7 +237,7 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Email',
                   style: TextStyle(
@@ -254,7 +254,7 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Phone',
                   style: TextStyle(
@@ -271,7 +271,7 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Blood Group',
                   style: TextStyle(
@@ -288,7 +288,7 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Role',
                   style: TextStyle(
@@ -305,7 +305,7 @@ class ManageEmployeeExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
               ],
             ),
           ),
