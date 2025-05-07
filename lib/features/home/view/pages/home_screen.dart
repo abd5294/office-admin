@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/controller/user_controller.dart';
+import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/pages/employee_screen.dart';
 import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
 import 'package:office/features/festival/view/pages/festival_leaves_screen.dart';
@@ -94,7 +95,9 @@ class HomeScreen extends ConsumerWidget {
                           mainAxisExtent: 124,
                           child: GestureDetector(
                             onTap: () {
-                              context.push(ManageEmployeeScreen.route);
+                              user.role == 'user'
+                                  ? context.push(EmployeeDetailsScreen.route)
+                                  : context.push(ManageEmployeeScreen.route);
                             },
                             child: CustomCard(
                               title:

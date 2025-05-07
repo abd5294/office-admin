@@ -13,6 +13,8 @@ import 'package:office/features/festival/view/pages/festival_leaves_screen.dart'
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/pages/employee_screen.dart';
+import 'package:office/features/leaves/view/pages/create_leave_screen.dart';
+import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -46,6 +48,14 @@ final GoRouter router = GoRouter(
       builder: (context, state) => LeaveApplicationScreen(),
     ),
     GoRoute(
+      path: CreateLeaveScreen.route,
+      builder: (context, state) => CreateLeaveScreen(),
+    ),
+    GoRoute(
+      path: EditLeaveScreen.route,
+      builder: (context, state) => EditLeaveScreen(),
+    ),
+    GoRoute(
       path: CreateEmployeeScreen.route,
       builder: (context, state) => CreateEmployeeScreen(),
     ),
@@ -71,4 +81,3 @@ final GoRouter router = GoRouter(
     ),
   ],
 );
-

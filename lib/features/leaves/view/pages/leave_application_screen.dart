@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/controller/user_controller.dart';
+import 'package:office/features/leaves/view/pages/create_leave_screen.dart';
 import 'package:office/features/leaves/view/widgets/leave_application_tile.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
@@ -24,6 +27,21 @@ class LeaveApplicationScreen extends ConsumerWidget {
             preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
+          floatingActionButton:
+              user.role == 'user' ? SizedBox(
+                width: 50,
+                height: 50,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    context.push(CreateLeaveScreen.route);
+                  },
+                  shape: CircleBorder(),
+                  backgroundColor: Palette.primaryColor,
+                  child: Icon(Icons.add, color: Colors.white, size: 20),
+                ),
+              ) : null,
+          floatingActionButtonLocation:
+          FloatingActionButtonLocation.endContained,
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: MainTextColumn(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/auth/controller/user_controller.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/employee/controller/employee_details_controller.dart';
 import 'package:office/features/employee/controller/employee_timeline_controller.dart';
@@ -14,13 +16,14 @@ import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
-class EmployeeDetailsScreen extends StatelessWidget {
+class EmployeeDetailsScreen extends ConsumerWidget {
   static const route = '/emp-details';
 
   const EmployeeDetailsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(userProvider);
     final employeeModel = EmployeeDetailsController().getEmployeeDetails();
     final leaveTimeline = EmployeeTimeLineController().getEmployeeTimeLine();
     return Container(
@@ -38,7 +41,8 @@ class EmployeeDetailsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: MainTextColumn(
               title: employeeModel.name,
-              subTitle: 'Employee Details',
+              subTitle:
+                  user.role == 'admin' ? 'Employee Details' : 'Your Details',
             ),
           ),
           bottomSheet: CustomBottomSheet(
@@ -124,7 +128,7 @@ class EmployeeDetailsScreen extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
-                       ),
+                      ),
                     ),
                     SizedBox(height: 8),
                     LeaveTimeLineList(timeLine: leaveTimeline),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/model/user_model.dart';
+import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
 import 'package:office/shared/widgets/custom_alert_dialog.dart';
 
 class LeaveApplicationTile extends StatefulWidget {
@@ -58,10 +60,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                 ),
               ],
             ),
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             child: Row(
               children: [
                 ClipRRect(
@@ -137,97 +136,98 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                       SizedBox(width: 12),
                       widget.user.role == 'admin'
                           ? GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return CustomAlertDialog(
-                                title: 'Cancel Application?',
-                                subTitle:
-                                'Are you sure you want to cancel this application?',
-                                buttonText: 'Reject',
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CustomAlertDialog(
+                                    title: 'Cancel Application?',
+                                    subTitle:
+                                        'Are you sure you want to cancel this application?',
+                                    buttonText: 'Reject',
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Palette.primaryColor,
-                            shape: BoxShape.circle,
-                          ),
-                          padding: EdgeInsets.all(4),
-                          child: Icon(
-                            Icons.close_rounded,
-                            size: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Palette.primaryColor,
+                                shape: BoxShape.circle,
+                              ),
+                              padding: EdgeInsets.all(4),
+                              child: Icon(
+                                Icons.close_rounded,
+                                size: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
                           : GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color:
-                            widget.status == 'Accepted'
-                                ? Colors.green
-                                : Colors.red,
-                            shape: BoxShape.circle,
+                            onTap: () {},
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color:
+                                    widget.status == 'Accepted'
+                                        ? Colors.green
+                                        : Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                              padding: EdgeInsets.all(4),
+                              child: Icon(
+                                widget.status == 'Accepted'
+                                    ? Icons.check
+                                    : Icons.close,
+                                size: 18,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                          padding: EdgeInsets.all(4),
-                          child: Icon(
-                            widget.status == 'Accepted'
-                                ? Icons.check : Icons.close,
-                            size: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
                       SizedBox(width: 12),
                       widget.user.role == 'admin'
                           ? GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return CustomAlertDialog(
-                                title: 'Accept Application?',
-                                subTitle:
-                                'Are you sure you want to Accept this application?',
-                                buttonText: 'Accept',
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return CustomAlertDialog(
+                                    title: 'Accept Application?',
+                                    subTitle:
+                                        'Are you sure you want to Accept this application?',
+                                    buttonText: 'Accept',
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Palette.primaryColor,
-                            shape: BoxShape.circle,
-                          ),
-                          padding: EdgeInsets.all(4),
-                          child: Icon(
-                            Icons.check_rounded,
-                            size: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Palette.primaryColor,
+                                shape: BoxShape.circle,
+                              ),
+                              padding: EdgeInsets.all(4),
+                              child: Icon(
+                                Icons.check_rounded,
+                                size: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
                           : GestureDetector(
-                        onTap: () {
-
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Palette.primaryColor,
-                            shape: BoxShape.circle,
+                            onTap: () {
+                              context.push(EditLeaveScreen.route);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Palette.primaryColor,
+                                shape: BoxShape.circle,
+                              ),
+                              padding: EdgeInsets.all(6),
+                              child: Icon(
+                                Icons.edit_rounded,
+                                size: 14,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                          padding: EdgeInsets.all(6),
-                          child: Icon(
-                            Icons.edit_rounded,
-                            size: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -238,19 +238,19 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
             duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             child:
-            isExpanded
-                ? LeaveApplicationExpandedTile(
-              name: widget.name,
-              user: widget.user,
-              status: widget.status,
-              reason: widget.reason,
-              dateOfLeave: widget.dateOfLeave,
-              typeOfLeave: widget.typeOfLeave,
-              remainingLeave: widget.remainingLeave,
-              totalApprovedLeaves: widget.totalApprovedLeaves,
-              totalUnApprovedLeaves: widget.totalUnApprovedLeaves,
-            )
-                : SizedBox.shrink(),
+                isExpanded
+                    ? LeaveApplicationExpandedTile(
+                      name: widget.name,
+                      user: widget.user,
+                      status: widget.status,
+                      reason: widget.reason,
+                      dateOfLeave: widget.dateOfLeave,
+                      typeOfLeave: widget.typeOfLeave,
+                      remainingLeave: widget.remainingLeave,
+                      totalApprovedLeaves: widget.totalApprovedLeaves,
+                      totalUnApprovedLeaves: widget.totalUnApprovedLeaves,
+                    )
+                    : SizedBox.shrink(),
           ),
         ],
       ),
@@ -285,10 +285,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width - 70,
+      width: MediaQuery.of(context).size.width - 70,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),
@@ -311,25 +308,29 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
               children: [
                 user.role == 'user'
                     ? Column(
-                  children: [
-                    Text(
-                      'Status',
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 8,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      status,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                )
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Status',
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Text(
+                          status,
+                          style: TextStyle(
+                            color:
+                                status == 'Accepted'
+                                    ? Colors.green
+                                    : Colors.red,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    )
                     : SizedBox.shrink(),
                 Text(
                   'Name',
