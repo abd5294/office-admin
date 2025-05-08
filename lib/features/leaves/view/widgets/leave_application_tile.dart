@@ -53,7 +53,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
               borderRadius: BorderRadius.circular(12),
               color: Colors.white,
               boxShadow: [
-                BoxShadow(
+                const BoxShadow(
                   color: Colors.black12,
                   spreadRadius: 3,
                   blurRadius: 15,
@@ -75,7 +75,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
                           widget.index.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -96,7 +96,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                         color: Colors.black.withAlpha(123),
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Abdur Rahman',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -125,7 +125,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                               shape: BoxShape.circle,
                             ),
                             padding: EdgeInsets.all(2),
-                            child: Icon(
+                            child: const Icon(
                               Icons.keyboard_arrow_down_rounded,
                               size: 22,
                               color: Colors.white,
@@ -133,7 +133,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       widget.user.role == 'admin'
                           ? GestureDetector(
                             onTap: () {
@@ -155,7 +155,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                                 shape: BoxShape.circle,
                               ),
                               padding: EdgeInsets.all(4),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.close_rounded,
                                 size: 18,
                                 color: Colors.white,
@@ -182,14 +182,14 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                               ),
                             ),
                           ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       widget.user.role == 'admin'
                           ? GestureDetector(
                             onTap: () {
                               showDialog(
                                 context: context,
                                 builder: (context) {
-                                  return CustomAlertDialog(
+                                  return const CustomAlertDialog(
                                     title: 'Accept Application?',
                                     subTitle:
                                         'Are you sure you want to Accept this application?',
@@ -250,7 +250,7 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                       totalApprovedLeaves: widget.totalApprovedLeaves,
                       totalUnApprovedLeaves: widget.totalUnApprovedLeaves,
                     )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
           ),
         ],
       ),
@@ -286,7 +286,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width - 70,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(12),
           bottomRight: Radius.circular(12),
@@ -331,7 +331,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                         ),
                       ],
                     )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
                 Text(
                   'Name',
                   style: TextStyle(
@@ -348,7 +348,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Reason',
                   style: TextStyle(
@@ -365,7 +365,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Date of leave',
                   style: TextStyle(
@@ -382,7 +382,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Type of leave',
                   style: TextStyle(
@@ -399,7 +399,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Remaining Leave',
                   style: TextStyle(
@@ -417,7 +417,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Total approved leaves taken so far',
                   style: TextStyle(
@@ -434,7 +434,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   'Total unapproved leaves taken so far',
                   style: TextStyle(
@@ -451,7 +451,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
               ],
             ),
           ),

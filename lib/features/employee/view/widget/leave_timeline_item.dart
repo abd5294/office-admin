@@ -45,7 +45,7 @@ class LeaveTimelineItem extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.all(12),
+            padding: const EdgeInsets.all(12),
             child:
                 isFestival
                     ? Row(
@@ -73,14 +73,14 @@ class LeaveTimelineItem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           decoration: BoxDecoration(
                             color: Palette.primaryColor,
                             shape: BoxShape.circle,
                           ),
                           padding: EdgeInsets.all(4),
-                          child: Icon(
+                          child: const Icon(
                             Icons.edit_rounded,
                             color: Colors.white,
                             size: 16,

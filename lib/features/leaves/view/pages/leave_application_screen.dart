@@ -58,7 +58,7 @@ class LeaveApplicationScreen extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Leave Application List',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -66,7 +66,7 @@ class LeaveApplicationScreen extends ConsumerWidget {
                       height: 1,
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Expanded(
                     child: ListView.separated(
                       itemBuilder:
@@ -83,7 +83,7 @@ class LeaveApplicationScreen extends ConsumerWidget {
                             user: user,
                           ),
                       separatorBuilder:
-                          (context, index) => SizedBox(height: 12),
+                          (context, index) => const SizedBox(height: 12),
                       itemCount: 2,
                     ),
                   ),

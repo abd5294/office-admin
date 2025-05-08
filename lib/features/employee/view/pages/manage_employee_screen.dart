@@ -21,16 +21,19 @@ class ManageEmployeeScreen extends StatelessWidget {
         bottom: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          floatingActionButton: SizedBox(
-            width: 50,
-            height: 50,
-            child: FloatingActionButton(
-              onPressed: () {
-                context.push(CreateEmployeeScreen.route);
-              },
-              shape: CircleBorder(),
-              backgroundColor: Palette.primaryColor,
-              child: const Icon(Icons.add, color: Colors.white, size: 20),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 23.0),
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: FloatingActionButton(
+                onPressed: () {
+                  context.push(CreateEmployeeScreen.route);
+                },
+                shape: CircleBorder(),
+                backgroundColor: Palette.primaryColor,
+                child: const Icon(Icons.add, color: Colors.white, size: 20),
+              ),
             ),
           ),
 
@@ -72,7 +75,8 @@ class ManageEmployeeScreen extends StatelessWidget {
                             bloodGroup: 'B+',
                             role: 'Employee',
                           ),
-                      separatorBuilder: (context, index) => const SizedBox(height: 8),
+                      separatorBuilder:
+                          (context, index) => const SizedBox(height: 8),
                       itemCount: 2,
                     ),
                   ),

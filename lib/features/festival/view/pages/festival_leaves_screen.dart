@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/controller/user_controller.dart';
-import 'package:office/features/employee/view/pages/create_employee_screen.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
 import 'package:office/features/festival/controller/festival_leave_contorller.dart';
 import 'package:office/features/festival/view/pages/create_festival_screen.dart';
@@ -30,16 +29,19 @@ class FestivalLeavesScreen extends ConsumerWidget {
           backgroundColor: Colors.white,
           floatingActionButton:
               user.role == 'admin'
-                  ? SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        context.push(CreateFestivalScreen.route);
-                      },
-                      shape: CircleBorder(),
-                      backgroundColor: Palette.primaryColor,
-                      child: Icon(Icons.add, color: Colors.white, size: 20),
+                  ? Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 23.0),
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          context.push(CreateFestivalScreen.route);
+                        },
+                        shape: CircleBorder(),
+                        backgroundColor: Palette.primaryColor,
+                        child: Icon(Icons.add, color: Colors.white, size: 20),
+                      ),
                     ),
                   )
                   : null,
