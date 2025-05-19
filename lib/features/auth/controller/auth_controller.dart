@@ -15,16 +15,14 @@ class AuthController extends StateNotifier<AuthState> {
 
   AuthController(this.authRepository, this.ref) : super(AuthInitial());
 
-  void userLogin() async {
+  void userLogin(String email, String password) async {
     state = AuthLoading();
-
-    final user = await authRepository.login();
+    final user = await authRepository.login(email, password);
     if (user != null) {
-      ref.read(userProvider.notifier).state = user;
       state = AuthSuccess();
-      print(user.name);
+      ref.read(userProvider.notifier).state = user;
     } else {
-      state = AuthFailure('Something went wrong');
+      state = AuthFailure('Login Failed');
     }
   }
 }

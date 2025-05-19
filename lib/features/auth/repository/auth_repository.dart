@@ -15,7 +15,7 @@ class AuthRepository {
 
   AuthRepository(this.dio);
 
-  Future<UserModel?> login() async {
+  Future<UserModel?> login(String email, String password) async {
     try {
       final response = await dio.post(
         'https://king-prawn-app-5g3au.ondigitalocean.app/users/login',

@@ -35,75 +35,94 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     final authState = ref.watch(authControllerProvider);
     final authController = ref.watch(authControllerProvider.notifier);
+
+    ref.listen<AuthState>(authControllerProvider, (prev, next) {
+      if (next is AuthSuccess) {
+        context.push(HomeScreen.route);
+      } else if (next is AuthFailure) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(next.message)));
+      }
+    });
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child:
-              authState is AuthLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: SizedBox(
-                            height: 96,
-                            width: 96,
-                            child: Image.network(
-                              'https://thumbs.dreamstime.com/b/background-office-workplace-computer-table-chair-vector-flat-design-illustration-square-layout-71438088.jpg?w=768',
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 40),
-                      const Text(
-                        'Welcome Back!',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      CustomTextField(
-                        controller: emailController,
-                        hintText: 'Enter your email',
-                        onChange: (value) {},
-                      ),
-                      const SizedBox(height: 12),
-                      CustomTextField(
-                        controller: passwordController,
-                        hintText: 'Enter your password',
-                        isObscured: true,
-                        onChange: (value) {},
-                      ),
-                      const SizedBox(height: 12),
-                      InkWell(
-                        onTap: () {
-                          context.push(ForgotPasswordScreen.route);
-                        },
-                        child: const Text(
-                          'Forget Password?',
-                          style: TextStyle(
-                            color: Palette.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-                      LargeButton(
-                        text: 'Login',
-                        onPressed: () {
-                          authController.userLogin();
-                        },
-                      ),
-                    ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: SizedBox(
+                    height: 96,
+                    width: 96,
+                    child: Image.network(
+                      'https://thumbs.dreamstime.com/b/background-office-workplace-computer-table-chair-vector-flat-design-illustration-square-layout-71438088.jpg?w=768',
+                    ),
                   ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                'Welcome Back!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                controller: emailController,
+                hintText: 'Enter your email',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 12),
+              CustomTextField(
+                controller: passwordController,
+                hintText: 'Enter your password',
+                isObscured: true,
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 12),
+              InkWell(
+                onTap: () {
+                  context.push(ForgotPasswordScreen.route);
+                },
+                child: const Text(
+                  'Forget Password?',
+                  style: TextStyle(
+                    color: Palette.primaryColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 18),
+              LargeButton(
+                text: 'Login',
+                onPressed: () {
+                  authController.userLogin(
+                    emailController.text,
+                    passwordController.text,
+                  );
+                },
+              ),
+
+              Visibility(
+                visible: authState is AuthLoading,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [SizedBox(height: 12), CircularProgressIndicator()],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
