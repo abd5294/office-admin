@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/auth/controller/auth_state.dart';
 import 'package:office/features/auth/view/fotget_password.dart';
@@ -40,9 +41,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
       if (next is AuthSuccess) {
         context.push(HomeScreen.route);
       } else if (next is AuthFailure) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(next.message)));
+        showSnackBar(context, next.message);
       }
     });
 
@@ -104,6 +103,11 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
               LargeButton(
                 text: 'Login',
                 onPressed: () {
+                  if (emailController.text.isEmpty ||
+                      passwordController.text.isEmpty) {
+                    showSnackBar(context, 'Please enter all the fields');
+                    return;
+                  }
                   authController.userLogin(
                     emailController.text,
                     passwordController.text,
@@ -116,9 +120,15 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 maintainSize: true,
                 maintainAnimation: true,
                 maintainState: true,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [SizedBox(height: 12), CircularProgressIndicator()],
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 12),
+                      CircularProgressIndicator(),
+                    ],
+                  ),
                 ),
               ),
             ],
