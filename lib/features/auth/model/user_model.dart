@@ -1,5 +1,5 @@
 class UserModel {
-  final String id;
+  final int id;
   final String name;
   final String email;
   final String role;
@@ -10,4 +10,17 @@ class UserModel {
     required this.email,
     required this.role,
   });
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      id: map['ID'] ?? '',
+      name: map['Name'] ?? '',
+      email: map['Email'] ?? '',
+      role: map['Role'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {'Id': id, 'Name': name, 'Email': email, 'Role': role};
+  }
 }

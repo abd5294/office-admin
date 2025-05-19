@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/controller/user_controller.dart';
+import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
 import 'package:office/features/festival/controller/festival_leave_contorller.dart';
 import 'package:office/features/festival/view/pages/create_festival_screen.dart';
@@ -18,7 +19,7 @@ class FestivalLeavesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userProvider)!;
     final List<LeaveTimeLineModel> festivalTimeLine =
         FestivalLeaveController().getFestivalLeaves();
     return Container(
@@ -53,7 +54,7 @@ class FestivalLeavesScreen extends ConsumerWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: MainTextColumn(
+            child: const MainTextColumn(
               title: 'Festival Leaves',
               subTitle: 'Enjoy your holidays!',
             ),
@@ -64,7 +65,7 @@ class FestivalLeavesScreen extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Timeline of leaves',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
@@ -72,7 +73,7 @@ class FestivalLeavesScreen extends ConsumerWidget {
                       height: 1,
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
 
                   Expanded(
                     child: LeaveTimeLineList(

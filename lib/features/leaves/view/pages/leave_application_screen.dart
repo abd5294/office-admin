@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/controller/user_controller.dart';
+import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/leaves/view/pages/create_leave_screen.dart';
 import 'package:office/features/leaves/view/widgets/leave_application_tile.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
@@ -16,7 +17,7 @@ class LeaveApplicationScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userProvider)!;
     return Container(
       color: Colors.white,
       child: SafeArea(

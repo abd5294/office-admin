@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
+import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/controller/user_controller.dart';
+import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/employee/controller/employee_details_controller.dart';
 import 'package:office/features/employee/controller/employee_timeline_controller.dart';
@@ -23,7 +24,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.read(userProvider);
+    final user = ref.read(userProvider)!;
     final employeeModel = EmployeeDetailsController().getEmployeeDetails();
     final leaveTimeline = EmployeeTimeLineController().getEmployeeTimeLine();
     return Container(

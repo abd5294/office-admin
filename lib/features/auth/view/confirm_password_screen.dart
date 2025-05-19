@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/view/auth_screen.dart';
+import 'package:office/features/auth/view/login_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
@@ -69,7 +69,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
               LargeButton(
                 text: 'Confirm',
                 onPressed: () {
-                  context.go(AuthScreen.route);
+                  context.go(LoginScreen.route);
                 },
               ),
             ],

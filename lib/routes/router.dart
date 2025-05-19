@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:office/features/auth/view/auth_screen.dart';
+import 'package:office/features/auth/view/login_screen.dart';
 import 'package:office/features/auth/view/confirm_password_screen.dart';
 import 'package:office/features/auth/view/fotget_password.dart';
 import 'package:office/features/auth/view/otp_screen.dart';
@@ -19,9 +19,9 @@ import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: AuthScreen.route,
+  initialLocation: LoginScreen.route,
   routes: [
-    GoRoute(path: AuthScreen.route, builder: (context, state) => AuthScreen()),
+    GoRoute(path: LoginScreen.route, builder: (context, state) => LoginScreen()),
     GoRoute(path: HomeScreen.route, builder: (context, state) => HomeScreen()),
     GoRoute(
       path: ForgotPasswordScreen.route,
