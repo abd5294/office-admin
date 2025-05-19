@@ -18,14 +18,17 @@ class AuthRepository {
   Future<UserModel?> login(String email, String password) async {
     try {
       final response = await dio.post(
-        'https://king-prawn-app-5g3au.ondigitalocean.app/users/login',
+        '/users/login',
         data: jsonEncode({
           'email': 'johndoe@example.com',
           'password': 'helloworld123',
         }),
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
-      final user = UserModel.fromMap(response.data['data']['user']);
+      final user = UserModel.fromMap(
+        response.data['data']['user'],
+        response.data['data']['token'],
+      );
       return user;
     } catch (e) {
       throw Exception('Login Error $e');

@@ -25,7 +25,6 @@ class EmployeeDetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(userProvider)!;
-    final employeeModel = EmployeeDetailsController().getEmployeeDetails();
     final leaveTimeline = EmployeeTimeLineController().getEmployeeTimeLine();
     return Container(
       color: Colors.white,
@@ -41,7 +40,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: MainTextColumn(
-              title: employeeModel.name,
+              title: '',
               subTitle:
                   user.role == 'admin' ? 'Employee Details' : 'Your Details',
             ),
@@ -71,11 +70,11 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                           crossAxisCellCount: 2,
                           mainAxisExtent: 172,
                           child: EmployeeInfoCard(
-                            name: employeeModel.name,
-                            email: employeeModel.email ?? '',
-                            phone: employeeModel.phone ?? '',
-                            bloodGroup: employeeModel.bloodGroup ?? '',
-                            role: employeeModel.role ?? '',
+                            name: '',
+                            email: '',
+                            phone: '',
+                            bloodGroup: '',
+                            role: '',
                           ),
                         ),
                         StaggeredGridTile.extent(
@@ -83,8 +82,8 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                           mainAxisExtent: 96,
                           child: EmployeeLeaveCard(
                             type: 'Approved',
-                            count: employeeModel.approvedLeave ?? 3,
-                            totalCount: employeeModel.totalLeaves ?? 3,
+                            count:  3,
+                            totalCount:  3,
                           ),
                         ),
                         StaggeredGridTile.extent(
@@ -92,9 +91,9 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                           mainAxisExtent: 96,
                           child: EmployeeLeaveCard(
                             type: 'unapproved',
-                            count: employeeModel.unapprovedLeave ?? 3,
+                            count:  3,
                             totalCount:
-                                employeeModel.totalAllowedUnapproved ?? 3,
+                                 3,
                           ),
                         ),
                         StaggeredGridTile.extent(
@@ -102,8 +101,8 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                           mainAxisExtent: 96,
                           child: EmployeeLeaveCard(
                             type: 'remaining',
-                            count: employeeModel.remainingLeave ?? 3,
-                            totalCount: employeeModel.totalLeaves ?? 3,
+                            count:  3,
+                            totalCount:  3,
                           ),
                         ),
                         StaggeredGridTile.extent(

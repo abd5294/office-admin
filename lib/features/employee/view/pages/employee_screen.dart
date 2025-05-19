@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/employee/controller/employee_screen_controller.dart';
+import 'package:office/features/employee/controller/employee_controller.dart';
+import 'package:office/features/employee/repository/employee_repository.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/expandable_tile.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
-class EmployeeScreen extends StatelessWidget {
+class EmployeeScreen extends ConsumerWidget {
   static const route = '/emp-screen';
 
   const EmployeeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    EmployeeModelController employeeModel = EmployeeModelController();
-    List employees = employeeModel.getEmployees();
-
+  Widget build(BuildContext context, WidgetRef ref) {
+    final empState = ref.watch(employeeControllerProvider);
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -48,17 +48,23 @@ class EmployeeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Expanded(
-                    child: ListView.separated(
-                      itemBuilder:
-                          (context, index) => ExpandableTile(
-                            employeeName: employees[index].name,
-                            index: index + 1,
-                            attendance: employees[index].attendance,
-                          ),
-                      separatorBuilder: (context, index) => SizedBox(height: 8),
-                      itemCount: employees.length,
-                    ),
+                  empState.when(
+                    data: (data) {
+                      return Expanded(
+                        child: ListView.separated(
+                          itemBuilder:
+                              (context, index) => ExpandableTile(
+                                employeeName: data[index].name,
+                                index: index + 1,
+                              ),
+                          separatorBuilder:
+                              (context, index) => SizedBox(height: 8),
+                          itemCount: data.length,
+                        ),
+                      );
+                    },
+                    error: (error, stackTrace) => Text(error.toString()),
+                    loading: SizedBox.shrink,
                   ),
                 ],
               ),
