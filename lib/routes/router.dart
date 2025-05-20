@@ -19,70 +19,91 @@ import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: LoginScreen.route,
+  initialLocation: HomeScreen.route,
   routes: [
-    GoRoute(path: LoginScreen.route, builder: (context, state) => LoginScreen()),
+    GoRoute(
+      path: LoginScreen.route,
+      builder: (context, state) => LoginScreen(),
+    ),
+
     GoRoute(path: HomeScreen.route, builder: (context, state) => HomeScreen()),
     GoRoute(
       path: ForgotPasswordScreen.route,
       builder: (context, state) => ForgotPasswordScreen(),
     ),
+
     GoRoute(path: OtpScreen.route, builder: (context, state) => OtpScreen()),
     GoRoute(
       path: ConfirmPasswordScreen.route,
       builder: (context, state) => ConfirmPasswordScreen(),
     ),
+
     GoRoute(
       path: ManageEmployeeScreen.route,
       builder: (context, state) => ManageEmployeeScreen(),
     ),
+
     GoRoute(
       path: FestivalLeavesScreen.route,
       builder: (context, state) => FestivalLeavesScreen(),
     ),
+
     GoRoute(
       path: EmployeeScreen.route,
       builder: (context, state) => EmployeeScreen(),
     ),
+
+    GoRoute(
+      path: EmployeeDetailsScreen.route,
+      builder: (context, state) {
+        final id = state.uri.queryParameters['id']!;
+        return EmployeeDetailsScreen(id: int.parse(id));
+      },
+    ),
+
     GoRoute(
       path: LeaveApplicationScreen.route,
       builder: (context, state) => LeaveApplicationScreen(),
     ),
+
     GoRoute(
       path: CreateLeaveScreen.route,
       builder: (context, state) => CreateLeaveScreen(),
     ),
+
     GoRoute(
       path: EditLeaveScreen.route,
       builder: (context, state) => EditLeaveScreen(),
     ),
+
     GoRoute(
       path: CreateEmployeeScreen.route,
       builder: (context, state) => CreateEmployeeScreen(),
     ),
+
     GoRoute(
       path: EditEmployeeScreen.route,
       builder: (context, state) => EditEmployeeScreen(),
     ),
+
     GoRoute(
       path: CreateFestivalScreen.route,
       builder: (context, state) => CreateFestivalScreen(),
     ),
+
     GoRoute(
       path: CheckInIndividualScreen.route,
       builder: (context, state) => CheckInIndividualScreen(),
     ),
+
     GoRoute(
       path: CheckInListScreen.route,
       builder: (context, state) => CheckInListScreen(),
     ),
+
     GoRoute(
       path: CheckInOutScreen.route,
       builder: (context, state) => CheckInOutScreen(),
-    ),
-    GoRoute(
-      path: EmployeeDetailsScreen.route,
-      builder: (context, state) => EmployeeDetailsScreen(),
     ),
   ],
 );

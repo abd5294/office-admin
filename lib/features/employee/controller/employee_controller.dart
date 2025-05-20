@@ -3,9 +3,10 @@ import 'package:office/core/providers/user_provider.dart';
 import 'package:office/features/employee/repository/employee_repository.dart';
 import 'package:office/shared/models/employee.dart';
 
-final employeeControllerProvider = AsyncNotifierProvider<EmployeeController, List<Employee>>(() {
-  return EmployeeController();
-});
+final employeeControllerProvider =
+    AsyncNotifierProvider<EmployeeController, List<Employee>>(() {
+      return EmployeeController();
+    });
 
 class EmployeeController extends AsyncNotifier<List<Employee>> {
   @override
@@ -17,6 +18,3 @@ class EmployeeController extends AsyncNotifier<List<Employee>> {
     return employees;
   }
 }
-
-
-//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDgwNjk1MDcsImlkIjoiMSJ9.krcavvoRbyhPJVVNBscziBfzpjNM6wTK0kVVa-b5zy8'

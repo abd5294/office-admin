@@ -56,6 +56,7 @@ class EmployeeScreen extends ConsumerWidget {
                               (context, index) => ExpandableTile(
                                 employeeName: data[index].name,
                                 index: index + 1,
+                                id: data[index].id,
                               ),
                           separatorBuilder:
                               (context, index) => SizedBox(height: 8),

@@ -16,14 +16,14 @@ class EmployeeRepository {
 
   Future<List<Employee>> getEmployees(String token) async {
     final response = await dio.get(
-      'https://king-prawn-app-5g3au.ondigitalocean.app/users',
+      '/users',
       options: Options(headers: {'Authorization': token}),
     );
-    final employee =
+    final employees =
         (response.data['data'] as List)
             .map((el) => Employee.fromMap(el))
             .toList();
 
-    return employee;
+    return employees;
   }
 }

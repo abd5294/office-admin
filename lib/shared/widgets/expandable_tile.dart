@@ -6,11 +6,13 @@ import 'package:office/features/employee/view/pages/employee_details_screen.dart
 class ExpandableTile extends StatefulWidget {
   final String employeeName;
   final int index;
+  final int id;
 
   const ExpandableTile({
     super.key,
     required this.employeeName,
     required this.index,
+    required this.id
   });
 
   @override
@@ -85,7 +87,7 @@ class _ExpandableTileState extends State<ExpandableTile> {
                 padding: const EdgeInsets.all(10.0),
                 child: GestureDetector(
                   onTap: () {
-                    context.push(EmployeeDetailsScreen.route);
+                    context.push('${EmployeeDetailsScreen.route}?id=${widget.id}');
                   },
                   child: Container(
                     decoration: BoxDecoration(
