@@ -141,7 +141,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                       const SizedBox(width: 12),
                       GestureDetector(
                         onTap: () {
-                          context.push(EmployeeDetailsScreen.route);
+                          context.push('${EmployeeDetailsScreen.route}?id=${1}');
                         },
                         child: Container(
                           decoration: BoxDecoration(

@@ -26,7 +26,9 @@ class EmployeeDetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(userProvider)!;
-    final employeeDetailsState = ref.watch(employeeDetailsControllerProvider(id));
+    final employeeDetailsState = ref.watch(
+      employeeDetailsControllerProvider(id),
+    );
     final leaveTimeline = EmployeeTimeLineController().getEmployeeTimeLine();
     return Container(
       color: Colors.white,
@@ -116,8 +118,9 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                               mainAxisExtent: 96,
                               child: GestureDetector(
                                 onTap: () {
-                                  context.go(HomeScreen.route);
-                                  context.push(CheckInListScreen.route);
+                                  context.push(
+                                    '${CheckInListScreen.route}?id=$id&name=${data.name}',
+                                  );
                                 },
                                 child: CustomCard(
                                   title: 'Check In details',

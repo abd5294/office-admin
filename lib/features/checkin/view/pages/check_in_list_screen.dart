@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/features/checkin/controller/check_in_list_controller.dart';
 import 'package:office/features/checkin/model/check_in_list_model.dart';
 import 'package:office/features/checkin/view/widgets/check_in_card.dart';
@@ -6,15 +7,16 @@ import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
-class CheckInListScreen extends StatelessWidget {
+class CheckInListScreen extends ConsumerWidget {
   static final route = '/check-in-screen';
+  final int id;
+  final String name;
 
-  const CheckInListScreen({super.key});
+  const CheckInListScreen({super.key, required this.id, required this.name});
 
   @override
-  Widget build(BuildContext context) {
-    final List<CheckInListModel> checkInList =
-        CheckInListController().getCheckInList();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final checkInState = ref.watch(checkInListControllerProvider(id));
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -28,7 +30,7 @@ class CheckInListScreen extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: MainTextColumn(
-              title: 'Abdur Rahman',
+              title: name,
               subTitle: 'Check In Details',
             ),
           ),
@@ -47,15 +49,25 @@ class CheckInListScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 12),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder:
-                        (context, index) => CheckInCard(
-                          index: index + 1,
-                          date: checkInList[index].date,
+                  checkInState.when(
+                    data:
+                        (data) => Expanded(
+                          child: ListView.separated(
+                            shrinkWrap: true,
+                            itemBuilder:
+                                (context, index) => CheckInCard(
+                                  index: index + 1,
+                                  date: data[index].date,
+                                ),
+                            separatorBuilder:
+                                (context, index) => const SizedBox(height: 12),
+                            itemCount: data.length,
+                          ),
                         ),
-                    separatorBuilder: (context, index) =>const SizedBox(height: 12),
-                    itemCount: checkInList.length,
+                    error:
+                        (error, stackTrace) =>
+                            Center(child: Text('An Error occurred')),
+                    loading: () => Center(child: CircularProgressIndicator()),
                   ),
                 ],
               ),

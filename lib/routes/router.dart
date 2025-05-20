@@ -19,7 +19,7 @@ import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: HomeScreen.route,
+  initialLocation: LoginScreen.route,
   routes: [
     GoRoute(
       path: LoginScreen.route,
@@ -56,11 +56,19 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: EmployeeDetailsScreen.route,
       builder: (context, state) {
-        final id = state.uri.queryParameters['id']!;
-        return EmployeeDetailsScreen(id: int.parse(id));
+        final id = state.uri.queryParameters['id'];
+        return EmployeeDetailsScreen(id: int.parse(id!));
       },
     ),
 
+    GoRoute(
+      path: CheckInListScreen.route,
+      builder: (context, state) {
+        final id = state.uri.queryParameters['id'];
+        final name = state.uri.queryParameters['name'];
+        return CheckInListScreen(id: int.parse(id!), name: name!,);
+      },
+    ),
     GoRoute(
       path: LeaveApplicationScreen.route,
       builder: (context, state) => LeaveApplicationScreen(),
@@ -96,10 +104,6 @@ final GoRouter router = GoRouter(
       builder: (context, state) => CheckInIndividualScreen(),
     ),
 
-    GoRoute(
-      path: CheckInListScreen.route,
-      builder: (context, state) => CheckInListScreen(),
-    ),
 
     GoRoute(
       path: CheckInOutScreen.route,
