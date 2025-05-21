@@ -102,8 +102,10 @@ class HomeScreen extends ConsumerWidget {
                           mainAxisExtent: 124,
                           child: GestureDetector(
                             onTap: () {
-                              user.role == 'user'
-                                  ? context.push('${EmployeeDetailsScreen.route}?id=${1}')
+                              user.role != 'admin'
+                                  ? context.push(
+                                    '${EmployeeDetailsScreen.route}?id=${user.id}',
+                                  )
                                   : context.push(ManageEmployeeScreen.route);
                             },
                             child: CustomCard(

@@ -44,6 +44,29 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
+      path: '/edit-emp',
+      name: 'edit-emp',
+      builder: (context, state) {
+        final name = state.uri.queryParameters['name'] ?? '';
+        final email = state.uri.queryParameters['email'] ?? '';
+        final phone = state.uri.queryParameters['phone'] ?? '';
+        final bloodGroup = state.uri.queryParameters['bloodGroup'] ?? '';
+        final role = state.uri.queryParameters['role'] ?? '';
+        final id = state.uri.queryParameters['id'];
+
+        return EditEmployeeScreen(
+          id: int.parse(id!),
+          name: name,
+          email: email,
+          phone: phone,
+          bloodGroup: bloodGroup,
+          role: role,
+        );
+      },
+    ),
+
+
+    GoRoute(
       path: FestivalLeavesScreen.route,
       builder: (context, state) => FestivalLeavesScreen(),
     ),
@@ -52,6 +75,7 @@ final GoRouter router = GoRouter(
       path: EmployeeScreen.route,
       builder: (context, state) => EmployeeScreen(),
     ),
+
 
     GoRoute(
       path: EmployeeDetailsScreen.route,
@@ -95,11 +119,6 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: CreateEmployeeScreen.route,
       builder: (context, state) => CreateEmployeeScreen(),
-    ),
-
-    GoRoute(
-      path: EditEmployeeScreen.route,
-      builder: (context, state) => EditEmployeeScreen(),
     ),
 
     GoRoute(

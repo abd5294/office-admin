@@ -11,10 +11,12 @@ class ManageEmployeeTile extends StatefulWidget {
   final String phone;
   final String bloodGroup;
   final String role;
+  final int index;
 
   const ManageEmployeeTile({
     super.key,
     required this.id,
+    required this.index,
     required this.name,
     required this.email,
     required this.phone,
@@ -65,7 +67,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          '1',
+                          widget.index.toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -102,7 +104,9 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          context.push(EditEmployeeScreen.route);
+                          context.push(
+                            '${EditEmployeeScreen.route}?id=${widget.id}&name=${widget.name}&email=${widget.email}&phone=${widget.phone}&bloodGroup=${widget.bloodGroup}&role=${widget.role}',
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(

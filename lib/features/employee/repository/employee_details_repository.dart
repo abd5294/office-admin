@@ -14,11 +14,15 @@ class EmployeeDetailsRepository {
   EmployeeDetailsRepository({required this.dio});
 
   Future<EmployeeDetailsModel> getEmployee(String token, int id) async {
-    final response = await dio.get(
-      '/app/$id',
-      options: Options(headers: {'Authorization': token}),
-    );
-    final employee = EmployeeDetailsModel.fromMap(response.data['data']);
-    return employee;
+    try {
+      final response = await dio.get(
+        '/app/$id',
+        options: Options(headers: {'Authorization': token}),
+      );
+      final employee = EmployeeDetailsModel.fromMap(response.data['data']);
+      return employee;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

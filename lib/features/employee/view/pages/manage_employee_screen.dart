@@ -79,6 +79,7 @@ class ManageEmployeeScreen extends ConsumerWidget {
                                   phone: data[index].phone,
                                   bloodGroup: data[index].bloodType,
                                   role: data[index].role,
+                                  index : index + 1
                                 ),
                             separatorBuilder:
                                 (context, index) => const SizedBox(height: 8),
