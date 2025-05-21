@@ -5,6 +5,7 @@ import 'package:office/features/employee/view/pages/edit_employee_screen.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 
 class ManageEmployeeTile extends StatefulWidget {
+  final int id;
   final String name;
   final String email;
   final String phone;
@@ -13,6 +14,7 @@ class ManageEmployeeTile extends StatefulWidget {
 
   const ManageEmployeeTile({
     super.key,
+    required this.id,
     required this.name,
     required this.email,
     required this.phone,
@@ -85,7 +87,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                       ),
                     ),
                     Text(
-                      'Abdur Rahman',
+                      widget.name,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
@@ -141,7 +143,9 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                       const SizedBox(width: 12),
                       GestureDetector(
                         onTap: () {
-                          context.push('${EmployeeDetailsScreen.route}?id=${1}');
+                          context.push(
+                            '${EmployeeDetailsScreen.route}?id=${widget.id}',
+                          );
                         },
                         child: Container(
                           decoration: BoxDecoration(

@@ -70,6 +70,14 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
+      path: CheckInIndividualScreen.route,
+      builder: (context, state) {
+        final id = state.uri.queryParameters['id'];
+        return CheckInIndividualScreen(id: int.parse(id!));
+      },
+    ),
+
+    GoRoute(
       path: LeaveApplicationScreen.route,
       builder: (context, state) => LeaveApplicationScreen(),
     ),
@@ -98,12 +106,6 @@ final GoRouter router = GoRouter(
       path: CreateFestivalScreen.route,
       builder: (context, state) => CreateFestivalScreen(),
     ),
-
-    GoRoute(
-      path: CheckInIndividualScreen.route,
-      builder: (context, state) => CheckInIndividualScreen(),
-    ),
-
 
     GoRoute(
       path: CheckInOutScreen.route,

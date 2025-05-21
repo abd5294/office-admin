@@ -11,7 +11,7 @@ import 'package:office/features/employee/controller/employee_timeline_controller
 import 'package:office/features/employee/view/widget/employee_card.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
-import 'package:office/shared/models/employee.dart';
+import 'package:office/shared/models/employee_model.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -155,23 +155,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                 ),
               ),
           loading: () {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 8),
-                  Text(
-                    'Loading...',
-                    style: TextStyle(
-                      color: Palette.primaryColor,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            );
+            return SizedBox.shrink();
           },
         ),
       ),

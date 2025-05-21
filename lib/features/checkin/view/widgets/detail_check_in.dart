@@ -112,7 +112,7 @@ class DetailCheckIn extends StatelessWidget {
                 width: 134,
                 decoration: BoxDecoration(color: Color(0xFFd9d9d9)),
                 child: Image.network(
-                  'https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740',
+                  'https://king-prawn-app-5g3au.ondigitalocean.app/uploads/file-582a4f17-7474-4930-b234-46a0c37b5b53.jpeg',
                   fit: BoxFit.cover,
                 ),
               ),

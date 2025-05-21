@@ -1,4 +1,4 @@
-class Employee {
+class EmployeeModel {
   final int id;
   final String name;
   final String role;
@@ -13,7 +13,7 @@ class Employee {
   final String dob;
   final List<dynamic> emergencyContacts;
 
-  Employee(
+  EmployeeModel(
     this.id,
     this.name,
     this.role,
@@ -29,8 +29,8 @@ class Employee {
     this.emergencyContacts,
   );
 
-  factory Employee.fromMap(Map<String, dynamic> map) {
-    return Employee(
+  factory EmployeeModel.fromMap(Map<String, dynamic> map) {
+    return EmployeeModel(
       map['ID'],
       map['Name'] ?? '',
       map['Role'],

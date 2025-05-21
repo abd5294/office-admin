@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/core/providers/dio_provider.dart';
 import 'package:office/features/checkin/model/check_in_list_model.dart';
 
-final checkInRepositoryProvider = Provider((ref) {
-  return CheckInRepository(dio: ref.read(dioProvider));
+final checkInListRepositoryProvider = Provider((ref) {
+  return CheckInListRepository(dio: ref.read(dioProvider));
 });
 
-class CheckInRepository {
+class CheckInListRepository {
   final Dio dio;
 
-  CheckInRepository({required this.dio});
+  CheckInListRepository({required this.dio});
 
   Future<List<CheckInListModel>> getCheckInDetails(int id, String token) async {
     final response = await dio.get(

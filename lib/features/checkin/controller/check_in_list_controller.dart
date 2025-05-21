@@ -17,14 +17,35 @@ class CheckInListController
   Future<List<CheckInListModel>> build(int id) async {
     this.id = id;
     final token = ref.read(userProvider)!.token;
-    final repo = ref.read(checkInRepositoryProvider);
+    final repo = ref.read(checkInListRepositoryProvider);
     final checkInsRaw = await repo.getCheckInDetails(id, token);
 
     if (checkInsRaw.isEmpty) throw Exception("No check-ins found");
-    final checkIns = checkInsRaw.map((e) {
-      final formatString =  e.date.substring(0, 10);
-      return CheckInListModel(formatString);
-    },).toList();
-    return checkIns;
+    final checkIns =
+        checkInsRaw.map((e) {
+          final dateString = e.date.substring(0, 10);
+          DateTime date = DateTime.parse(dateString);
+          String formattedDate = '${date.day}/${date.month}/${date.year}';
+          return CheckInListModel(formattedDate);
+        }).toList();
+
+    final seenDates = <String>{};
+
+    final formattedCheckIn =
+        checkIns
+            .where((e) {
+              if (seenDates.contains(e.date)) {
+                return false;
+              } else {
+                seenDates.add(e.date);
+                return true;
+              }
+            })
+            .map((e) {
+              return e;
+            })
+            .toList();
+
+    return formattedCheckIn;
   }
 }

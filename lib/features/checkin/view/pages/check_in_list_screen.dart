@@ -31,7 +31,7 @@ class CheckInListScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(16.0),
             child: MainTextColumn(
               title: name,
-              subTitle: 'Check In Details',
+              subTitle: 'Employee Details',
             ),
           ),
           bottomSheet: CustomBottomSheet(
@@ -58,6 +58,7 @@ class CheckInListScreen extends ConsumerWidget {
                                 (context, index) => CheckInCard(
                                   index: index + 1,
                                   date: data[index].date,
+                                  id: id,
                                 ),
                             separatorBuilder:
                                 (context, index) => const SizedBox(height: 12),
@@ -66,7 +67,7 @@ class CheckInListScreen extends ConsumerWidget {
                         ),
                     error:
                         (error, stackTrace) =>
-                            Center(child: Text('An Error occurred')),
+                            Center(child: Text(error.toString())),
                     loading: () => Center(child: CircularProgressIndicator()),
                   ),
                 ],

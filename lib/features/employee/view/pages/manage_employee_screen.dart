@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/employee/controller/manage_employee_controller.dart';
 import 'package:office/features/employee/view/pages/create_employee_screen.dart';
-import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/widget/manage_employee_tile.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
-class ManageEmployeeScreen extends StatelessWidget {
+class ManageEmployeeScreen extends ConsumerWidget {
   static const route = '/manage-emp';
 
   const ManageEmployeeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final empState = ref.watch(manageEmployeeControllerProvider);
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -66,18 +68,26 @@ class ManageEmployeeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Expanded(
-                    child: ListView.separated(
-                      itemBuilder:
-                          (context, index) => ManageEmployeeTile(
-                            name: 'Abdur Rahman',
-                            email: 'asdf@gmail.com',
-                            phone: '999-333-4444',
-                            bloodGroup: 'B+',
-                            role: 'Employee',
+                    child: empState.when(
+                      data:
+                          (data) => ListView.separated(
+                            itemBuilder:
+                                (context, index) => ManageEmployeeTile(
+                                  id : data[index].id,
+                                  name: data[index].name,
+                                  email: data[index].email,
+                                  phone: data[index].phone,
+                                  bloodGroup: data[index].bloodType,
+                                  role: data[index].role,
+                                ),
+                            separatorBuilder:
+                                (context, index) => const SizedBox(height: 8),
+                            itemCount: data.length,
                           ),
-                      separatorBuilder:
-                          (context, index) => const SizedBox(height: 8),
-                      itemCount: 2,
+                      error: (error, stackTrace) {
+                        return Center(child: Text('An error occurred'));
+                      },
+                      loading: () => Center(child: CircularProgressIndicator()),
                     ),
                   ),
                 ],
