@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:office/features/employee/models/leave_details_model.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_item.dart';
-import 'package:office/shared/models/leave_timeline_model.dart';
 
 class LeaveTimeLineList extends StatelessWidget {
   final bool isFestival;
-  final List<LeaveTimeLineModel> timeLine;
+  final List<LeaveDetailsModel> timeLine;
 
   const LeaveTimeLineList({
     super.key,
@@ -30,10 +30,8 @@ class LeaveTimeLineList extends StatelessWidget {
           itemBuilder:
               (context, index) => LeaveTimelineItem(
                 date: timeLine[index].date,
-                type: timeLine[index].type ?? '',
+                type: timeLine[index].type,
                 isFestival: isFestival,
-                note: timeLine[index].note ?? '',
-                message: timeLine[index].message ?? '',
               ),
           separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemCount: timeLine.length,

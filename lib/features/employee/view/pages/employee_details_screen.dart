@@ -29,7 +29,6 @@ class EmployeeDetailsScreen extends ConsumerWidget {
     final employeeDetailsState = ref.watch(
       employeeDetailsControllerProvider(id),
     );
-    final leaveTimeline = EmployeeTimeLineController().getEmployeeTimeLine();
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -46,7 +45,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
               body: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: MainTextColumn(
-                  title: data.name,
+                  title: data.user['name'],
                   subTitle:
                       user.role == 'admin'
                           ? 'Employee Details'
@@ -79,11 +78,11 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                               crossAxisCellCount: 2,
                               mainAxisExtent: 172,
                               child: EmployeeInfoCard(
-                                name: data.name,
-                                email: data.email,
-                                phone: data.phone,
-                                bloodGroup: data.bloodType,
-                                role: data.role,
+                                name: data.user['name'],
+                                email: data.user['email'],
+                                phone: data.user['phone'],
+                                bloodGroup: data.user['bloodType'],
+                                role: data.user['role'],
                               ),
                             ),
                             StaggeredGridTile.extent(
@@ -91,8 +90,8 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                               mainAxisExtent: 96,
                               child: EmployeeLeaveCard(
                                 type: 'Approved',
-                                count: 3,
-                                totalCount: 3,
+                                count: data.leaves['approved_leaves'],
+                                totalCount: data.leaves['total_leaves_taken'],
                               ),
                             ),
                             StaggeredGridTile.extent(
@@ -100,8 +99,8 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                               mainAxisExtent: 96,
                               child: EmployeeLeaveCard(
                                 type: 'unapproved',
-                                count: 3,
-                                totalCount: 3,
+                                count: data.leaves['unapproved_leaves'],
+                                totalCount: data.leaves['total_leaves_taken'],
                               ),
                             ),
                             StaggeredGridTile.extent(
@@ -109,8 +108,8 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                               mainAxisExtent: 96,
                               child: EmployeeLeaveCard(
                                 type: 'remaining',
-                                count: 3,
-                                totalCount: 3,
+                                count: data.leaves['remaining_leaves'],
+                                totalCount: data.leaves['total_leaves_taken'],
                               ),
                             ),
                             StaggeredGridTile.extent(
@@ -119,7 +118,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                               child: GestureDetector(
                                 onTap: () {
                                   context.push(
-                                    '${CheckInListScreen.route}?id=$id&name=${data.name}',
+                                    '${CheckInListScreen.route}?id=$id&name=${data.user['name']}',
                                   );
                                 },
                                 child: CustomCard(
@@ -140,7 +139,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        LeaveTimeLineList(timeLine: leaveTimeline),
+                        LeaveTimeLineList(timeLine: data.holidays,),
                       ],
                     ),
                   ),
@@ -148,12 +147,10 @@ class EmployeeDetailsScreen extends ConsumerWidget {
               ),
             );
           },
-          error:
-              (error, stackTrace) => Center(
-                child: Text(
-                  'Error Occurred When Fetching Data.. Please try again',
-                ),
-              ),
+          error: (error, stackTrace) {
+            print(stackTrace);
+            return SizedBox.shrink();
+          },
           loading: () {
             return SizedBox.shrink();
           },

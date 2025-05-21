@@ -20,8 +20,6 @@ class FestivalLeavesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
-    final List<LeaveTimeLineModel> festivalTimeLine =
-        FestivalLeaveController().getFestivalLeaves();
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -78,7 +76,7 @@ class FestivalLeavesScreen extends ConsumerWidget {
                   Expanded(
                     child: LeaveTimeLineList(
                       isFestival: true,
-                      timeLine: festivalTimeLine,
+                      timeLine: [],
                     ),
                   ),
                 ],
