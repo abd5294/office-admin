@@ -3,26 +3,35 @@ class UpdateEmployeeModel {
   final String email;
   final String phone;
   final String bloodGroup;
-  final String role;
   final String password;
+  final String gender;
+  final String designation;
+  final String address;
+  final String dob;
 
   UpdateEmployeeModel({
     required this.name,
     required this.email,
     required this.phone,
     required this.bloodGroup,
-    required this.role,
     required this.password,
+    required this.gender,
+    required this.designation,
+    required this.address,
+    required this.dob,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'bloodType': bloodGroup,
-      'role': role,
-      'password': password,
+      'Name': name,
+      'Email': email,
+      'Phone': phone,
+      'BloodType': bloodGroup,
+      'Password': password,
+      'Designation': designation,
+      'Address': address,
+      'Gender' : gender,
+      'Dob': dob,
     };
   }
 }

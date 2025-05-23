@@ -103,11 +103,15 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
               LargeButton(
                 text: 'Login',
                 onPressed: () {
-                  if (emailController.text.isEmpty ||
-                      passwordController.text.isEmpty) {
-                    showSnackBar(context, 'Please enter all the fields');
+                  if(authState is AuthLoading){
                     return;
                   }
+                  // if (emailController.text.isEmpty ||
+                  //     passwordController.text.isEmpty) {
+                  //   showSnackBar(context, 'Please enter all the fields');
+                  //   return;
+                  // }
+
                   authController.userLogin(
                     emailController.text,
                     passwordController.text,

@@ -47,12 +47,16 @@ final GoRouter router = GoRouter(
       path: '/edit-emp',
       name: 'edit-emp',
       builder: (context, state) {
+        final id = state.uri.queryParameters['id'];
         final name = state.uri.queryParameters['name'] ?? '';
         final email = state.uri.queryParameters['email'] ?? '';
         final phone = state.uri.queryParameters['phone'] ?? '';
         final bloodGroup = state.uri.queryParameters['bloodGroup'] ?? '';
-        final role = state.uri.queryParameters['role'] ?? '';
-        final id = state.uri.queryParameters['id'];
+        final designation = state.uri.queryParameters['designation'] ?? '';
+        final address = state.uri.queryParameters['address'] ?? '';
+        final gender = state.uri.queryParameters['gender'] ?? '';
+        final dob = state.uri.queryParameters['dob'] ?? '';
+        final emergencyContacts = state.uri.queryParameters['emergencyContacts'] ?? '';
 
         return EditEmployeeScreen(
           id: int.parse(id!),
@@ -60,7 +64,11 @@ final GoRouter router = GoRouter(
           email: email,
           phone: phone,
           bloodGroup: bloodGroup,
-          role: role,
+          designation: designation,
+          address: address,
+          gender: gender,
+          dob: dob,
+          emergencyContacts: emergencyContacts,
         );
       },
     ),

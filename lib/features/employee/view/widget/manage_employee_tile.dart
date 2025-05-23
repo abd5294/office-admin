@@ -11,6 +11,11 @@ class ManageEmployeeTile extends StatefulWidget {
   final String phone;
   final String bloodGroup;
   final String role;
+  final String designation;
+  final String address;
+  final String gender;
+  final String dob;
+  final List<dynamic> emergencyContacts;
   final int index;
 
   const ManageEmployeeTile({
@@ -22,6 +27,11 @@ class ManageEmployeeTile extends StatefulWidget {
     required this.phone,
     required this.bloodGroup,
     required this.role,
+    required this.designation,
+    required this.address,
+    required this.gender,
+    required this.dob,
+    required this.emergencyContacts,
   });
 
   @override
@@ -105,7 +115,18 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                       GestureDetector(
                         onTap: () {
                           context.push(
-                            '${EditEmployeeScreen.route}?id=${widget.id}&name=${widget.name}&email=${widget.email}&phone=${widget.phone}&bloodGroup=${widget.bloodGroup}&role=${widget.role}',
+                            '${EditEmployeeScreen.route}'
+                            '?id=${widget.id}'
+                            '&name=${widget.name}'
+                            '&email=${widget.email}'
+                            '&phone=${widget.phone}'
+                            '&bloodGroup=${widget.bloodGroup}'
+                            '&role=${widget.role}'
+                            '&designation=${widget.designation}'
+                            '&address=${widget.address}'
+                            '&gender=${widget.gender}'
+                            '&dob=${widget.dob}'
+                            '&emergencyContacts=${widget.emergencyContacts}',
                           );
                         },
                         child: Container(

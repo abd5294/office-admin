@@ -16,7 +16,11 @@ class EditEmployeeScreen extends ConsumerStatefulWidget {
   final String email;
   final String phone;
   final String bloodGroup;
-  final String role;
+  final String designation;
+  final String address;
+  final String gender;
+  final String dob;
+  final String emergencyContacts;
 
   const EditEmployeeScreen({
     super.key,
@@ -25,7 +29,11 @@ class EditEmployeeScreen extends ConsumerStatefulWidget {
     required this.email,
     required this.phone,
     required this.bloodGroup,
-    required this.role,
+    required this.designation,
+    required this.address,
+    required this.gender,
+    required this.dob,
+    required this.emergencyContacts,
   });
 
   @override
@@ -37,8 +45,12 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final bloodGroupController = TextEditingController();
-  final roleController = TextEditingController();
   final passController = TextEditingController();
+  final designationController = TextEditingController();
+  final addressController = TextEditingController();
+  final genderController = TextEditingController();
+  final dobController = TextEditingController();
+  final emergencyContactsController = TextEditingController();
 
   @override
   void initState() {
@@ -46,8 +58,14 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     nameController.text = widget.name;
     emailController.text = widget.email;
     phoneController.text = widget.phone;
-    bloodGroupController.text = widget.bloodGroup;
-    roleController.text = widget.role;
+    bloodGroupController.text = '';
+
+    passController.text = '';
+    designationController.text = widget.designation;
+    addressController.text = widget.address;
+    genderController.text = widget.gender;
+    dobController.text = widget.dob;
+    emergencyContactsController.text = widget.emergencyContacts;
   }
 
   @override
@@ -56,8 +74,12 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     emailController.dispose();
     phoneController.dispose();
     bloodGroupController.dispose();
-    roleController.dispose();
     passController.dispose();
+    designationController.dispose();
+    addressController.dispose();
+    genderController.dispose();
+    dobController.dispose();
+    emergencyContactsController.dispose();
     super.dispose();
   }
 
@@ -88,120 +110,210 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Name',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2F3036),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Name',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: nameController,
-              hintText: 'Enter employee\'s name',
-              onChange: (value) {},
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Email',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2F3036),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: nameController,
+                hintText: 'Enter employee\'s name',
+                onChange: (value) {},
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: emailController,
-              hintText: 'Enter employee\'s Email',
-              onChange: (value) {},
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Password',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2F3036),
+              const SizedBox(height: 8),
+              const Text(
+                'Email',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: emailController,
-              hintText: 'Enter employee\'s password to change',
-              onChange: (value) {},
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: emailController,
+                hintText: 'Enter employee\'s Email',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Password',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
+              ),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: passController,
+                hintText: 'Enter employee\'s password to change',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
 
-            const Text(
-              'Phone',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2F3036),
+              const Text(
+                'Designation',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: phoneController,
-              hintText: 'Enter employee\'s Phone Number',
-              onChange: (value) {},
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: designationController,
+                hintText: 'Enter employee\'s designation',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
 
-            const Text(
-              'Blood Group',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2F3036),
+              const Text(
+                'Address',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: bloodGroupController,
-              hintText: 'Enter employee\'s Blood group',
-              onChange: (value) {},
-            ),
-            const SizedBox(height: 20),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: addressController,
+                hintText: 'Enter employee\'s address',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Gender',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
+              ),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: genderController,
+                hintText: 'Enter Gender (Male / Female)',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
 
-            const Text(
-              'Role',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF2F3036),
+              const Text(
+                'DOB',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: roleController,
-              hintText: 'Enter employee\'s role',
-              onChange: (value) {},
-            ),
-            const Spacer(),
-            LargeButton(
-              text: 'Edit Employee',
-              onPressed: () {
-                final updatedEmployee = UpdateEmployeeModel(
-                  name: nameController.text,
-                  email: emailController.text,
-                  phone: phoneController.text,
-                  bloodGroup: bloodGroupController.text,
-                  role: roleController.text,
-                  password: passController.text
-                );
-                empState.updateEmployee(updatedEmployee, widget.id);
-                context.pop();
-              },
-            ),
-          ],
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: dobController,
+                hintText: 'Enter DOB (YYYY-MM-DD)',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
+
+              const Text(
+                'Phone',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
+              ),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: phoneController,
+                hintText: 'Enter employee\'s Phone Number',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
+
+              const Text(
+                'Blood Group',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
+              ),
+              const SizedBox(height: 4),
+              CustomTextField(
+                controller: bloodGroupController,
+                hintText: 'Enter employee\'s Blood group',
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
+              LargeButton(
+                text: 'Edit Employee',
+                onPressed: () {
+                  final password = passController.text;
+                  if (password == '' && password.length < 8) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Password must be at least 8 characters long',
+                        ),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return;
+                  }
+
+                  final bloodGroup =
+                      bloodGroupController.text.trim().toUpperCase();
+                  final validBloodGroups = [
+                    'A+',
+                    'A-',
+                    'B+',
+                    'B-',
+                    'AB+',
+                    'AB-',
+                    'O+',
+                    'O-',
+                  ];
+
+                  if (!validBloodGroups.contains(bloodGroup)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Please enter a valid blood group (e.g., A+, O-, AB+).',
+                        ),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return;
+                  }
+
+                  final updatedEmployee = UpdateEmployeeModel(
+                    name: nameController.text,
+                    email: emailController.text,
+                    phone: phoneController.text,
+                    bloodGroup: bloodGroupController.text,
+                    password: passController.text,
+                    gender: genderController.text,
+                    designation: designationController.text,
+                    address: addressController.text,
+                    dob: dobController.text,
+                  );
+                  empState.updateEmployee(updatedEmployee, widget.id);
+                  context.pop();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

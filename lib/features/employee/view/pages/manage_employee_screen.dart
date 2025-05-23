@@ -73,13 +73,18 @@ class ManageEmployeeScreen extends ConsumerWidget {
                           (data) => ListView.separated(
                             itemBuilder:
                                 (context, index) => ManageEmployeeTile(
-                                  id : data[index].id,
+                                  id: data[index].id,
                                   name: data[index].name,
                                   email: data[index].email,
                                   phone: data[index].phone,
                                   bloodGroup: data[index].bloodType,
                                   role: data[index].role,
-                                  index : index + 1
+                                  designation: data[index].designation,
+                                  address: data[index].address,
+                                  gender: data[index].gender,
+                                  dob: data[index].dob,
+                                  emergencyContacts: data[index].emergencyContacts,
+                                  index: index + 1,
                                 ),
                             separatorBuilder:
                                 (context, index) => const SizedBox(height: 8),

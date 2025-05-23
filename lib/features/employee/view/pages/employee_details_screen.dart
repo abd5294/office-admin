@@ -139,7 +139,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        LeaveTimeLineList(timeLine: data.holidays,),
+                        LeaveTimeLineList(timeLine: data.holidays),
                       ],
                     ),
                   ),
@@ -148,7 +148,6 @@ class EmployeeDetailsScreen extends ConsumerWidget {
             );
           },
           error: (error, stackTrace) {
-            print(stackTrace);
             return SizedBox.shrink();
           },
           loading: () {

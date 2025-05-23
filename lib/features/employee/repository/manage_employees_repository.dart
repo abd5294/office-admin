@@ -30,22 +30,22 @@ class ManageEmployeeRepository {
   }
 
   Future updateUser(String token, UpdateEmployeeModel employee, id) async {
-    Map<String, dynamic> employeeMap = employee.toMap();
-    Map<String, dynamic> extraMap = {"gender": "male"};
-    Map<String, dynamic> mergedMap = {...employeeMap, ...extraMap};
+    final employeeMap = jsonEncode(employee.toMap());
+    print(employeeMap);
 
     try {
       await dio.put(
         '/users/$id',
         data: {
-          "name": "Abdur Rahman",
-          "role": "employee",
-          "email": "abdur@example.com",
-          "password": "abdur123",
-          "designation": "Software Engineer",
-          "bloodType": "O",
-          "gender": "male",
-          "phone": "1234567890",
+          "Name": "Abu",
+          "Email": "abd@example.com",
+          "Phone": " 91 (123)-456 7890",
+          "BloodType": "B+",
+          "Password": "ssssssss",
+          "Designation": "Software Engineer",
+          "Address": "123 Main Street",
+          "Gender": "male",
+          "Dob": "1990-01-01T00:00:00Z",
         },
         options: Options(headers: {'Authorization': token}),
       );
