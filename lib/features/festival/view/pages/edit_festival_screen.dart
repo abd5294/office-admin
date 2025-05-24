@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,20 +8,28 @@ import 'package:office/features/festival/model/festival_leave_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class CreateFestivalScreen extends ConsumerStatefulWidget {
-  static final route = '/create-festival';
+class EditFestivalScreen extends ConsumerStatefulWidget {
+  static const route = '/edit-festival';
+  final FestivalLeaveModel festival;
 
-  const CreateFestivalScreen({super.key});
+  const EditFestivalScreen({super.key, required this.festival});
 
   @override
-  ConsumerState<CreateFestivalScreen> createState() =>
-      _CreateFestivalScreenState();
+  ConsumerState<EditFestivalScreen> createState() => _EditFestivalScreenState();
 }
 
-class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
-  final festivalController = TextEditingController();
-  final dateController = TextEditingController();
-  final typeController = TextEditingController();
+class _EditFestivalScreenState extends ConsumerState<EditFestivalScreen> {
+  late final TextEditingController festivalController;
+  late final TextEditingController dateController;
+  late final TextEditingController typeController;
+
+  @override
+  void initState() {
+    super.initState();
+    festivalController = TextEditingController(text: widget.festival.occasion);
+    dateController = TextEditingController(text: widget.festival.date);
+    typeController = TextEditingController(text: widget.festival.type);
+  }
 
   @override
   void dispose() {
@@ -48,7 +57,7 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
           ),
         ),
         title: const Text(
-          'Create Festival Leave',
+          'Edit Festival Leave',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -79,7 +88,7 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
                       hintText: 'Enter Festival\'s name',
                       onChange: (_) {},
                     ),
-
+                    const SizedBox(height: 8),
                     Text('Leave Type', style: _labelStyle),
                     const SizedBox(height: 4),
                     CustomTextField(
@@ -87,7 +96,6 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
                       hintText: 'Enter full-day or half-day',
                       onChange: (_) {},
                     ),
-
                     const SizedBox(height: 8),
                     Text('Date', style: _labelStyle),
                     const SizedBox(height: 4),
@@ -102,7 +110,9 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
                       onTap: () async {
                         final pickedDate = await showDatePicker(
                           context: context,
-                          initialDate: DateTime.now(),
+                          initialDate:
+                              DateTime.tryParse(widget.festival.date) ??
+                              DateTime.now(),
                           firstDate: DateTime(1900),
                           lastDate: DateTime(2100),
                         );
@@ -121,7 +131,7 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
                     ),
                     const Spacer(),
                     LargeButton(
-                      text: 'Create Holiday',
+                      text: 'Update Holiday',
                       onPressed: () async {
                         final name = festivalController.text.trim();
                         final date = dateController.text.trim();
@@ -156,15 +166,16 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
                               backgroundColor: Colors.redAccent,
                             ),
                           );
+                          return;
                         }
 
-                        final model = FestivalLeaveModel(
+                        final updatedModel = FestivalLeaveModel(
                           occasion: name,
                           date: date,
                           type: type,
+                          id: widget.festival.id,
                         );
-
-                        controller.createFestivalLeave(model);
+                        controller.updateFestivalLeave(updatedModel);
                         context.pop();
                       },
                     ),

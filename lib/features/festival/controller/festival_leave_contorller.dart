@@ -31,19 +31,17 @@ class FestivalLeaveController extends AsyncNotifier<List<FestivalLeaveModel>> {
 
     await repo.createFestivalLeave(token, leave);
 
-    // Refresh the list after creation
     final updatedLeaves = await repo.getFestivalLeaves(token);
     state = AsyncValue.data(updatedLeaves);
   }
 
   // UPDATE
-  Future<void> updateFestivalLeave(String id, FestivalLeaveModel updatedLeave) async {
+  Future<void> updateFestivalLeave(FestivalLeaveModel updatedLeave) async {
     final token = ref.read(userProvider)!.token;
     final repo = ref.read(festivalLeaveRepositoryProvider);
 
-    await repo.updateFestivalLeave(token, updatedLeave, id);
+    await repo.updateFestivalLeave(token, updatedLeave);
 
-    // Refresh the list after update
     final updatedLeaves = await repo.getFestivalLeaves(token);
     state = AsyncValue.data(updatedLeaves);
   }

@@ -31,7 +31,8 @@ class FestivalTimeLineList extends StatelessWidget {
               (context, index) => LeaveTimelineItem(
                 date: timeLine[index].date,
                 isFestival: isFestival,
-                message: timeLine[index].reason,
+                occasion: timeLine[index].occasion,
+                id : timeLine[index].id
               ),
           separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemCount: timeLine.length,

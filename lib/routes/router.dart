@@ -9,7 +9,9 @@ import 'package:office/features/checkin/view/pages/check_in_out_screen.dart';
 import 'package:office/features/employee/view/pages/create_employee_screen.dart';
 import 'package:office/features/employee/view/pages/edit_employee_screen.dart';
 import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
+import 'package:office/features/festival/model/festival_leave_model.dart';
 import 'package:office/features/festival/view/pages/create_festival_screen.dart';
+import 'package:office/features/festival/view/pages/edit_festival_screen.dart';
 import 'package:office/features/festival/view/pages/festival_leaves_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
@@ -73,6 +75,14 @@ final GoRouter router = GoRouter(
       },
     ),
 
+    GoRoute(
+      path: EditFestivalScreen.route,
+      name: 'editFestival',
+      builder: (context, state) {
+        final festival = state.extra as FestivalLeaveModel;
+        return EditFestivalScreen(festival: festival);
+      },
+    ),
 
     GoRoute(
       path: FestivalLeavesScreen.route,

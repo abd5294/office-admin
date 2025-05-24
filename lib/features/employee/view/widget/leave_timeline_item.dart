@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/festival/model/festival_leave_model.dart';
+import 'package:office/features/festival/view/pages/edit_festival_screen.dart';
 
 class LeaveTimelineItem extends StatelessWidget {
   final String date;
   final String type;
   final bool isFestival;
-  final String message;
+  final String occasion;
   final String note;
+  final int? id;
 
   const LeaveTimelineItem({
     super.key,
     required this.date,
     this.isFestival = false,
     this.type = '',
-    this.message = '',
+    this.occasion = '',
     this.note = '',
+    this.id,
   });
 
   @override
@@ -63,22 +68,36 @@ class LeaveTimelineItem extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'Holiday on account of $message',
+                              'Holiday on account of $occasion',
                               style: TextStyle(fontWeight: FontWeight.w500),
                             ),
                           ],
                         ),
                         const Spacer(),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Palette.primaryColor,
-                            shape: BoxShape.circle,
-                          ),
-                          padding: EdgeInsets.all(4),
-                          child: const Icon(
-                            Icons.edit_rounded,
-                            color: Colors.white,
-                            size: 16,
+                        GestureDetector(
+                          onTap: () {
+                            final festival = FestivalLeaveModel(
+                              id: id,
+                              date: date,
+                              occasion: occasion,
+                              type: type,
+                            );
+                            context.push(
+                              EditFestivalScreen.route,
+                              extra: festival,
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Palette.primaryColor,
+                              shape: BoxShape.circle,
+                            ),
+                            padding: EdgeInsets.all(4),
+                            child: const Icon(
+                              Icons.edit_rounded,
+                              color: Colors.white,
+                              size: 16,
+                            ),
                           ),
                         ),
                       ],

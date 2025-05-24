@@ -21,17 +21,18 @@ class FestivalLeaveRepository {
       options: Options(headers: {'Authorization': token}),
     );
 
-    final festivalLeaves = (response.data['data'] as List)
-        .map((el) => FestivalLeaveModel.fromMap(el))
-        .toList();
-
+    final festivalLeaves =
+        (response.data['data'] as List)
+            .map((el) => FestivalLeaveModel.fromMap(el))
+            .toList();
     return festivalLeaves;
   }
 
-  // CREATE
-  Future<void> createFestivalLeave(String token, FestivalLeaveModel newLeave) async {
+  Future<void> createFestivalLeave(
+    String token,
+    FestivalLeaveModel newLeave,
+  ) async {
     final leaveMap = jsonEncode(newLeave.toMap());
-    print(leaveMap);
     try {
       await dio.post(
         '/holiday',
@@ -43,13 +44,14 @@ class FestivalLeaveRepository {
     }
   }
 
-  // UPDATE
-  Future<void> updateFestivalLeave(String token, FestivalLeaveModel leave, String id) async {
+  Future<void> updateFestivalLeave(
+    String token,
+    FestivalLeaveModel leave,
+  ) async {
     final leaveMap = jsonEncode(leave.toMap());
-
     try {
       await dio.put(
-        '/holiday/$id',
+        '/holiday/${leave.id}',
         data: leaveMap,
         options: Options(headers: {'Authorization': token}),
       );
