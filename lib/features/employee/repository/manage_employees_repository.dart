@@ -45,7 +45,7 @@ class ManageEmployeeRepository {
     }
   }
 
-  // Create user
+  // Create
   Future createUser(String token, CreateEmployeeModel newEmployee) async {
     final employeeMap = jsonEncode(newEmployee.toMap());
     try {

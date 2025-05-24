@@ -16,7 +16,7 @@ class EmployeeDetailsModel {
       user: Map<String, dynamic>.from(map['user']),
       leaves: Map<String, dynamic>.from(map['leave_stats']),
       holidays:
-          (map['holidays'] as List)
+          (map['analysis'] as List)
               .map((item) => LeaveDetailsModel.fromMap(item))
               .toList(),
     );

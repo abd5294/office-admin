@@ -3,11 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/controller/auth_controller.dart';
-import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
 import 'package:office/features/festival/controller/festival_leave_contorller.dart';
 import 'package:office/features/festival/view/pages/create_festival_screen.dart';
-import 'package:office/shared/models/leave_timeline_model.dart';
+import 'package:office/features/festival/view/widgets/festival_time_line_list.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
@@ -20,6 +18,8 @@ class FestivalLeavesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
+    final leaveState = ref.watch(festivalLeaveControllerProvider);
+
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -37,16 +37,20 @@ class FestivalLeavesScreen extends ConsumerWidget {
                         onPressed: () {
                           context.push(CreateFestivalScreen.route);
                         },
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                         backgroundColor: Palette.primaryColor,
-                        child: Icon(Icons.add, color: Colors.white, size: 20),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 20,
+                        ),
                       ),
                     ),
                   )
                   : null,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.endContained,
-          appBar: PreferredSize(
+          appBar: const PreferredSize(
             preferredSize: Size(0, 74),
             child: CustomAppBar(),
           ),
@@ -72,11 +76,24 @@ class FestivalLeavesScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-
-                  Expanded(
-                    child: LeaveTimeLineList(
-                      isFestival: true,
-                      timeLine: [],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height - 300,
+                    child: leaveState.when(
+                      data:
+                          (leaves) => FestivalTimeLineList(
+                            isFestival: true,
+                            timeLine: leaves,
+                          ),
+                      loading:
+                          () =>
+                              const Center(child: CircularProgressIndicator()),
+                      error:
+                          (error, _) => Center(
+                            child: Text(
+                              'Failed to load festival leaves',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
                     ),
                   ),
                 ],

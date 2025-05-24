@@ -31,7 +31,7 @@ class LeaveTimelineItem extends StatelessWidget {
               backgroundColor:
                   isFestival
                       ? Colors.green
-                      : type == 'Approved'
+                      : type == 'approved'
                       ? Colors.green
                       : type == 'Half leave'
                       ? Colors.yellowAccent
@@ -63,12 +63,7 @@ class LeaveTimelineItem extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              message,
-                              style: TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'Note: $note',
+                              'Holiday on account of $message',
                               style: TextStyle(fontWeight: FontWeight.w500),
                             ),
                           ],
@@ -88,7 +83,9 @@ class LeaveTimelineItem extends StatelessWidget {
                         ),
                       ],
                     )
-                    : Text('$type leave on $date'),
+                    : type == 'unapproved_holiday'
+                    ? Text('Unapproved leave on $date')
+                    : Text('Approved leave on $date'),
           ),
         ],
       ),
