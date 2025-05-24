@@ -20,7 +20,7 @@ class CheckInListController
     final repo = ref.read(checkInListRepositoryProvider);
     final checkInsRaw = await repo.getCheckInDetails(id, token);
 
-    if (checkInsRaw.isEmpty) throw Exception("No check-ins found");
+    if (checkInsRaw.isEmpty) throw 'No Checkins Found';
     final checkIns =
         checkInsRaw.map((e) {
           final dateString = e.date.substring(0, 10);

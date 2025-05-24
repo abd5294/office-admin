@@ -29,10 +29,7 @@ class CheckInListScreen extends ConsumerWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: MainTextColumn(
-              title: name,
-              subTitle: 'Employee Details',
-            ),
+            child: MainTextColumn(title: name, subTitle: 'Employee Details'),
           ),
           bottomSheet: CustomBottomSheet(
             child: Padding(

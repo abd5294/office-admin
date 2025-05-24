@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/employee/controller/manage_employee_controller.dart';
+import 'package:office/features/employee/models/create_employee_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class CreateEmployeeScreen extends StatefulWidget {
+class CreateEmployeeScreen extends ConsumerStatefulWidget {
   static final route = '/create-emp';
 
   const CreateEmployeeScreen({super.key});
 
   @override
-  State<CreateEmployeeScreen> createState() => _CreateEmployeeScreenState();
+  ConsumerState<CreateEmployeeScreen> createState() =>
+      _CreateEmployeeScreenState();
 }
 
-class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
+class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
   final nameController = TextEditingController();
   final roleController = TextEditingController();
   final emailController = TextEditingController();
@@ -30,6 +34,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final empState = ref.watch(manageEmployeeControllerProvider.notifier);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -161,11 +166,36 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
 
               const Text('DOB', style: _labelStyle),
               const SizedBox(height: 4),
-              CustomTextField(
+
+              TextField(
                 controller: dobController,
-                hintText: 'Enter employee\'s DOB',
-                onChange: (value) {},
+                readOnly: true,
+                decoration: const InputDecoration(
+                  labelText: 'Date of Birth',
+                  hintText: 'Select Date of Birth',
+                  border: OutlineInputBorder(),
+                ),
+                onTap: () async {
+                  final pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime(2000),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime.now(),
+                  );
+
+                  if (pickedDate != null) {
+                    final formattedDate =
+                        DateTime(
+                          pickedDate.year,
+                          pickedDate.month,
+                          pickedDate.day,
+                        ).toUtc().toIso8601String();
+
+                    dobController.text = formattedDate;
+                  }
+                },
               ),
+
               const SizedBox(height: 8),
 
               const Text('Emergency Contacts', style: _labelStyle),
@@ -201,6 +231,29 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
                     );
                     return;
                   }
+
+                  final newEmployee = CreateEmployeeModel(
+                    name: nameController.text.trim(),
+                    role: roleController.text.trim(),
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim(),
+                    employeeID: employeeIDController.text.trim(),
+                    totalLeaves:
+                        int.tryParse(totalLeavesController.text.trim()) ?? 0,
+                    designation: designationController.text.trim(),
+                    address: addressController.text.trim(),
+                    bloodType: bloodGroupController.text.trim(),
+                    gender: genderController.text.trim(),
+                    phone: phoneController.text.trim(),
+                    dob: dobController.text.trim(),
+                    emergencyContacts:
+                        emergencyContactsController.text
+                            .trim()
+                            .split(',')
+                            .map((e) => e.trim())
+                            .toList(),
+                  );
+                  empState.createEmployee(newEmployee);
                   context.pop();
                 },
               ),

@@ -298,15 +298,15 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                   }
 
                   final updatedEmployee = UpdateEmployeeModel(
-                    name: nameController.text,
-                    email: emailController.text,
-                    phone: phoneController.text,
-                    bloodGroup: bloodGroupController.text,
-                    password: passController.text,
-                    gender: genderController.text,
-                    designation: designationController.text,
-                    address: addressController.text,
-                    dob: dobController.text,
+                    name: nameController.text.trim(),
+                    email: emailController.text.trim(),
+                    phone: phoneController.text.trim(),
+                    bloodGroup: bloodGroupController.text.trim(),
+                    password: passController.text.trim(),
+                    gender: genderController.text.trim(),
+                    designation: designationController.text.trim(),
+                    address: addressController.text.trim(),
+                    dob: dobController.text.trim(),
                   );
                   empState.updateEmployee(updatedEmployee, widget.id);
                   context.pop();
