@@ -14,7 +14,7 @@ class EmployeeController extends AsyncNotifier<List<EmployeeModel>> {
     final token = ref.read(userProvider)!.token;
     final repo = ref.read(employeeRepositoryProvider);
     final employees = await repo.getEmployees(token);
-    if (employees.isEmpty) throw Exception("No employees found");
+    if (employees.isEmpty) throw 'No Employees Found';
     final filteredEmployees =
         employees
             .where((employee) => employee.role.toLowerCase() != 'admin')

@@ -14,7 +14,6 @@ class FestivalLeaveRepository {
 
   FestivalLeaveRepository({required this.dio});
 
-  // GET
   Future<List<FestivalLeaveModel>> getFestivalLeaves(String token) async {
     final response = await dio.get(
       '/holiday',

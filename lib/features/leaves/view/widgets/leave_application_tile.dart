@@ -11,9 +11,6 @@ class LeaveApplicationTile extends StatefulWidget {
   final String status;
   final String dateOfLeave;
   final String typeOfLeave;
-  final String remainingLeave;
-  final String totalApprovedLeaves;
-  final String totalUnApprovedLeaves;
   final int index;
   final UserModel user;
 
@@ -26,9 +23,6 @@ class LeaveApplicationTile extends StatefulWidget {
     required this.reason,
     required this.dateOfLeave,
     required this.typeOfLeave,
-    required this.remainingLeave,
-    required this.totalApprovedLeaves,
-    required this.totalUnApprovedLeaves,
   });
 
   @override
@@ -246,9 +240,6 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                       reason: widget.reason,
                       dateOfLeave: widget.dateOfLeave,
                       typeOfLeave: widget.typeOfLeave,
-                      remainingLeave: widget.remainingLeave,
-                      totalApprovedLeaves: widget.totalApprovedLeaves,
-                      totalUnApprovedLeaves: widget.totalUnApprovedLeaves,
                     )
                     : const SizedBox.shrink(),
           ),
@@ -265,9 +256,6 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
   final UserModel user;
   final String dateOfLeave;
   final String typeOfLeave;
-  final String remainingLeave;
-  final String totalApprovedLeaves;
-  final String totalUnApprovedLeaves;
 
   const LeaveApplicationExpandedTile({
     super.key,
@@ -277,9 +265,6 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
     required this.reason,
     required this.dateOfLeave,
     required this.typeOfLeave,
-    required this.remainingLeave,
-    required this.totalApprovedLeaves,
-    required this.totalUnApprovedLeaves,
   });
 
   @override
@@ -393,58 +378,6 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                 ),
                 Text(
                   typeOfLeave,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Remaining Leave',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 8,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-
-                Text(
-                  remainingLeave,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Total approved leaves taken so far',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 8,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  totalApprovedLeaves,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Total unapproved leaves taken so far',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 8,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  totalUnApprovedLeaves,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
