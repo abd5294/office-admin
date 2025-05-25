@@ -34,7 +34,7 @@ class LeaveApplicationController
     final token = ref.read(userProvider)!.token;
     final repo = ref.read(leaveApplicationRepositoryProvider);
 
-    repo.updateLeaveApplication(token, id, choice);
+    await repo.updateLeaveApplication(token, id, choice);
     state = AsyncLoading();
     final applications = await repo.getLeaveApplications(token);
     final filteredApplications =

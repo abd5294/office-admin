@@ -20,6 +20,6 @@ class EmployeeController extends AsyncNotifier<List<EmployeeModel>> {
             .where((employee) => employee.role.toLowerCase() != 'admin')
             .toList();
 
-    return filteredEmployees;
+    return employees;
   }
 }

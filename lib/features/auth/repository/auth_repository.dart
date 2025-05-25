@@ -17,7 +17,6 @@ class AuthRepository {
 
   Future<UserModel?> login(String email, String password) async {
     try {
-
       final response = await dio.post(
         '/users/login',
         data: jsonEncode({

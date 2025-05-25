@@ -151,11 +151,7 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                                     onPressed: () {
                                       leaveController.updateLeaveApplication(
                                         widget.id,
-                                        'Rejected',
-                                      );
-                                      leaveController.updateLeaveApplication(
-                                        widget.id,
-                                        'reject',
+                                        'denied',
                                       );
                                       context.pop();
                                     },
