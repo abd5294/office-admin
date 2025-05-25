@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/core/providers/dio_provider.dart';
@@ -24,5 +26,18 @@ class LeaveApplicationRepository {
         }).toList();
 
     return leaves;
+  }
+
+  Future updateLeaveApplication(String token, int id, String choice) async {
+    final updatedLeave = jsonEncode({"choice": choice});
+    try {
+      await dio.put(
+        '/leaves/$id',
+        options: Options(headers: {'Authorization': token}),
+        data: updatedLeave,
+      );
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

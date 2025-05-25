@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/leaves/controller/leave_application_controller.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   final String title;
   final String subTitle;
   final String buttonText;
+  final VoidCallback onPressed;
 
   const CustomAlertDialog({
     super.key,
     required this.title,
     required this.subTitle,
     required this.buttonText,
+    required this.onPressed,
   });
 
   @override
@@ -34,7 +38,7 @@ class CustomAlertDialog extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Text(buttonText, style: TextStyle(color: Colors.white)),
         ),
       ],

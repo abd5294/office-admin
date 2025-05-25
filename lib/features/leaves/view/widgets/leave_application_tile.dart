@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/model/user_model.dart';
+import 'package:office/features/leaves/controller/leave_application_controller.dart';
 import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
 import 'package:office/shared/widgets/custom_alert_dialog.dart';
 
-class LeaveApplicationTile extends StatefulWidget {
+class LeaveApplicationTile extends ConsumerStatefulWidget {
   final String name;
   final String reason;
   final String status;
@@ -13,6 +15,7 @@ class LeaveApplicationTile extends StatefulWidget {
   final String typeOfLeave;
   final int index;
   final UserModel user;
+  final int id;
 
   const LeaveApplicationTile({
     super.key,
@@ -23,17 +26,23 @@ class LeaveApplicationTile extends StatefulWidget {
     required this.reason,
     required this.dateOfLeave,
     required this.typeOfLeave,
+    required this.id,
   });
 
   @override
-  State<LeaveApplicationTile> createState() => _LeaveApplicationTileState();
+  ConsumerState<LeaveApplicationTile> createState() =>
+      _LeaveApplicationTileState();
 }
 
-class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
+class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
   bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
+    final leaveController = ref.read(
+      leaveApplicationControllerProvider.notifier,
+    );
+    final leaveState = ref.watch(leaveApplicationControllerProvider);
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -139,10 +148,22 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                                     subTitle:
                                         'Are you sure you want to cancel this application?',
                                     buttonText: 'Reject',
+                                    onPressed: () {
+                                      leaveController.updateLeaveApplication(
+                                        widget.id,
+                                        'Rejected',
+                                      );
+                                      leaveController.updateLeaveApplication(
+                                        widget.id,
+                                        'reject',
+                                      );
+                                      context.pop();
+                                    },
                                   );
                                 },
                               );
                             },
+
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Palette.primaryColor,
@@ -183,11 +204,18 @@ class _LeaveApplicationTileState extends State<LeaveApplicationTile> {
                               showDialog(
                                 context: context,
                                 builder: (context) {
-                                  return const CustomAlertDialog(
+                                  return CustomAlertDialog(
                                     title: 'Accept Application?',
                                     subTitle:
                                         'Are you sure you want to Accept this application?',
                                     buttonText: 'Accept',
+                                    onPressed: () {
+                                      leaveController.updateLeaveApplication(
+                                        widget.id,
+                                        'accepted',
+                                      );
+                                      context.pop();
+                                    },
                                   );
                                 },
                               );

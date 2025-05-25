@@ -29,4 +29,21 @@ class LeaveApplicationController
 
     return filteredApplications;
   }
+
+  Future<void> updateLeaveApplication(int id, String choice) async {
+    final token = ref.read(userProvider)!.token;
+    final repo = ref.read(leaveApplicationRepositoryProvider);
+
+    repo.updateLeaveApplication(token, id, choice);
+    state = AsyncLoading();
+    final applications = await repo.getLeaveApplications(token);
+    final filteredApplications =
+        applications
+            .where(
+              (application) => application.choice.toLowerCase() == 'undecided',
+            )
+            .toList();
+
+    state = AsyncData(filteredApplications);
+  }
 }
