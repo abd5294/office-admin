@@ -247,7 +247,10 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                             ),
                           )
                           : GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              // Delete leave done. testing remains.
+                              leaveController.deleteLeaveApplication(widget.id);
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Palette.primaryColor,

@@ -45,4 +45,14 @@ class LeaveApplicationController
 
     state = AsyncData(applications);
   }
+
+  Future<void> deleteLeaveApplication(int id) async {
+    final token = ref.read(userProvider)!.token;
+    final repo = ref.read(leaveApplicationRepositoryProvider);
+
+    await repo.deleteLeaveApplication(id, token);
+    state = AsyncLoading();
+    final applications = await repo.getLeaveApplications(token);
+    state = AsyncData(applications);
+  }
 }

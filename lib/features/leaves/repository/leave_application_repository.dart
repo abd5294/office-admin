@@ -61,4 +61,15 @@ class LeaveApplicationRepository {
       print(e.toString());
     }
   }
+
+  Future deleteLeaveApplication(int id, String token) async {
+    try {
+      await dio.delete(
+        '/leaves/$id',
+        options: Options(headers: {'Authorization': token}),
+      );
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
