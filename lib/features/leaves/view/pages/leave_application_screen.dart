@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/leaves/controller/leave_application_controller.dart';
 import 'package:office/features/leaves/view/pages/create_leave_screen.dart';
 import 'package:office/features/leaves/view/widgets/leave_application_tile.dart';
@@ -31,7 +30,7 @@ class LeaveApplicationScreen extends ConsumerWidget {
             child: CustomAppBar(),
           ),
           floatingActionButton:
-              user.role == 'user'
+              user.role == 'employee'
                   ? SizedBox(
                     width: 50,
                     height: 50,
@@ -74,6 +73,15 @@ class LeaveApplicationScreen extends ConsumerWidget {
                   const SizedBox(height: 12),
                   leaveController.when(
                     data: (data) {
+                      if (user.role == 'admin') {
+                        data =
+                            data
+                                .where(
+                                  (element) => element.choice == 'undecided',
+                                )
+                                .toList();
+                      }
+
                       return Expanded(
                         child: ListView.separated(
                           itemBuilder:

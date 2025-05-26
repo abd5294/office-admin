@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/model/user_model.dart';
 import 'package:office/features/leaves/controller/leave_application_controller.dart';
-import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
+import 'package:office/features/leaves/model/leave_application_model.dart';
 import 'package:office/shared/widgets/custom_alert_dialog.dart';
 
 class LeaveApplicationTile extends ConsumerStatefulWidget {
@@ -42,7 +42,6 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
     final leaveController = ref.read(
       leaveApplicationControllerProvider.notifier,
     );
-    final leaveState = ref.watch(leaveApplicationControllerProvider);
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -99,8 +98,8 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                         color: Colors.black.withAlpha(123),
                       ),
                     ),
-                    const Text(
-                      'Abdur Rahman',
+                    Text(
+                      widget.name,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
@@ -149,9 +148,17 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                                         'Are you sure you want to cancel this application?',
                                     buttonText: 'Reject',
                                     onPressed: () {
+                                      final updatedLeave =
+                                          LeaveApplicationModel(
+                                            name: widget.name,
+                                            reason: widget.reason,
+                                            type: widget.typeOfLeave,
+                                            date: widget.dateOfLeave,
+                                            choice: 'denied',
+                                            id: widget.id,
+                                          );
                                       leaveController.updateLeaveApplication(
-                                        widget.id,
-                                        'denied',
+                                        updatedLeave,
                                       );
                                       context.pop();
                                     },
@@ -178,14 +185,16 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                             child: Container(
                               decoration: BoxDecoration(
                                 color:
-                                    widget.status == 'Accepted'
+                                    widget.status == 'accepted'
                                         ? Colors.green
+                                        : widget.status == 'undecided'
+                                        ? Colors.orange
                                         : Colors.red,
                                 shape: BoxShape.circle,
                               ),
                               padding: EdgeInsets.all(4),
                               child: Icon(
-                                widget.status == 'Accepted'
+                                widget.status == 'accepted'
                                     ? Icons.check
                                     : Icons.close,
                                 size: 18,
@@ -206,9 +215,17 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                                         'Are you sure you want to Accept this application?',
                                     buttonText: 'Accept',
                                     onPressed: () {
+                                      final updatedLeave =
+                                          LeaveApplicationModel(
+                                            name: widget.name,
+                                            reason: widget.reason,
+                                            type: widget.typeOfLeave,
+                                            date: widget.dateOfLeave,
+                                            choice: 'accepted',
+                                            id: widget.id,
+                                          );
                                       leaveController.updateLeaveApplication(
-                                        widget.id,
-                                        'accepted',
+                                        updatedLeave,
                                       );
                                       context.pop();
                                     },
@@ -230,9 +247,7 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                             ),
                           )
                           : GestureDetector(
-                            onTap: () {
-                              context.push(EditLeaveScreen.route);
-                            },
+                            onTap: () {},
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Palette.primaryColor,
@@ -240,8 +255,8 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                               ),
                               padding: EdgeInsets.all(6),
                               child: Icon(
-                                Icons.edit_rounded,
-                                size: 14,
+                                Icons.delete_outline,
+                                size: 16,
                                 color: Colors.white,
                               ),
                             ),
@@ -315,7 +330,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                user.role == 'user'
+                user.role == 'employee'
                     ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -331,8 +346,10 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                           status,
                           style: TextStyle(
                             color:
-                                status == 'Accepted'
+                                status == 'accepted'
                                     ? Colors.green
+                                    : status == 'undecided'
+                                    ? Colors.orange
                                     : Colors.red,
                             fontWeight: FontWeight.w600,
                             fontSize: 12,

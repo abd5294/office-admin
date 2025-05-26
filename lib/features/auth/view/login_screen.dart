@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -69,7 +67,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: 40),
               const Text(
-                'Welcome Back!',
+                'Hello There!',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 20),
@@ -103,7 +101,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
               LargeButton(
                 text: 'Login',
                 onPressed: () {
-                  if(authState is AuthLoading){
+                  if (authState is AuthLoading) {
                     return;
                   }
                   // if (emailController.text.isEmpty ||

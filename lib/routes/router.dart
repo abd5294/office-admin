@@ -17,7 +17,6 @@ import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/pages/employee_screen.dart';
 import 'package:office/features/leaves/view/pages/create_leave_screen.dart';
-import 'package:office/features/leaves/view/pages/edit_leave_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -58,7 +57,8 @@ final GoRouter router = GoRouter(
         final address = state.uri.queryParameters['address'] ?? '';
         final gender = state.uri.queryParameters['gender'] ?? '';
         final dob = state.uri.queryParameters['dob'] ?? '';
-        final emergencyContacts = state.uri.queryParameters['emergencyContacts'] ?? '';
+        final emergencyContacts =
+            state.uri.queryParameters['emergencyContacts'] ?? '';
 
         return EditEmployeeScreen(
           id: int.parse(id!),
@@ -94,7 +94,6 @@ final GoRouter router = GoRouter(
       builder: (context, state) => EmployeeScreen(),
     ),
 
-
     GoRoute(
       path: EmployeeDetailsScreen.route,
       builder: (context, state) {
@@ -108,7 +107,7 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final id = state.uri.queryParameters['id'];
         final name = state.uri.queryParameters['name'];
-        return CheckInListScreen(id: int.parse(id!), name: name!,);
+        return CheckInListScreen(id: int.parse(id!), name: name!);
       },
     ),
     GoRoute(
@@ -127,11 +126,6 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: CreateLeaveScreen.route,
       builder: (context, state) => CreateLeaveScreen(),
-    ),
-
-    GoRoute(
-      path: EditLeaveScreen.route,
-      builder: (context, state) => EditLeaveScreen(),
     ),
 
     GoRoute(

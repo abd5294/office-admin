@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/festival/model/festival_leave_model.dart';
 import 'package:office/features/festival/view/pages/edit_festival_screen.dart';
 
-class LeaveTimelineItem extends StatelessWidget {
+class LeaveTimelineItem extends ConsumerWidget {
   final String date;
   final String type;
   final bool isFestival;
@@ -23,7 +25,8 @@ class LeaveTimelineItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(userProvider);
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: Row(
@@ -74,32 +77,34 @@ class LeaveTimelineItem extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            final festival = FestivalLeaveModel(
-                              id: id,
-                              date: date,
-                              occasion: occasion,
-                              type: type,
-                            );
-                            context.push(
-                              EditFestivalScreen.route,
-                              extra: festival,
-                            );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Palette.primaryColor,
-                              shape: BoxShape.circle,
-                            ),
-                            padding: EdgeInsets.all(4),
-                            child: const Icon(
-                              Icons.edit_rounded,
-                              color: Colors.white,
-                              size: 16,
-                            ),
-                          ),
-                        ),
+                        user!.role == 'admin'
+                            ? GestureDetector(
+                              onTap: () {
+                                final festival = FestivalLeaveModel(
+                                  id: id,
+                                  date: date,
+                                  occasion: occasion,
+                                  type: type,
+                                );
+                                context.push(
+                                  EditFestivalScreen.route,
+                                  extra: festival,
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Palette.primaryColor,
+                                  shape: BoxShape.circle,
+                                ),
+                                padding: EdgeInsets.all(4),
+                                child: const Icon(
+                                  Icons.edit_rounded,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ),
+                            )
+                            : SizedBox.shrink(),
                       ],
                     )
                     : type == 'unapproved_holiday'

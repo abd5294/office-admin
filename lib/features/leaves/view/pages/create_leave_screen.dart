@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/leaves/controller/leave_application_controller.dart';
+import 'package:office/features/leaves/model/create_leave_application_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class CreateLeaveScreen extends StatefulWidget {
+class CreateLeaveScreen extends ConsumerStatefulWidget {
   static final route = '/create-leave';
 
   const CreateLeaveScreen({super.key});
 
   @override
-  State<CreateLeaveScreen> createState() => _CreateLeaveScreenState();
+  ConsumerState<CreateLeaveScreen> createState() => _CreateLeaveScreenState();
 }
 
-class _CreateLeaveScreenState extends State<CreateLeaveScreen> {
-  final nameController = TextEditingController();
+class _CreateLeaveScreenState extends ConsumerState<CreateLeaveScreen> {
   final reasonController = TextEditingController();
   final dateController = TextEditingController();
   final typeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final controller = ref.read(leaveApplicationControllerProvider.notifier);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -50,21 +54,6 @@ class _CreateLeaveScreenState extends State<CreateLeaveScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Name',
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 8),
-            CustomTextField(
-              controller: nameController,
-              hintText: 'Enter profile\'s name',
-              onChange: (value) {},
-            ),
-            const SizedBox(height: 8),
-            const Text(
               'Reason',
               style: TextStyle(
                 fontSize: 12,
@@ -81,7 +70,7 @@ class _CreateLeaveScreenState extends State<CreateLeaveScreen> {
             const SizedBox(height: 8),
 
             const Text(
-              'Date Of Leave',
+              'Date of leave',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
@@ -89,10 +78,33 @@ class _CreateLeaveScreenState extends State<CreateLeaveScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            CustomTextField(
+            TextField(
               controller: dateController,
-              hintText: 'Enter your Phone Number',
-              onChange: (value) {},
+              readOnly: true,
+              decoration: const InputDecoration(
+                labelText: 'Date of Leave',
+                hintText: 'Select The Date of Leave',
+                border: OutlineInputBorder(),
+              ),
+              onTap: () async {
+                final pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
+                );
+
+                if (pickedDate != null) {
+                  final formattedDate =
+                      DateTime(
+                        pickedDate.year,
+                        pickedDate.month,
+                        pickedDate.day,
+                      ).toUtc().toIso8601String();
+
+                  dateController.text = formattedDate;
+                }
+              },
             ),
             const SizedBox(height: 8),
 
@@ -110,10 +122,43 @@ class _CreateLeaveScreenState extends State<CreateLeaveScreen> {
               hintText: 'Enter Type (Half or Full day)',
               onChange: (value) {},
             ),
+
             const Spacer(),
             LargeButton(
               text: 'Send Application',
               onPressed: () {
+                if (reasonController.text.isEmpty ||
+                    dateController.text.isEmpty ||
+                    typeController.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please fill in all fields'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
+
+                if (reasonController.text.length < 5) {
+                  ScaffoldMessenger.of(context)
+                    ..clearSnackBars()
+                    ..showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Reason cannot be less than 5 characters',
+                        ),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  return;
+                }
+
+                final newApplication = CreateLeaveApplicationModel(
+                  reason: reasonController.text,
+                  date: dateController.text,
+                  type: typeController.text,
+                );
+                controller.createLeaveApplication(newApplication);
                 context.pop();
               },
             ),
