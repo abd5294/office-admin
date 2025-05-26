@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
-import 'package:office/features/checkin/repository/check_in_list_repository.dart';
 import 'package:office/features/checkin/view/pages/check_in_individual_screen.dart';
 
 class CheckInCard extends ConsumerWidget {

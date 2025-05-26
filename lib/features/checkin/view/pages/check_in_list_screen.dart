@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/features/checkin/controller/check_in_list_controller.dart';
-import 'package:office/features/checkin/model/check_in_list_model.dart';
 import 'package:office/features/checkin/view/widgets/check_in_card.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';

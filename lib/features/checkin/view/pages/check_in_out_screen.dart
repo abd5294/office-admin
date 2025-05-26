@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
@@ -41,7 +40,11 @@ class CheckInOutScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                const Icon(Icons.image_rounded, size: 300, color: Color(0xFFb4dbff)),
+                const Icon(
+                  Icons.image_rounded,
+                  size: 300,
+                  color: Color(0xFFb4dbff),
+                ),
                 const Spacer(),
                 LargeButton(
                   text: 'Click to Check in',

@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/core/providers/dio_provider.dart';
-import 'package:office/core/providers/user_provider.dart';
-import 'package:office/features/auth/model/user_model.dart';
 import 'package:office/shared/models/employee_model.dart';
 
 final employeeRepositoryProvider = Provider((ref) {

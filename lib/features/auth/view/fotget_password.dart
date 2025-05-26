@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/view/otp_screen.dart';
-import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
@@ -67,9 +65,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 onChange: (value) {},
               ),
               const SizedBox(height: 18),
-              LargeButton(text: 'Send OTP', onPressed: () {
-                context.push(OtpScreen.route);
-              }),
+              LargeButton(
+                text: 'Send OTP',
+                onPressed: () {
+                  context.push(OtpScreen.route);
+                },
+              ),
             ],
           ),
         ),

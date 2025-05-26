@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:office/features/employee/models/leave_details_model.dart';
 import 'package:office/features/employee/view/widget/leave_timeline_item.dart';
 import 'package:office/features/festival/model/festival_leave_model.dart';
 
@@ -32,7 +31,7 @@ class FestivalTimeLineList extends StatelessWidget {
                 date: timeLine[index].date,
                 isFestival: isFestival,
                 occasion: timeLine[index].occasion,
-                id : timeLine[index].id
+                id: timeLine[index].id,
               ),
           separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemCount: timeLine.length,
