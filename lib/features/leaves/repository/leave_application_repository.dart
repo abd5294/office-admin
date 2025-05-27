@@ -50,7 +50,6 @@ class LeaveApplicationRepository {
     CreateLeaveApplicationModel applicationModel,
   ) async {
     final newApplication = jsonEncode(applicationModel.toMap());
-    print(newApplication);
     try {
       await dio.post(
         '/leaves',
