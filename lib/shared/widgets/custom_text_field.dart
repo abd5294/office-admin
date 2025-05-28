@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
   final bool isObscured;
@@ -17,24 +17,46 @@ class CustomTextField extends StatelessWidget {
   });
 
   @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.isObscured;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 48,
       child: TextFormField(
-        style: TextStyle(color: Colors.black),
-        keyboardType: isNumeric ? TextInputType.number : TextInputType.text,
-        controller: controller,
-        onChanged: onChange,
+        style: const TextStyle(color: Colors.black),
+        keyboardType:
+            widget.isNumeric ? TextInputType.number : TextInputType.text,
+        controller: widget.controller,
+        onChanged: widget.onChange,
+        obscureText: _obscureText,
         decoration: InputDecoration(
           suffixIcon:
-              isObscured
-                  ? Icon(
-                    Icons.remove_red_eye_sharp,
-                    color: Colors.grey.shade400,
-                    size: 16,
+              widget.isObscured
+                  ? GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                    child: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.grey.shade400,
+                      size: 16,
+                    ),
                   )
                   : null,
-          hintText: hintText,
+          hintText: widget.hintText,
           hintStyle: TextStyle(color: Colors.grey.shade600, fontSize: 14),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
@@ -45,7 +67,6 @@ class CustomTextField extends StatelessWidget {
             borderSide: BorderSide(color: Colors.grey.shade300, width: 2),
           ),
         ),
-        obscureText: isObscured,
       ),
     );
   }

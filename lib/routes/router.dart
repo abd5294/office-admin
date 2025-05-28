@@ -21,7 +21,7 @@ import 'package:office/features/leaves/view/pages/create_leave_screen.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: SettingsScreen.route,
+  initialLocation: LoginScreen.route,
   routes: [
     GoRoute(
       path: LoginScreen.route,

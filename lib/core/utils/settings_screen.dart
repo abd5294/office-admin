@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   static const route = '/settings';
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final rowTexts = ['Privacy Policy', 'Terms And Conditions', 'LogOut'];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(userProvider)!;
+    final rowTexts = ['Privacy Policy', 'Terms And Conditions', 'Logout'];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios_rounded, size: 24),
+        leading: GestureDetector(
+          onTap: () => context.pop(),
+          child: Icon(Icons.arrow_back_ios_rounded, size: 24),
+        ),
         backgroundColor: Colors.white,
         title: Text(
           'Settings',
@@ -35,13 +42,15 @@ class SettingsScreen extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: Container(
-                      padding: EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: Palette.primaryColor,
-                        shape: BoxShape.circle,
+                    child: GestureDetector(
+                      child: Container(
+                        padding: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Palette.primaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(Icons.edit, size: 14, color: Colors.white),
                       ),
-                      child: Icon(Icons.edit, size: 14, color: Colors.white),
                     ),
                   ),
                 ],
@@ -49,12 +58,12 @@ class SettingsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             Text(
-              'Abdur Rahman',
+              user.name,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 4),
             Text(
-              'abdur@gmail.com',
+              user.email,
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
             ),
             SizedBox(height: 32),

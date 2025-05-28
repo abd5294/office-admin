@@ -18,7 +18,7 @@ class AuthRepository {
     try {
       final response = await dio.post(
         '/users/login',
-        data: jsonEncode({'email': 'abd@example.com', 'password': 'abdur111'}),
+        data: jsonEncode({'email': email, 'password': password}),
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
       final user = UserModel.fromMap(
