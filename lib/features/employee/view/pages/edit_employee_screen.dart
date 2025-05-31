@@ -50,6 +50,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   final genderController = TextEditingController();
   final dobController = TextEditingController();
   final emergencyContactsController = TextEditingController();
+  final List<String> options = ['Male', 'Female', 'Others'];
 
   @override
   void initState() {
@@ -57,7 +58,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     nameController.text = widget.name;
     emailController.text = widget.email;
     phoneController.text = widget.phone;
-    bloodGroupController.text = '';
+    bloodGroupController.text = widget.bloodGroup;
 
     passController.text = '';
     designationController.text = widget.designation;
@@ -85,6 +86,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   @override
   Widget build(BuildContext context) {
     final empState = ref.watch(manageEmployeeControllerProvider.notifier);
+    String selectedGender = capitalize(widget.gender);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -201,10 +203,22 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                 ),
               ),
               const SizedBox(height: 4),
-              CustomTextField(
-                controller: genderController,
-                hintText: 'Enter Gender (Male / Female)',
-                onChange: (value) {},
+              DropdownButton<String>(
+                hint: Text("Select Gender"),
+                value: selectedGender,
+                onChanged: (String? newValue) {
+                  genderController.text = newValue!.toLowerCase();
+                  setState(() {
+                    selectedGender = newValue;
+                  });
+                },
+                items:
+                    options.map((String gender) {
+                      return DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      );
+                    }).toList(),
               ),
               const SizedBox(height: 8),
 
@@ -217,10 +231,33 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                 ),
               ),
               const SizedBox(height: 4),
-              CustomTextField(
+              TextField(
                 controller: dobController,
-                hintText: 'Enter DOB (YYYY-MM-DD)',
-                onChange: (value) {},
+                readOnly: true,
+                decoration: const InputDecoration(
+                  labelText: 'Date of Birth',
+                  hintText: 'Select Date of Birth',
+                  border: OutlineInputBorder(),
+                ),
+                onTap: () async {
+                  final pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime(2000),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime.now(),
+                  );
+
+                  if (pickedDate != null) {
+                    final formattedDate =
+                        DateTime(
+                          pickedDate.year,
+                          pickedDate.month,
+                          pickedDate.day,
+                        ).toUtc().toIso8601String();
+
+                    dobController.text = formattedDate;
+                  }
+                },
               ),
               const SizedBox(height: 8),
 
@@ -258,19 +295,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
               LargeButton(
                 text: 'Edit Employee',
                 onPressed: () {
-                  final password = passController.text;
-                  if (password == '' && password.length < 8) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Password must be at least 8 characters long',
-                        ),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                    return;
-                  }
-
                   final bloodGroup =
                       bloodGroupController.text.trim().toUpperCase();
                   final validBloodGroups = [
@@ -316,5 +340,10 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
         ),
       ),
     );
+  }
+
+  String capitalize(String s) {
+    if (s.isEmpty) return s;
+    return s[0].toUpperCase() + s.substring(1);
   }
 }

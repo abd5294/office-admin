@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/auth/view/login_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   static const route = '/settings';
@@ -26,6 +27,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
         centerTitle: true,
       ),
+
       body: SizedBox(
         width: double.infinity,
         child: Column(
@@ -69,8 +71,10 @@ class SettingsScreen extends ConsumerWidget {
             SizedBox(height: 32),
             ListView.separated(
               shrinkWrap: true,
-              itemBuilder: (context, index) => rowtile(rowTexts[index]),
-              separatorBuilder: (context, index) => Divider(),
+              itemBuilder:
+                  (context, index) =>
+                      rowtile(index, rowTexts[index], context, ref),
+              separatorBuilder: (context, index) => const Divider(),
               itemCount: rowTexts.length,
             ),
           ],
@@ -79,19 +83,35 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  Widget rowtile(String title) {
-    return Padding(
+  Widget rowtile(int index, String title, BuildContext context, WidgetRef ref) {
+    final row = Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
           ),
-          Icon(Icons.arrow_forward_ios_rounded, color: Colors.black, size: 12),
+          const Icon(
+            Icons.arrow_forward_ios_rounded,
+            color: Colors.black,
+            size: 12,
+          ),
         ],
       ),
     );
+
+    if (index == 2) {
+      return GestureDetector(
+        onTap: () {
+          ref.read(userProvider.notifier).state = null;
+          context.go(LoginScreen.route);
+        },
+        child: row,
+      );
+    }
+
+    return row;
   }
 }

@@ -26,12 +26,11 @@ class ManageEmployeeRepository {
         (response.data['data'] as List)
             .map((el) => EmployeeModel.fromMap(el))
             .toList();
-
     return employees;
   }
 
   // Update
-  Future updateUser(String token, UpdateEmployeeModel employee, id) async {
+  Future updateEmployee(String token, UpdateEmployeeModel employee, id) async {
     final employeeMap = jsonEncode(employee.toMap());
 
     try {
@@ -46,7 +45,7 @@ class ManageEmployeeRepository {
   }
 
   // Create
-  Future createUser(String token, CreateEmployeeModel newEmployee) async {
+  Future createEmployee(String token, CreateEmployeeModel newEmployee) async {
     final employeeMap = jsonEncode(newEmployee.toMap());
     try {
       await dio.post(

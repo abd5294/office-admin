@@ -14,6 +14,9 @@ class EmployeeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final empState = ref.watch(employeeControllerProvider);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.refresh(employeeControllerProvider);
+    });
     return Container(
       color: Colors.white,
       child: SafeArea(

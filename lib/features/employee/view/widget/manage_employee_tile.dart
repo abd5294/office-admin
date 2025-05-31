@@ -43,6 +43,9 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
 
   @override
   Widget build(BuildContext context) {
+    final bloodGroup = widget.bloodGroup;
+    final encodedBloodGroup = Uri.encodeComponent(bloodGroup);
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -120,7 +123,7 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                             '&name=${widget.name}'
                             '&email=${widget.email}'
                             '&phone=${widget.phone}'
-                            '&bloodGroup=${widget.bloodGroup}'
+                            '&bloodGroup=$encodedBloodGroup'
                             '&role=${widget.role}'
                             '&designation=${widget.designation}'
                             '&address=${widget.address}'

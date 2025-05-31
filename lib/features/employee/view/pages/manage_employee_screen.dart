@@ -83,7 +83,8 @@ class ManageEmployeeScreen extends ConsumerWidget {
                                   address: data[index].address,
                                   gender: data[index].gender,
                                   dob: data[index].dob,
-                                  emergencyContacts: data[index].emergencyContacts,
+                                  emergencyContacts:
+                                      data[index].emergencyContacts,
                                   index: index + 1,
                                 ),
                             separatorBuilder:

@@ -29,7 +29,7 @@ class ManageEmployeeController extends AsyncNotifier<List<EmployeeModel>> {
     final token = ref.read(userProvider)!.token;
     final repo = ref.read(manageEmployeeRepositoryProvider);
 
-    await repo.updateUser(token, updatedEmployee, id);
+    await repo.updateEmployee(token, updatedEmployee, id);
 
     state = const AsyncLoading();
     final employees = await repo.getEmployees(token);
@@ -42,7 +42,7 @@ class ManageEmployeeController extends AsyncNotifier<List<EmployeeModel>> {
     final token = ref.read(userProvider)!.token;
     final repo = ref.read(manageEmployeeRepositoryProvider);
 
-    await repo.createUser(token, newEmployee);
+    await repo.createEmployee(token, newEmployee);
 
     state = const AsyncLoading();
 
