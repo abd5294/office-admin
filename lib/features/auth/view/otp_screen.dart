@@ -7,8 +7,9 @@ import 'package:office/shared/widgets/large_button.dart';
 
 class OtpScreen extends StatefulWidget {
   static final route = '/otp-screen';
+  final String email;
 
-  const OtpScreen({super.key});
+  const OtpScreen({super.key, required this.email});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -69,14 +70,14 @@ class _OtpScreenState extends State<OtpScreen> {
                   color: Color(0xFF666666),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 12),
               CustomTextField(
                 controller: otpController,
                 hintText: 'Enter OTP',
                 onChange: (value) {},
                 isNumeric: true,
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 12),
               InkWell(
                 onTap: () {},
                 child: Text(
@@ -92,7 +93,9 @@ class _OtpScreenState extends State<OtpScreen> {
               LargeButton(
                 text: 'Confirm',
                 onPressed: () {
-                  context.push(ConfirmPasswordScreen.route);
+                  context.push(
+                    '${ConfirmPasswordScreen.route}?otp=${otpController.text}&email=${widget.email}',
+                  );
                 },
               ),
             ],

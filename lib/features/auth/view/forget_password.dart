@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:office/core/utils/show_snackbar.dart';
+import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/auth/view/otp_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
+class ForgotPasswordScreen extends ConsumerStatefulWidget {
   static final route = '/forgot-password';
 
   const ForgotPasswordScreen({super.key});
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  ConsumerState<ForgotPasswordScreen> createState() =>
+      _ForgotPasswordScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
   final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final authController = ref.read(authControllerProvider.notifier);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -49,6 +54,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 1,
                 ),
               ),
+
               const Text(
                 'No worries, Enter your email to receive OTP',
                 style: TextStyle(
@@ -68,7 +74,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               LargeButton(
                 text: 'Send OTP',
                 onPressed: () {
-                  context.push(OtpScreen.route);
+                  if (emailController.text.isEmpty) {
+                    showSnackBar(context, 'Please enter email and continue...');
+                    return;
+                  }
+                  authController.sendOtp(emailController.text);
+                  context.push(
+                    '${OtpScreen.route}?email=${emailController.text}',
+                  );
                 },
               ),
             ],

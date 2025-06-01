@@ -6,8 +6,14 @@ import 'package:office/shared/widgets/large_button.dart';
 
 class ConfirmPasswordScreen extends StatefulWidget {
   static final route = '/confirm-password';
+  final int otp;
+  final String email;
 
-  const ConfirmPasswordScreen({super.key});
+  const ConfirmPasswordScreen({
+    super.key,
+    required this.otp,
+    required this.email,
+  });
 
   @override
   State<ConfirmPasswordScreen> createState() => _ConfirmPasswordScreenState();

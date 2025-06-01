@@ -19,7 +19,6 @@ class CreateEmployeeScreen extends ConsumerStatefulWidget {
 
 class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
   final nameController = TextEditingController();
-  final roleController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final employeeIDController = TextEditingController();
@@ -74,14 +73,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               ),
               const SizedBox(height: 8),
 
-              const Text('Role', style: _labelStyle),
               const SizedBox(height: 4),
-              CustomTextField(
-                controller: roleController,
-                hintText: 'Enter employee\'s role',
-                onChange: (value) {},
-              ),
-              const SizedBox(height: 8),
 
               const Text('Email', style: _labelStyle),
               const SizedBox(height: 4),
@@ -211,7 +203,6 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                 text: 'Add Employee',
                 onPressed: () {
                   if (nameController.text.isEmpty ||
-                      roleController.text.isEmpty ||
                       emailController.text.isEmpty ||
                       passwordController.text.isEmpty ||
                       employeeIDController.text.isEmpty ||
@@ -232,9 +223,20 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                     return;
                   }
 
+                  if (phoneController.text.length < 10 ||
+                      phoneController.text.length > 10) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Phone number must be of 10 digits'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                    return;
+                  }
+
                   final newEmployee = CreateEmployeeModel(
                     name: nameController.text.trim(),
-                    role: roleController.text.trim(),
+                    role: 'employee',
                     email: emailController.text.trim(),
                     password: passwordController.text.trim(),
                     employeeID: employeeIDController.text.trim(),

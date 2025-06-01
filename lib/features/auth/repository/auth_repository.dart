@@ -19,8 +19,8 @@ class AuthRepository {
       final response = await dio.post(
         '/users/login',
         data: jsonEncode({
-          'email': 'john@example.com',
-          'password': 'helloworld123',
+          'email': 'afsd1124@gmail.com',
+          'password': 'asdfasdf',
         }),
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
@@ -31,6 +31,18 @@ class AuthRepository {
       return user;
     } catch (e) {
       throw Exception('Login Error $e');
+    }
+  }
+
+  Future<void> sendOtp(String email) async {
+    try {
+      await dio.post(
+        '/users/forget-password',
+        data: jsonEncode({'email': email}),
+        options: Options(headers: {'Content-Type': 'application/json'}),
+      );
+    } catch (err) {
+      throw 'Login Error $err';
     }
   }
 }

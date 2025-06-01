@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/utils/settings_screen.dart';
 import 'package:office/features/auth/view/login_screen.dart';
 import 'package:office/features/auth/view/confirm_password_screen.dart';
-import 'package:office/features/auth/view/fotget_password.dart';
+import 'package:office/features/auth/view/forget_password.dart';
 import 'package:office/features/auth/view/otp_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_individual_screen.dart';
@@ -38,10 +38,21 @@ final GoRouter router = GoRouter(
       builder: (context, state) => ForgotPasswordScreen(),
     ),
 
-    GoRoute(path: OtpScreen.route, builder: (context, state) => OtpScreen()),
+    GoRoute(
+      path: OtpScreen.route,
+      builder: (context, state) {
+        final email = state.uri.queryParameters['email']!;
+        return OtpScreen(email: email);
+      },
+    ),
     GoRoute(
       path: ConfirmPasswordScreen.route,
-      builder: (context, state) => ConfirmPasswordScreen(),
+      builder: (context, state) {
+        final otpStr = state.uri.queryParameters['otp'];
+        final email = state.uri.queryParameters['email']!;
+        final otp = int.parse(otpStr!);
+        return ConfirmPasswordScreen(otp: otp, email: email);
+      },
     ),
 
     GoRoute(
@@ -50,7 +61,7 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: '/edit-emp',
+      path: EditEmployeeScreen.route,
       name: 'edit-emp',
       builder: (context, state) {
         final id = state.uri.queryParameters['id'];
