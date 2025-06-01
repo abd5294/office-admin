@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/auth/controller/auth_controller.dart';
-import 'package:office/features/auth/view/otp_screen.dart';
+import 'package:office/features/update_password/controller/update_password_controller.dart';
+import 'package:office/features/update_password/view/otp_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
@@ -22,7 +23,9 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authController = ref.read(authControllerProvider.notifier);
+    final updatePasswordController = ref.read(
+      updatePasswordControllerProvider.notifier,
+    );
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -78,7 +81,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
                     showSnackBar(context, 'Please enter email and continue...');
                     return;
                   }
-                  authController.sendOtp(emailController.text);
+                  updatePasswordController.sendOtp(emailController.text);
                   context.push(
                     '${OtpScreen.route}?email=${emailController.text}',
                   );

@@ -29,12 +29,4 @@ class AuthController extends StateNotifier<AuthState> {
       state = AuthFailure('Login Failed');
     }
   }
-
-  void sendOtp(String email) async {
-    try {
-      await authRepository.sendOtp(email);
-    } catch (err) {
-      state = AuthFailure('Failed...');
-    }
-  }
 }

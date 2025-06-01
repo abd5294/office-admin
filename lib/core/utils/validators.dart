@@ -1,9 +1,12 @@
-String? validatePassword(String? value) {
-  if (value == null || value.isEmpty) {
+String? validatePassword(String? password, String? confirmPassword) {
+  if (password == null || password.isEmpty) {
     return 'Password is required';
   }
-  if (value.length < 8) {
+  if (password.length < 8) {
     return 'Password must be at least 8 characters';
+  }
+  if (password != confirmPassword) {
+    return 'Password and confirm password must be same';
   }
   return null;
 }

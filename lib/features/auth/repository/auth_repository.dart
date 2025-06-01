@@ -33,16 +33,4 @@ class AuthRepository {
       throw Exception('Login Error $e');
     }
   }
-
-  Future<void> sendOtp(String email) async {
-    try {
-      await dio.post(
-        '/users/forget-password',
-        data: jsonEncode({'email': email}),
-        options: Options(headers: {'Content-Type': 'application/json'}),
-      );
-    } catch (err) {
-      throw 'Login Error $err';
-    }
-  }
 }
