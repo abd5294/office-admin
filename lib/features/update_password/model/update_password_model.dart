@@ -2,7 +2,7 @@ class UpdatePasswordModel {
   final String password;
   final String? confirmPassword;
   final String email;
-  final int otp;
+  final String otp;
 
   UpdatePasswordModel({
     required this.password,
@@ -11,7 +11,7 @@ class UpdatePasswordModel {
     this.confirmPassword,
   });
   Map<String, dynamic> toMap() {
-    return {'password': password, 'email': email, 'otp': otp};
+    return {'newPassword': password, 'email': email, 'otp': otp};
   }
 
   // factory UpdatePasswordModel.fromMap(Map<String, dynamic> map) {

@@ -5,7 +5,7 @@ import 'package:office/core/themes/app_color.dart';
 import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/auth/controller/auth_state.dart';
-import 'package:office/features/update_password/view/forget_password.dart';
+import 'package:office/features/update_password/view/forget_password_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';

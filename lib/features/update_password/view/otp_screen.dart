@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:office/core/themes/app_color.dart';
+import 'package:office/core/utils/show_snackbar.dart';
+import 'package:office/core/utils/validators.dart';
 import 'package:office/features/update_password/view/confirm_password_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class OtpScreen extends StatefulWidget {
+class OtpScreen extends ConsumerStatefulWidget {
   static final route = '/otp-screen';
   final String email;
 
   const OtpScreen({super.key, required this.email});
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
+  ConsumerState<OtpScreen> createState() => _OtpScreenState();
 }
 
-class _OtpScreenState extends State<OtpScreen> {
+class _OtpScreenState extends ConsumerState<OtpScreen> {
   final otpController = TextEditingController();
 
   @override
@@ -23,7 +25,7 @@ class _OtpScreenState extends State<OtpScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Email Sent'), duration: Duration(seconds: 5)),
+        SnackBar(content: Text('Email Sent'), duration: Duration(seconds: 3)),
       ),
     );
   }
@@ -77,22 +79,27 @@ class _OtpScreenState extends State<OtpScreen> {
                 onChange: (value) {},
                 isNumeric: true,
               ),
-              const SizedBox(height: 12),
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  'Resend OTP?',
-                  style: TextStyle(
-                    color: Palette.primaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
+              // const SizedBox(height: 12),
+              // InkWell(
+              //   onTap: () {},
+              //   child: Text(
+              //     'Resend OTP?',
+              //     style: TextStyle(
+              //       color: Palette.primaryColor,
+              //       fontWeight: FontWeight.w600,
+              //       fontSize: 12,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 12),
               LargeButton(
                 text: 'Confirm',
                 onPressed: () {
+                  final otpError = validateOtp(otpController.text);
+                  if (otpError != null) {
+                    showSnackBar(context, otpError);
+                    return;
+                  }
                   context.push(
                     '${ConfirmPasswordScreen.route}?otp=${otpController.text}&email=${widget.email}',
                   );

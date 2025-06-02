@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/utils/show_snackbar.dart';
-import 'package:office/features/auth/controller/auth_controller.dart';
+import 'package:office/core/utils/validators.dart';
+import 'package:office/features/update_password/controller/update_password_state.dart';
 import 'package:office/features/update_password/controller/update_password_controller.dart';
 import 'package:office/features/update_password/view/otp_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
@@ -20,12 +21,21 @@ class ForgotPasswordScreen extends ConsumerStatefulWidget {
 
 class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
   final emailController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    final updatePasswordController = ref.read(
+    final updatePasswordController = ref.watch(
       updatePasswordControllerProvider.notifier,
     );
+    final updatePasswordState = ref.watch(updatePasswordControllerProvider);
+
+    ref.listen(updatePasswordControllerProvider, (prev, next) {
+      if (next.status == UpdateStatus.success &&
+          next.step == UpdateStep.emailSent) {
+        context.push('${OtpScreen.route}?email=${emailController.text}');
+      } else if (next.status == UpdateStatus.error) {
+        showSnackBar(context, next.message ?? 'Something went wrong');
+      }
+    });
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -77,16 +87,18 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
               LargeButton(
                 text: 'Send OTP',
                 onPressed: () {
-                  if (emailController.text.isEmpty) {
-                    showSnackBar(context, 'Please enter email and continue...');
+                  final error = validateEmail(emailController.text);
+                  if (error != null) {
+                    showSnackBar(context, error);
                     return;
                   }
                   updatePasswordController.sendOtp(emailController.text);
-                  context.push(
-                    '${OtpScreen.route}?email=${emailController.text}',
-                  );
                 },
               ),
+              SizedBox(height: 12),
+              updatePasswordState.status == UpdateStatus.loading
+                  ? Center(child: CircularProgressIndicator())
+                  : SizedBox.shrink(),
             ],
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/utils/settings_screen.dart';
 import 'package:office/features/auth/view/login_screen.dart';
 import 'package:office/features/update_password/view/confirm_password_screen.dart';
-import 'package:office/features/update_password/view/forget_password.dart';
+import 'package:office/features/update_password/view/forget_password_screen.dart';
 import 'package:office/features/update_password/view/otp_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_individual_screen.dart';

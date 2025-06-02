@@ -80,26 +80,39 @@ class LeaveApplicationScreen extends ConsumerWidget {
                                   (element) => element.choice == 'undecided',
                                 )
                                 .toList();
+                      } else {
+                        data =
+                            data
+                                .where((element) => element.name == user.name)
+                                .toList();
                       }
-
-                      return Expanded(
-                        child: ListView.separated(
-                          itemBuilder:
-                              (context, index) => LeaveApplicationTile(
-                                name: data[index].name,
-                                dateOfLeave: data[index].date,
-                                reason: data[index].reason,
-                                typeOfLeave: data[index].type,
-                                index: index + 1,
-                                status: data[index].choice,
-                                user: user,
-                                id: data[index].id,
-                              ),
-                          separatorBuilder:
-                              (context, index) => const SizedBox(height: 12),
-                          itemCount: data.length,
-                        ),
-                      );
+                      if (data.isEmpty) {
+                        return Center(
+                          child: Text(
+                            'No items found',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        );
+                      } else {
+                        return Expanded(
+                          child: ListView.separated(
+                            itemBuilder:
+                                (context, index) => LeaveApplicationTile(
+                                  name: data[index].name,
+                                  dateOfLeave: data[index].date,
+                                  reason: data[index].reason,
+                                  typeOfLeave: data[index].type,
+                                  index: index + 1,
+                                  status: data[index].choice,
+                                  user: user,
+                                  id: data[index].id,
+                                ),
+                            separatorBuilder:
+                                (context, index) => const SizedBox(height: 12),
+                            itemCount: data.length,
+                          ),
+                        );
+                      }
                     },
                     error: (error, stackTrace) {
                       return Center(

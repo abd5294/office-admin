@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:office/features/auth/controller/auth_controller.dart';
+import 'package:office/core/utils/show_snackbar.dart';
+import 'package:office/core/utils/validators.dart';
 import 'package:office/features/auth/view/login_screen.dart';
+import 'package:office/features/update_password/controller/update_password_state.dart';
 import 'package:office/features/update_password/controller/update_password_controller.dart';
-import 'package:office/features/update_password/model/update_password.dart';
+import 'package:office/features/update_password/model/update_password_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
@@ -30,9 +32,22 @@ class _ConfirmPasswordScreenState extends ConsumerState<ConfirmPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final updatePasswordController = ref.read(
+    final updatePasswordController = ref.watch(
       updatePasswordControllerProvider.notifier,
     );
+    final updatePasswordState = ref.watch(updatePasswordControllerProvider);
+
+    ref.listen(updatePasswordControllerProvider, (prev, next) {
+      if (next.status == UpdateStatus.success &&
+          next.step == UpdateStep.passwordUpdated) {
+        context.go(LoginScreen.route);
+      } else if (next.status == UpdateStatus.error &&
+          next.message == 'invalid OTP') {
+        showSnackBar(context, next.message!);
+      } else if (next.status == UpdateStatus.error) {
+        showSnackBar(context, next.message!);
+      }
+    });
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -64,19 +79,20 @@ class _ConfirmPasswordScreenState extends ConsumerState<ConfirmPasswordScreen> {
                   height: 1,
                 ),
               ),
+
               const SizedBox(height: 20),
               CustomTextField(
                 controller: passwordController,
                 hintText: 'New password',
                 onChange: (value) {},
-                isNumeric: true,
+                isObscured: true,
               ),
               const SizedBox(height: 8),
               CustomTextField(
                 controller: confirmPasswordController,
                 hintText: 'Re-Enter New password',
                 onChange: (value) {},
-                isNumeric: true,
+                isObscured: true,
               ),
               const SizedBox(height: 12),
               LargeButton(
@@ -86,12 +102,23 @@ class _ConfirmPasswordScreenState extends ConsumerState<ConfirmPasswordScreen> {
                     password: passwordController.text,
                     confirmPassword: confirmPasswordController.text,
                     email: widget.email,
-                    otp: widget.otp,
+                    otp: widget.otp.toString(),
                   );
+                  final passwordError = validatePassword(
+                    updatedModel.password,
+                    updatedModel.confirmPassword,
+                  );
+                  if (passwordError != null) {
+                    showSnackBar(context, passwordError);
+                    return;
+                  }
                   updatePasswordController.updatePassword(updatedModel);
-                  context.go(LoginScreen.route);
                 },
               ),
+              SizedBox(height: 12),
+              updatePasswordState.status == UpdateStatus.loading
+                  ? Center(child: CircularProgressIndicator())
+                  : SizedBox.shrink(),
             ],
           ),
         ),

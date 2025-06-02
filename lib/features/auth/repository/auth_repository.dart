@@ -20,7 +20,7 @@ class AuthRepository {
         '/users/login',
         data: jsonEncode({
           'email': 'afsd1124@gmail.com',
-          'password': 'asdfasdf',
+          'password': 'abdur123',
         }),
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
@@ -30,7 +30,7 @@ class AuthRepository {
       );
       return user;
     } catch (e) {
-      throw Exception('Login Error $e');
+      rethrow;
     }
   }
 }
