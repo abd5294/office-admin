@@ -30,10 +30,13 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
   final phoneController = TextEditingController();
   final dobController = TextEditingController();
   final emergencyContactsController = TextEditingController();
+  final List<String> options = ['Male', 'Female', 'Others'];
+  String? selectedGender;
 
   @override
   Widget build(BuildContext context) {
     final empState = ref.watch(manageEmployeeControllerProvider.notifier);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -90,6 +93,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                 controller: passwordController,
                 hintText: 'Enter employee\'s Password',
                 onChange: (value) {},
+                isObscured: true,
               ),
               const SizedBox(height: 8),
 
@@ -140,10 +144,24 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
 
               const Text('Gender', style: _labelStyle),
               const SizedBox(height: 4),
-              CustomTextField(
-                controller: genderController,
-                hintText: 'Enter employee\'s gender',
-                onChange: (value) {},
+              DropdownButton<String>(
+                hint: const Text("Select Gender"),
+                value: selectedGender,
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    genderController.text = newValue.toLowerCase();
+                    setState(() {
+                      selectedGender = newValue;
+                    });
+                  }
+                },
+                items:
+                    options.map((String gender) {
+                      return DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      );
+                    }).toList(),
               ),
               const SizedBox(height: 8),
 
@@ -264,6 +282,11 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
         ),
       ),
     );
+  }
+
+  String capitalize(String s) {
+    if (s.isEmpty) return s;
+    return s[0].toUpperCase() + s.substring(1);
   }
 
   static const _labelStyle = TextStyle(

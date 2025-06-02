@@ -20,6 +20,8 @@ class _CreateLeaveScreenState extends ConsumerState<CreateLeaveScreen> {
   final reasonController = TextEditingController();
   final dateController = TextEditingController();
   final typeController = TextEditingController();
+  final leaveOptions = ['Half Day', 'Full Day'];
+  String? selectedLeaveType;
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +119,26 @@ class _CreateLeaveScreenState extends ConsumerState<CreateLeaveScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            CustomTextField(
-              controller: typeController,
-              hintText: 'Enter Type (Half or Full day)',
-              onChange: (value) {},
+            DropdownButton<String>(
+              hint: Text("Select Type"),
+              value: selectedLeaveType,
+              onChanged: (String? newValue) {
+                String formattedString = newValue!.toLowerCase().replaceAll(
+                  ' ',
+                  '-',
+                );
+                typeController.text = formattedString;
+                setState(() {
+                  selectedLeaveType = newValue;
+                });
+              },
+              items:
+                  leaveOptions.map((String gender) {
+                    return DropdownMenuItem<String>(
+                      value: gender,
+                      child: Text(gender),
+                    );
+                  }).toList(),
             ),
 
             const Spacer(),

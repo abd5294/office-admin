@@ -51,6 +51,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   final dobController = TextEditingController();
   final emergencyContactsController = TextEditingController();
   final List<String> options = ['Male', 'Female', 'Others'];
+  String? selectedGender;
 
   @override
   void initState() {
@@ -66,6 +67,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     genderController.text = widget.gender;
     dobController.text = widget.dob;
     emergencyContactsController.text = widget.emergencyContacts;
+    selectedGender = capitalize(widget.gender);
   }
 
   @override
@@ -86,7 +88,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   @override
   Widget build(BuildContext context) {
     final empState = ref.watch(manageEmployeeControllerProvider.notifier);
-    String selectedGender = capitalize(widget.gender);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
