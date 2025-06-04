@@ -6,17 +6,25 @@ import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/expandable_tile.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
-class EmployeeScreen extends ConsumerWidget {
+class EmployeeScreen extends ConsumerStatefulWidget {
   static const route = '/emp-screen';
 
   const EmployeeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<EmployeeScreen> createState() => _EmployeeScreenState();
+}
+
+class _EmployeeScreenState extends ConsumerState<EmployeeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    ref.refresh(employeeControllerProvider);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final empState = ref.watch(employeeControllerProvider);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.refresh(employeeControllerProvider);
-    });
     return Container(
       color: Colors.white,
       child: SafeArea(

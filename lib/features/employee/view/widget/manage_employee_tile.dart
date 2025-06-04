@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/features/employee/controller/employee_details_controller.dart';
 import 'package:office/features/employee/view/pages/edit_employee_screen.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 
-class ManageEmployeeTile extends StatefulWidget {
+class ManageEmployeeTile extends ConsumerStatefulWidget {
   final int id;
   final String name;
   final String email;
@@ -35,10 +37,10 @@ class ManageEmployeeTile extends StatefulWidget {
   });
 
   @override
-  State<ManageEmployeeTile> createState() => _ManageEmployeeTileState();
+  ConsumerState<ManageEmployeeTile> createState() => _ManageEmployeeTileState();
 }
 
-class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
+class _ManageEmployeeTileState extends ConsumerState<ManageEmployeeTile> {
   bool isExpanded = false;
 
   @override
@@ -170,7 +172,10 @@ class _ManageEmployeeTileState extends State<ManageEmployeeTile> {
                       ),
                       const SizedBox(width: 12),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          ref.refresh(
+                            employeeDetailsControllerProvider(widget.id).future,
+                          );
                           context.push(
                             '${EmployeeDetailsScreen.route}?id=${widget.id}',
                           );

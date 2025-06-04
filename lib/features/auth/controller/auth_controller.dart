@@ -28,7 +28,7 @@ class AuthController extends StateNotifier<AuthState> {
       }
     } on DioException catch (e) {
       state = AuthFailure(e.response?.data['error']);
-    } catch (_) {
+    } catch (err) {
       state = AuthFailure('Unexpedted Error Occurred');
     }
   }

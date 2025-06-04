@@ -125,7 +125,7 @@ class EmployeeInfoCard extends StatelessWidget {
 class EmployeeLeaveCard extends StatelessWidget {
   final String type;
   final int totalCount;
-  final int count;
+  final dynamic count;
 
   const EmployeeLeaveCard({
     super.key,

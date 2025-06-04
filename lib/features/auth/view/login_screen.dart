@@ -37,7 +37,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
 
     ref.listen<AuthState>(authControllerProvider, (prev, next) {
       if (next is AuthSuccess) {
-        context.push(HomeScreen.route);
+        context.go(HomeScreen.route);
       } else if (next is AuthFailure) {
         showSnackBar(context, next.message);
       }

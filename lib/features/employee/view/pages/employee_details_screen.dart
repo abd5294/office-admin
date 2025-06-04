@@ -12,17 +12,23 @@ import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
-class EmployeeDetailsScreen extends ConsumerWidget {
+class EmployeeDetailsScreen extends ConsumerStatefulWidget {
   static const route = '/emp-details';
   final int id;
 
   const EmployeeDetailsScreen({super.key, required this.id});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.read(userProvider)!;
+  ConsumerState<EmployeeDetailsScreen> createState() =>
+      _EmployeeDetailsScreenState();
+}
+
+class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final user = ref.watch(userProvider)!;
     final employeeDetailsState = ref.watch(
-      employeeDetailsControllerProvider(id),
+      employeeDetailsControllerProvider(widget.id),
     );
     return Container(
       color: Colors.white,
@@ -113,7 +119,7 @@ class EmployeeDetailsScreen extends ConsumerWidget {
                               child: GestureDetector(
                                 onTap: () {
                                   context.push(
-                                    '${CheckInListScreen.route}?id=$id&name=${data.user['name']}',
+                                    '${CheckInListScreen.route}?id=${widget.id}&name=${data.user['name']}',
                                   );
                                 },
                                 child: CustomCard(

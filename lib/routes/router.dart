@@ -107,7 +107,9 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: EmployeeScreen.route,
-      builder: (context, state) => EmployeeScreen(),
+      builder: (context, state) {
+        return EmployeeScreen();
+      },
     ),
 
     GoRoute(

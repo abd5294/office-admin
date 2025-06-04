@@ -11,15 +11,11 @@ final employeeDetailsControllerProvider = AsyncNotifierProvider.family<
 
 class EmployeeDetailsController
     extends FamilyAsyncNotifier<EmployeeDetailsModel, int> {
-  late final int id;
-
   @override
   Future<EmployeeDetailsModel> build(int id) async {
-    this.id = id;
-
-    final token = ref.read(userProvider)!.token;
+    final token = ref.read(userProvider)?.token;
     final repo = ref.read(employeeDetailsRepositoryProvider);
-    final employee = await repo.getEmployee(token, id);
+    final employee = await repo.getEmployee(token!, id);
     return employee;
   }
 }
