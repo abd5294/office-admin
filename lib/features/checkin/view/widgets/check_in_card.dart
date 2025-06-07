@@ -75,7 +75,9 @@ class CheckInCard extends ConsumerWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context.push('${CheckInIndividualScreen.route}?id=$id');
+                    context.push(
+                      '${CheckInIndividualScreen.route}?id=$id&date=$date',
+                    );
                   },
                   child: Container(
                     decoration: const BoxDecoration(

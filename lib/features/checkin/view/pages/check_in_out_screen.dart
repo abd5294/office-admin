@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/checkin/controller/check_in_out_controller.dart';
+import 'package:office/features/checkin/controller/check_in_out_state.dart';
 import 'package:office/shared/widgets/large_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -20,11 +21,28 @@ class CheckInOutScreen extends ConsumerStatefulWidget {
 
 class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
   File? _selectedImage;
+  String type = '';
 
   @override
   Widget build(BuildContext context) {
     final controller = ref.read(
       checkInOutControllerProvider(_selectedImage?.path).notifier,
+    );
+
+    final controllerState = ref.watch(
+      checkInOutControllerProvider(_selectedImage?.path),
+    );
+    ref.listen<CheckInOutState>(
+      checkInOutControllerProvider(_selectedImage?.path),
+      (previous, next) {
+        if (next is CheckInOutSuccess) {
+          context.pop();
+        }
+        if (next is CheckInOutFailure) {
+          context.pop();
+          showSnackBar(context, next.errorMessage);
+        }
+      },
     );
     return Scaffold(
       backgroundColor: Colors.white,
@@ -41,7 +59,7 @@ class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
           ),
         ),
         title: const Text(
-          'Check In',
+          'Check In/Check Out',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -64,12 +82,59 @@ class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
                       color: Color(0xFFb4dbff),
                     ),
                 const Spacer(),
+                Visibility(
+                  visible: controllerState is CheckInOutLoading,
+                  maintainSize: true,
+                  maintainAnimation: true,
+                  maintainState: true,
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 12),
+                        CircularProgressIndicator(),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12),
+                ToggleButtons(
+                  isSelected: [type == 'checkin', type == 'checkout'],
+                  onPressed: (index) {
+                    setState(() {
+                      type = index == 0 ? 'checkin' : 'checkout';
+                    });
+                  },
+                  fillColor: Palette.primaryColor,
+                  selectedColor: Colors.white,
+                  textStyle: TextStyle(fontWeight: FontWeight.bold),
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text('Check In'),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text('Check Out'),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 12),
                 LargeButton(
-                  text: _selectedImage != null ? 'Check In' : 'Open Camera',
+                  text: _selectedImage != null ? type : 'Open Camera',
                   onPressed: () {
+                    if (controllerState is CheckInOutLoading) {
+                      return;
+                    }
+                    if (type == '') {
+                      showSnackBar(context, 'Select checkIn or CheckOut');
+                      return;
+                    }
+
                     _selectedImage == null
                         ? pickImageFromCamera()
-                        : controller.createCheckIn();
+                        : controller.createCheckIn(type);
                   },
                 ),
               ],

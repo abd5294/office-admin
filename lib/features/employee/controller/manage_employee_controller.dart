@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:office/core/providers/user_provider.dart';
-import 'package:office/features/employee/controller/employee_details_controller.dart';
 import 'package:office/features/employee/models/create_employee_model.dart';
 import 'package:office/features/employee/models/updated_employee_model.dart';
 import 'package:office/features/employee/repository/manage_employees_repository.dart';

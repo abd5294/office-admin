@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/core/utils/format_date.dart';
 import 'package:office/features/auth/model/user_model.dart';
 import 'package:office/features/leaves/controller/leave_application_controller.dart';
 import 'package:office/features/leaves/model/leave_application_model.dart';
@@ -404,7 +405,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  dateOfLeave,
+                  formatCustomDate(DateTime.parse(dateOfLeave)),
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,

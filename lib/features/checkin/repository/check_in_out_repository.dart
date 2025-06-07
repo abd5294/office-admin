@@ -11,22 +11,19 @@ class CheckInOutRepository {
 
   CheckInOutRepository({required this.dio});
 
-  Future createCheckIn(String? imagePath, String token) async {
+  Future createCheckIn(String? imagePath, String token, String type) async {
     final formData = FormData.fromMap({
-      'type': 'checkin',
-      'image': await MultipartFile.fromFile(
-        imagePath!,
-        filename:
-            'Checkin_time${DateTime.now().millisecondsSinceEpoch.toString()}',
-      ),
+      'type': type,
+      'files': [await MultipartFile.fromFile(imagePath!, filename: 'abd.jpg')],
     });
-    await dio.post(
-      '/checks',
-      data: formData,
-      options: Options(
-        contentType: 'multipart/form-data',
-        headers: {'Authorization': token},
-      ),
-    );
+    try {
+      await dio.post(
+        '/checks',
+        data: formData,
+        options: Options(headers: {'Authorization': token}),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 }

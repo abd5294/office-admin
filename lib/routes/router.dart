@@ -132,7 +132,8 @@ final GoRouter router = GoRouter(
       path: CheckInIndividualScreen.route,
       builder: (context, state) {
         final id = state.uri.queryParameters['id'];
-        return CheckInIndividualScreen(id: int.parse(id!));
+        final date = state.uri.queryParameters['date'];
+        return CheckInIndividualScreen(id: int.parse(id!), date: date!);
       },
     ),
 

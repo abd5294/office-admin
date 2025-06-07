@@ -9,12 +9,19 @@ import 'package:office/shared/widgets/main_text_column.dart';
 class CheckInIndividualScreen extends ConsumerWidget {
   static const route = '/check-in-individual';
   final int id;
+  final String date;
 
-  const CheckInIndividualScreen({super.key, required this.id});
+  const CheckInIndividualScreen({
+    super.key,
+    required this.id,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final checkInState = ref.watch(checkInIndividualControllerProvider(id));
+    final checkInState = ref.watch(
+      checkInIndividualControllerProvider(CheckInRequestParams(id, date)),
+    );
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -53,10 +60,9 @@ class CheckInIndividualScreen extends ConsumerWidget {
                         shrinkWrap: true,
                         itemBuilder:
                             (context, index) => DetailCheckIn(
-                              time: data[index].time,
+                              time: data[index].timeString,
                               session: 'AM',
-                              totalBottomCount: 23,
-                              totalTopCount: 23,
+                              totalTopCount: data[index].totalLeaves,
                             ),
                         separatorBuilder:
                             (context, index) => SizedBox(height: 12),
@@ -69,7 +75,7 @@ class CheckInIndividualScreen extends ConsumerWidget {
             );
           },
           error: (error, stackTrace) {
-            return Center(child: Text('An Error occurred'));
+            return Column(children: [Center(child: Text('An Error occurred'))]);
           },
           loading: () {
             return SizedBox.shrink();

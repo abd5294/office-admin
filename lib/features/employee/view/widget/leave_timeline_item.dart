@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/core/utils/format_date.dart';
 import 'package:office/features/festival/model/festival_leave_model.dart';
 import 'package:office/features/festival/view/pages/edit_festival_screen.dart';
 
@@ -27,6 +28,7 @@ class LeaveTimelineItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(userProvider);
+    final dateTime = DateTime.parse(date);
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: Row(
@@ -63,7 +65,7 @@ class LeaveTimelineItem extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              date,
+                              formatCustomDate(dateTime),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -108,8 +110,8 @@ class LeaveTimelineItem extends ConsumerWidget {
                       ],
                     )
                     : type == 'unapproved_holiday'
-                    ? Text('Unapproved leave on $date')
-                    : Text('Approved leave on $date'),
+                    ? Text('Unapproved leave on ${formatCustomDate(dateTime)}')
+                    : Text('Approved leave on ${formatCustomDate(dateTime)}'),
           ),
         ],
       ),

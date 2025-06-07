@@ -12,17 +12,18 @@ class CheckInIndividualRepository {
 
   CheckInIndividualRepository({required this.dio});
 
-  Future<List<CheckInIndividualModel>> getCheckInDetails(int id, String token) async {
+  Future<List<CheckInIndividualModel>> getCheckInDetails(
+    int id,
+    String token,
+  ) async {
     final response = await dio.get(
       '/checks/$id',
       options: Options(headers: {'Authorization': token}),
     );
-
     final checkIns =
-    (response.data['data'] as List)
-        .map((el) => CheckInIndividualModel.fromMap(el['User']))
-        .toList();
+        (response.data['data'] as List)
+            .map((el) => CheckInIndividualModel.fromMap(el))
+            .toList();
     return checkIns;
   }
-
 }

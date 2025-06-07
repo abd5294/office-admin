@@ -4,14 +4,12 @@ import 'package:office/core/themes/app_color.dart';
 class DetailCheckIn extends StatelessWidget {
   final String time;
   final int totalTopCount;
-  final int totalBottomCount;
   final String session;
 
   const DetailCheckIn({
     super.key,
     required this.time,
     required this.session,
-    required this.totalBottomCount,
     required this.totalTopCount,
   });
 
@@ -81,26 +79,6 @@ class DetailCheckIn extends StatelessWidget {
                 'Checkout Image',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
-              RichText(
-                text: TextSpan(
-                  text: totalBottomCount.toString(),
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: Palette.primaryColor,
-                    fontWeight: FontWeight.w700,
-                  ),
-                  children: [
-                    const TextSpan(
-                      text: ' Total Leaves',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
           Padding(
@@ -112,7 +90,7 @@ class DetailCheckIn extends StatelessWidget {
                 width: 134,
                 decoration: BoxDecoration(color: Color(0xFFd9d9d9)),
                 child: Image.network(
-                  'https://king-prawn-app-5g3au.ondigitalocean.app/uploads/file-582a4f17-7474-4930-b234-46a0c37b5b53.jpeg',
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-UISlC-svKGxLkicDl4OczwkyidR3_wwv-Q&s',
                   fit: BoxFit.cover,
                 ),
               ),
