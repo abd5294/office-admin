@@ -3,7 +3,6 @@ class UpdateEmployeeModel {
   final String email;
   final String phone;
   final String bloodGroup;
-  final String password;
   final String gender;
   final String designation;
   final String address;
@@ -14,7 +13,6 @@ class UpdateEmployeeModel {
     required this.email,
     required this.phone,
     required this.bloodGroup,
-    required this.password,
     required this.gender,
     required this.designation,
     required this.address,
@@ -27,10 +25,9 @@ class UpdateEmployeeModel {
       'Email': email,
       'Phone': phone,
       'BloodType': bloodGroup,
-      'Password': password,
       'Designation': designation,
       'Address': address,
-      'Gender' : gender,
+      'Gender': gender,
       'Dob': dob,
     };
   }

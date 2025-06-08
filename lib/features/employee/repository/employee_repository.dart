@@ -21,7 +21,6 @@ class EmployeeRepository {
         (response.data['data'] as List)
             .map((el) => EmployeeModel.fromMap(el))
             .toList();
-
     return employees;
   }
 }

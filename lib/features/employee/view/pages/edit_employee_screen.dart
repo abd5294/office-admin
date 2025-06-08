@@ -44,7 +44,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final bloodGroupController = TextEditingController();
-  final passController = TextEditingController();
   final designationController = TextEditingController();
   final addressController = TextEditingController();
   final genderController = TextEditingController();
@@ -61,7 +60,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     phoneController.text = widget.phone;
     bloodGroupController.text = widget.bloodGroup;
 
-    passController.text = '';
     designationController.text = widget.designation;
     addressController.text = widget.address;
     genderController.text = widget.gender;
@@ -76,7 +74,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     emailController.dispose();
     phoneController.dispose();
     bloodGroupController.dispose();
-    passController.dispose();
     designationController.dispose();
     addressController.dispose();
     genderController.dispose();
@@ -155,12 +152,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                   fontWeight: FontWeight.w700,
                   color: Color(0xFF2F3036),
                 ),
-              ),
-              const SizedBox(height: 4),
-              CustomTextField(
-                controller: passController,
-                hintText: 'Enter employee\'s password to change',
-                onChange: (value) {},
               ),
               const SizedBox(height: 8),
 
@@ -326,7 +317,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                     email: emailController.text.trim(),
                     phone: phoneController.text.trim(),
                     bloodGroup: bloodGroupController.text.trim(),
-                    password: passController.text.trim(),
                     gender: genderController.text.trim(),
                     designation: designationController.text.trim(),
                     address: addressController.text.trim(),

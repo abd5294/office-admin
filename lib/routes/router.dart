@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:office/core/utils/settings_screen.dart';
 import 'package:office/features/auth/view/login_screen.dart';
+import 'package:office/features/checkin/view/pages/checkin_error_screen.dart';
 import 'package:office/features/update_password/view/confirm_password_screen.dart';
 import 'package:office/features/update_password/view/forget_password_screen.dart';
 import 'package:office/features/update_password/view/otp_screen.dart';
@@ -134,6 +135,14 @@ final GoRouter router = GoRouter(
         final id = state.uri.queryParameters['id'];
         final date = state.uri.queryParameters['date'];
         return CheckInIndividualScreen(id: int.parse(id!), date: date!);
+      },
+    ),
+
+    GoRoute(
+      path: CheckinErrorScreen.route,
+      builder: (context, state) {
+        final error = state.uri.queryParameters['error'];
+        return CheckinErrorScreen(errorString: error.toString());
       },
     ),
 

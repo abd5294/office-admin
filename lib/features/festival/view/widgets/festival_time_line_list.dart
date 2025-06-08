@@ -32,6 +32,7 @@ class FestivalTimeLineList extends StatelessWidget {
                 isFestival: isFestival,
                 occasion: timeLine[index].occasion,
                 id: timeLine[index].id,
+                type: timeLine[index].type,
               ),
           separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemCount: timeLine.length,

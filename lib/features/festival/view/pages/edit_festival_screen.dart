@@ -21,6 +21,7 @@ class _EditFestivalScreenState extends ConsumerState<EditFestivalScreen> {
   late final TextEditingController festivalController;
   late final TextEditingController dateController;
   late final TextEditingController typeController;
+  final List<String> types = ['full-day', 'half-day'];
 
   @override
   void initState() {
@@ -90,14 +91,25 @@ class _EditFestivalScreenState extends ConsumerState<EditFestivalScreen> {
                     const SizedBox(height: 8),
                     Text('Leave Type', style: _labelStyle),
                     const SizedBox(height: 4),
-                    CustomTextField(
-                      controller: typeController,
-                      hintText: 'Enter full-day or half-day',
-                      onChange: (_) {},
+                    DropdownButton<String>(
+                      value: typeController.text,
+                      items:
+                          types.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                      onChanged: (String? newValue) {
+                        if (newValue != null) {
+                          setState(() {
+                            typeController.text = newValue;
+                          });
+                        }
+                      },
                     ),
-                    const SizedBox(height: 8),
                     Text('Date', style: _labelStyle),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: dateController,
                       readOnly: true,

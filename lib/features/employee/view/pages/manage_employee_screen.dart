@@ -9,13 +9,25 @@ import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
-class ManageEmployeeScreen extends ConsumerWidget {
+class ManageEmployeeScreen extends ConsumerStatefulWidget {
   static const route = '/manage-emp';
 
   const ManageEmployeeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ManageEmployeeScreen> createState() =>
+      _ManageEmployeeScreenState();
+}
+
+class _ManageEmployeeScreenState extends ConsumerState<ManageEmployeeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    ref.refresh(manageEmployeeControllerProvider);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final empState = ref.watch(manageEmployeeControllerProvider);
     return Container(
       color: Colors.white,

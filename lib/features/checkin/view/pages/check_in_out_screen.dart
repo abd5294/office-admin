@@ -7,6 +7,7 @@ import 'package:office/core/themes/app_color.dart';
 import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/checkin/controller/check_in_out_controller.dart';
 import 'package:office/features/checkin/controller/check_in_out_state.dart';
+import 'package:office/features/checkin/view/pages/checkin_error_screen.dart';
 import 'package:office/shared/widgets/large_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -36,11 +37,14 @@ class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
       checkInOutControllerProvider(_selectedImage?.path),
       (previous, next) {
         if (next is CheckInOutSuccess) {
+          showSnackBar(context, 'Successfully Checked In');
           context.pop();
         }
         if (next is CheckInOutFailure) {
-          context.pop();
           showSnackBar(context, next.errorMessage);
+          context.push(
+            '${CheckinErrorScreen.route}?error=${next.errorMessage}',
+          );
         }
       },
     );

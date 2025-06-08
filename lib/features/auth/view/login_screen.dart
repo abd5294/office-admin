@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:office/core/consts/constants.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/auth/controller/auth_controller.dart';
@@ -9,6 +10,7 @@ import 'package:office/features/update_password/view/forget_password_screen.dart
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   static final route = '/login';
@@ -22,6 +24,24 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _AuthScreenState extends ConsumerState<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  void loadSavedData() async {
+    final prefs = await SharedPreferences.getInstance();
+    emailController.text = prefs.getString('email') ?? '';
+    passwordController.text = prefs.getString('password') ?? '';
+  }
+
+  void saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('email', emailController.text);
+    await prefs.setString('password', passwordController.text);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadSavedData();
+  }
 
   @override
   void dispose() {
@@ -59,9 +79,7 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                   child: SizedBox(
                     height: 96,
                     width: 96,
-                    child: Image.network(
-                      'https://thumbs.dreamstime.com/b/background-office-workplace-computer-table-chair-vector-flat-design-illustration-square-layout-71438088.jpg?w=768',
-                    ),
+                    child: Image.network(displayImage),
                   ),
                 ),
               ),
@@ -104,12 +122,12 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                   if (authState is AuthLoading) {
                     return;
                   }
-                  // if (emailController.text.isEmpty ||
-                  //     passwordController.text.isEmpty) {
-                  //   showSnackBar(context, 'Please enter all the fields');
-                  //   return;
-                  // }
-
+                  if (emailController.text.isEmpty ||
+                      passwordController.text.isEmpty) {
+                    showSnackBar(context, 'Please enter all the fields');
+                    return;
+                  }
+                  saveData();
                   authController.userLogin(
                     emailController.text,
                     passwordController.text,

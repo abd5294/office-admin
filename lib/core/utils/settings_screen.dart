@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/view/login_screen.dart';
+import 'package:office/features/employee/view/pages/edit_employee_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   static const route = '/settings';
@@ -13,6 +14,8 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(userProvider)!;
     final rowTexts = ['Privacy Policy', 'Terms And Conditions', 'Logout'];
+    final encodedBloodGroup = Uri.encodeComponent(user.bloodGroup);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -41,20 +44,36 @@ class SettingsScreen extends ConsumerWidget {
               child: Stack(
                 children: [
                   Icon(Icons.person, color: Color(0xFFb4dbff), size: 80),
-                  // Positioned(
-                  //   bottom: 0,
-                  //   right: 0,
-                  //   child: GestureDetector(
-                  //     child: Container(
-                  //       padding: EdgeInsets.all(4),
-                  //       decoration: BoxDecoration(
-                  //         color: Palette.primaryColor,
-                  //         shape: BoxShape.circle,
-                  //       ),
-                  //       child: Icon(Icons.edit, size: 14, color: Colors.white),
-                  //     ),
-                  //   ),
-                  // ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        context.push(
+                          '${EditEmployeeScreen.route}'
+                          '?id=${user.id}'
+                          '&name=${user.name}'
+                          '&email=${user.email}'
+                          '&phone=${user.phone}'
+                          '&bloodGroup=$encodedBloodGroup'
+                          '&role=${user.role}'
+                          '&designation=${user.designation}'
+                          '&address=${user.address}'
+                          '&gender=${user.gender}'
+                          '&dob=${user.dob}'
+                          '&emergencyContacts=${user.emergencyContacts}',
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Palette.primaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(Icons.edit, size: 14, color: Colors.white),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
