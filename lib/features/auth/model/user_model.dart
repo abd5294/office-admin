@@ -60,4 +60,34 @@ class UserModel {
       'Token': token,
     };
   }
+
+  UserModel copyWith({
+    int? id,
+    String? name,
+    String? email,
+    String? role,
+    String? designation,
+    String? address,
+    String? gender,
+    String? dob,
+    String? phone,
+    String? bloodGroup,
+    List<dynamic>? emergencyContacts,
+    String? token,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      role: role ?? this.role,
+      designation: designation ?? this.designation,
+      address: address ?? this.address,
+      gender: gender ?? this.gender,
+      dob: dob ?? this.dob,
+      phone: phone ?? this.phone,
+      bloodGroup: bloodGroup ?? this.bloodGroup,
+      emergencyContacts: emergencyContacts ?? this.emergencyContacts,
+      token: token ?? this.token,
+    );
+  }
 }

@@ -10,7 +10,7 @@ class CreateEmployeeModel {
   final String bloodType;
   final String gender;
   final String phone;
-  final String dob; // ISO 8601 format: "1990-01-01T00:00:00Z"
+  final String dob;
   final List<String> emergencyContacts;
 
   CreateEmployeeModel({

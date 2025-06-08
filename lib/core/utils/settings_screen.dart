@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/auth/view/login_screen.dart';
-import 'package:office/features/employee/view/pages/edit_employee_screen.dart';
+import 'package:office/features/employee/view/pages/update_profile_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   static const route = '/settings';
@@ -50,7 +50,7 @@ class SettingsScreen extends ConsumerWidget {
                     child: GestureDetector(
                       onTap: () {
                         context.push(
-                          '${EditEmployeeScreen.route}'
+                          '${UpdateProfileScreen.route}'
                           '?id=${user.id}'
                           '&name=${user.name}'
                           '&email=${user.email}'

@@ -18,10 +18,7 @@ class AuthRepository {
     try {
       final response = await dio.post(
         '/users/login',
-        data: jsonEncode({
-          'email': 'john@example.com',
-          'password': 'helloworld123',
-        }),
+        data: jsonEncode({'email': 'abd@example.com', 'password': 'aaaaaaaa'}),
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
       if (response.data != null && response.data['data'] != null) {

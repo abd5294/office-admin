@@ -32,7 +32,6 @@ class ManageEmployeeRepository {
   // Update
   Future updateEmployee(String token, UpdateEmployeeModel employee, id) async {
     final employeeMap = jsonEncode(employee.toMap());
-    print(employeeMap);
     try {
       await dio.put(
         '/users/$id',
@@ -41,6 +40,19 @@ class ManageEmployeeRepository {
       );
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  Future updateProfile(String token, UpdateEmployeeModel employee) async {
+    final updatedMap = jsonEncode(employee.toMap());
+    try {
+      await dio.put(
+        '/users/profile',
+        data: updatedMap,
+        options: Options(headers: {'Authorization': token}),
+      );
+    } catch (e) {
+      rethrow;
     }
   }
 

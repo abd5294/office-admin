@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:office/core/providers/user_provider.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/employee/controller/manage_employee_controller.dart';
 import 'package:office/features/employee/models/updated_employee_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
-class EditEmployeeScreen extends ConsumerStatefulWidget {
-  static final route = '/edit-emp';
+class UpdateProfileScreen extends ConsumerStatefulWidget {
+  static final route = '/update-emp';
 
   final int id;
   final String name;
@@ -21,7 +22,7 @@ class EditEmployeeScreen extends ConsumerStatefulWidget {
   final String dob;
   final String emergencyContacts;
 
-  const EditEmployeeScreen({
+  const UpdateProfileScreen({
     super.key,
     required this.id,
     required this.name,
@@ -36,10 +37,11 @@ class EditEmployeeScreen extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<EditEmployeeScreen> createState() => _EditEmployeeScreenState();
+  ConsumerState<UpdateProfileScreen> createState() =>
+      _UpdateProfileScreenState();
 }
 
-class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
+class _UpdateProfileScreenState extends ConsumerState<UpdateProfileScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -84,7 +86,9 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final empState = ref.watch(manageEmployeeControllerProvider.notifier);
+    final controller = ref.watch(manageEmployeeControllerProvider.notifier);
+    final user = ref.read(userProvider);
+    final userController = ref.read(userProvider.notifier);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -100,7 +104,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
           ),
         ),
         title: const Text(
-          'Edit Employee',
+          'Update Employee',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -276,7 +280,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
               ),
               const SizedBox(height: 8),
               LargeButton(
-                text: 'Edit Employee',
+                text: 'Update Profile',
                 onPressed: () {
                   final bloodGroup =
                       bloodGroupController.text.trim().toUpperCase();
@@ -313,7 +317,18 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                     address: addressController.text.trim(),
                     dob: dobController.text.trim(),
                   );
-                  empState.updateEmployee(updatedEmployee, widget.id);
+                  controller.updateProfile(updatedEmployee);
+                  final updatedProfile = user!.copyWith(
+                    name: nameController.text.trim(),
+                    email: emailController.text.trim(),
+                    phone: phoneController.text.trim(),
+                    bloodGroup: bloodGroupController.text.trim(),
+                    gender: genderController.text.trim(),
+                    designation: designationController.text.trim(),
+                    address: addressController.text.trim(),
+                    dob: dobController.text.trim(),
+                  );
+                  userController.state = updatedProfile;
                   context.pop();
                 },
               ),

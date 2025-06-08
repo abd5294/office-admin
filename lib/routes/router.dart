@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/utils/settings_screen.dart';
 import 'package:office/features/auth/view/login_screen.dart';
 import 'package:office/features/checkin/view/pages/checkin_error_screen.dart';
+import 'package:office/features/employee/view/pages/update_profile_screen.dart';
 import 'package:office/features/update_password/view/confirm_password_screen.dart';
 import 'package:office/features/update_password/view/forget_password_screen.dart';
 import 'package:office/features/update_password/view/otp_screen.dart';
@@ -63,7 +64,6 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: EditEmployeeScreen.route,
-      name: 'edit-emp',
       builder: (context, state) {
         final id = state.uri.queryParameters['id'];
         final name = state.uri.queryParameters['name'] ?? '';
@@ -78,6 +78,36 @@ final GoRouter router = GoRouter(
             state.uri.queryParameters['emergencyContacts'] ?? '';
 
         return EditEmployeeScreen(
+          id: int.parse(id!),
+          name: name,
+          email: email,
+          phone: phone,
+          bloodGroup: bloodGroup,
+          designation: designation,
+          address: address,
+          gender: gender,
+          dob: dob,
+          emergencyContacts: emergencyContacts,
+        );
+      },
+    ),
+
+    GoRoute(
+      path: UpdateProfileScreen.route,
+      builder: (context, state) {
+        final id = state.uri.queryParameters['id'];
+        final name = state.uri.queryParameters['name'] ?? '';
+        final email = state.uri.queryParameters['email'] ?? '';
+        final phone = state.uri.queryParameters['phone'] ?? '';
+        final bloodGroup = state.uri.queryParameters['bloodGroup'] ?? '';
+        final designation = state.uri.queryParameters['designation'] ?? '';
+        final address = state.uri.queryParameters['address'] ?? '';
+        final gender = state.uri.queryParameters['gender'] ?? '';
+        final dob = state.uri.queryParameters['dob'] ?? '';
+        final emergencyContacts =
+            state.uri.queryParameters['emergencyContacts'] ?? '';
+
+        return UpdateProfileScreen(
           id: int.parse(id!),
           name: name,
           email: email,
