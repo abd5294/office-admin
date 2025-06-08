@@ -59,10 +59,12 @@ class CheckInIndividualScreen extends ConsumerWidget {
                       ListView.separated(
                         shrinkWrap: true,
                         itemBuilder:
-                            (context, index) => DetailCheckIn(
+                            (context, index) => CheckInDetails(
                               time: data[index].timeString,
                               session: 'AM',
                               totalTopCount: data[index].totalLeaves,
+                              imageUrl: data[index].imageUrl,
+                              index: index,
                             ),
                         separatorBuilder:
                             (context, index) => SizedBox(height: 12),

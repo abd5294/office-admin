@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:office/core/consts/constants.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/features/checkin/model/check_in_individual_model.dart';
 import 'package:office/features/checkin/repository/check_in_individual_repository.dart';
@@ -28,6 +29,7 @@ class CheckInIndividualController
         params.id,
         token,
       );
+
       final filteredList =
           resultRaw.where((e) {
             final formatDate = convertToIsoUtc(params.date);
@@ -45,6 +47,7 @@ class CheckInIndividualController
               e.totalLeaves,
               e.timeString,
               e.type,
+              e.imageUrl,
             );
           }).toList();
 
@@ -53,7 +56,7 @@ class CheckInIndividualController
         String type,
       ) {
         try {
-          return list.firstWhere((e) => e.type == type);
+          return list.lastWhere((e) => e.type == type);
         } catch (_) {
           return null;
         }
@@ -61,18 +64,16 @@ class CheckInIndividualController
 
       final checkIn =
           findFirst(modelResult, 'checkin') ??
-          CheckInIndividualModel('N/A', '', 0, '', 'checkin');
+          CheckInIndividualModel('N/A', '', 0, '', 'checkin', constImageUrl);
       final checkOut =
           findFirst(modelResult, 'checkout') ??
-          CheckInIndividualModel('N/A', '', 0, '', 'checkout');
+          CheckInIndividualModel('N/A', '', 0, '', 'checkout', constImageUrl);
 
       final result = [checkIn, checkOut];
-
       return result;
     } on DioException catch (e) {
       throw e.response!.data['error'];
     } catch (e) {
-      print(e);
       throw 'Unexpected error occurred';
     }
   }

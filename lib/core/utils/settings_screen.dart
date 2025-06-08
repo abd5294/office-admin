@@ -41,20 +41,20 @@ class SettingsScreen extends ConsumerWidget {
               child: Stack(
                 children: [
                   Icon(Icons.person, color: Color(0xFFb4dbff), size: 80),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: GestureDetector(
-                      child: Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: Palette.primaryColor,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(Icons.edit, size: 14, color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 0,
+                  //   right: 0,
+                  //   child: GestureDetector(
+                  //     child: Container(
+                  //       padding: EdgeInsets.all(4),
+                  //       decoration: BoxDecoration(
+                  //         color: Palette.primaryColor,
+                  //         shape: BoxShape.circle,
+                  //       ),
+                  //       child: Icon(Icons.edit, size: 14, color: Colors.white),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

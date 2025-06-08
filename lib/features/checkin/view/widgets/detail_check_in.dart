@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:office/core/themes/app_color.dart';
 
-class DetailCheckIn extends StatelessWidget {
+class CheckInDetails extends StatelessWidget {
   final String time;
   final int totalTopCount;
   final String session;
+  final String imageUrl;
+  final int index;
 
-  const DetailCheckIn({
+  const CheckInDetails({
     super.key,
     required this.time,
     required this.session,
     required this.totalTopCount,
+    required this.imageUrl,
+    required this.index,
   });
 
   @override
@@ -29,8 +33,8 @@ class DetailCheckIn extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Check In Time',
+              Text(
+                index == 0 ? 'Check In Time' : 'Check Out Time',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
               RichText(
@@ -74,9 +78,9 @@ class DetailCheckIn extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 84),
-              const Text(
-                'Checkout Image',
+              SizedBox(height: 90),
+              Text(
+                index == 0 ? 'Check In Image' : 'Check Out Image',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ],
@@ -89,10 +93,7 @@ class DetailCheckIn extends StatelessWidget {
                 height: 181,
                 width: 134,
                 decoration: BoxDecoration(color: Color(0xFFd9d9d9)),
-                child: Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-UISlC-svKGxLkicDl4OczwkyidR3_wwv-Q&s',
-                  fit: BoxFit.cover,
-                ),
+                child: Image.network(imageUrl, fit: BoxFit.cover),
               ),
             ),
           ),

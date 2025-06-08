@@ -24,6 +24,7 @@ class CheckInIndividualRepository {
         (response.data['data'] as List)
             .map((el) => CheckInIndividualModel.fromMap(el))
             .toList();
+
     return checkIns;
   }
 }
