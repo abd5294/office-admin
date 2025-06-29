@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/employee/controller/manage_employee_controller.dart';
 import 'package:office/features/employee/models/updated_employee_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
@@ -50,7 +51,18 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   final dobController = TextEditingController();
   final emergencyContactsController = TextEditingController();
   final List<String> options = ['Male', 'Female', 'Others'];
+  final List<String> bloodGroupOptions = [
+    'B+',
+    'B+',
+    'AB+',
+    'O+',
+    'A-',
+    'B-',
+    'AB-',
+    'O- ',
+  ];
   String? selectedGender;
+  String? selectedBloodGroup;
 
   @override
   void initState() {
@@ -66,6 +78,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     dobController.text = widget.dob;
     emergencyContactsController.text = widget.emergencyContacts;
     selectedGender = capitalize(widget.gender);
+    selectedBloodGroup = widget.bloodGroup;
   }
 
   @override
@@ -177,33 +190,6 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                 onChange: (value) {},
               ),
               const SizedBox(height: 8),
-              const Text(
-                'Gender',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xFF2F3036),
-                ),
-              ),
-              const SizedBox(height: 4),
-              DropdownButton<String>(
-                hint: Text("Select Gender"),
-                value: selectedGender,
-                onChanged: (String? newValue) {
-                  genderController.text = newValue!.toLowerCase();
-                  setState(() {
-                    selectedGender = newValue;
-                  });
-                },
-                items:
-                    options.map((String gender) {
-                      return DropdownMenuItem<String>(
-                        value: gender,
-                        child: Text(gender),
-                      );
-                    }).toList(),
-              ),
-              const SizedBox(height: 8),
 
               const Text(
                 'DOB',
@@ -261,6 +247,34 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
               const SizedBox(height: 8),
 
               const Text(
+                'Gender',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
+              ),
+              const SizedBox(height: 4),
+              DropdownButton<String>(
+                hint: Text("Select Gender"),
+                value: selectedGender,
+                onChanged: (String? newValue) {
+                  genderController.text = newValue!.toLowerCase();
+                  setState(() {
+                    selectedGender = newValue;
+                  });
+                },
+                items:
+                    options.map((String gender) {
+                      return DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      );
+                    }).toList(),
+              ),
+              const SizedBox(height: 8),
+
+              const Text(
                 'Blood Group',
                 style: TextStyle(
                   fontSize: 14,
@@ -269,10 +283,24 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                 ),
               ),
               const SizedBox(height: 4),
-              CustomTextField(
-                controller: bloodGroupController,
-                hintText: 'Enter employee\'s Blood group',
-                onChange: (value) {},
+              DropdownButton<String>(
+                hint: const Text("Select Blood Group"),
+                value: selectedBloodGroup,
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    bloodGroupController.text = newValue;
+                    setState(() {
+                      selectedBloodGroup = newValue;
+                    });
+                  }
+                },
+                items:
+                    bloodGroupOptions.map((String bloodType) {
+                      return DropdownMenuItem<String>(
+                        value: bloodType,
+                        child: Text(bloodType),
+                      );
+                    }).toList(),
               ),
               const SizedBox(height: 8),
               LargeButton(
@@ -313,7 +341,12 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                     address: addressController.text.trim(),
                     dob: dobController.text.trim(),
                   );
-                  empState.updateEmployee(updatedEmployee, widget.id);
+                  try {
+                    empState.updateEmployee(updatedEmployee, widget.id);
+                    showSnackBar(context, 'Update Successful');
+                  } catch (e) {
+                    showSnackBar(context, "Edit Employee Failed");
+                  }
                   context.pop();
                 },
               ),

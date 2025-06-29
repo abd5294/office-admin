@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
+import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/employee/controller/manage_employee_controller.dart';
 import 'package:office/features/employee/models/create_employee_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
@@ -30,8 +31,19 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
   final phoneController = TextEditingController();
   final dobController = TextEditingController();
   final emergencyContactsController = TextEditingController();
-  final List<String> options = ['Male', 'Female', 'Others'];
+  final List<String> genderOptions = ['Male', 'Female', 'Others'];
+  final List<String> bloodGroupOptions = [
+    'B+',
+    'B+',
+    'AB+',
+    'O+',
+    'A-',
+    'B-',
+    'AB-',
+    'O- ',
+  ];
   String? selectedGender;
+  String? selectedBloodGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -135,10 +147,24 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
 
               const Text('Blood Group', style: _labelStyle),
               const SizedBox(height: 4),
-              CustomTextField(
-                controller: bloodGroupController,
-                hintText: 'Enter employee\'s blood group',
-                onChange: (value) {},
+              DropdownButton<String>(
+                hint: const Text("Select Blood Group"),
+                value: selectedBloodGroup,
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    bloodGroupController.text = newValue;
+                    setState(() {
+                      selectedBloodGroup = newValue;
+                    });
+                  }
+                },
+                items:
+                    bloodGroupOptions.map((String bloodType) {
+                      return DropdownMenuItem<String>(
+                        value: bloodType,
+                        child: Text(bloodType),
+                      );
+                    }).toList(),
               ),
               const SizedBox(height: 8),
 
@@ -156,7 +182,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                   }
                 },
                 items:
-                    options.map((String gender) {
+                    genderOptions.map((String gender) {
                       return DropdownMenuItem<String>(
                         value: gender,
                         child: Text(gender),
@@ -170,6 +196,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               CustomTextField(
                 controller: phoneController,
                 hintText: 'Enter employee\'s phone number',
+                isNumeric: true,
                 onChange: (value) {},
               ),
               const SizedBox(height: 8),
@@ -273,7 +300,12 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                             .map((e) => e.trim())
                             .toList(),
                   );
-                  empState.createEmployee(newEmployee);
+                  try {
+                    empState.createEmployee(newEmployee);
+                    showSnackBar(context, 'Update Successful');
+                  } catch (e) {
+                    showSnackBar(context, "Edit Employee Failed");
+                  }
                   context.pop();
                 },
               ),

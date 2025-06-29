@@ -30,7 +30,11 @@ class ManageEmployeeController extends AsyncNotifier<List<EmployeeModel>> {
     final token = ref.read(userProvider)!.token;
     final repo = ref.read(manageEmployeeRepositoryProvider);
 
-    await repo.updateEmployee(token, updatedEmployee, id);
+    try {
+      await repo.updateEmployee(token, updatedEmployee, id);
+    } catch (e) {
+      throw Exception('An error occurred');
+    }
 
     state = const AsyncLoading();
     final employees = await repo.getEmployees(token);
@@ -53,8 +57,11 @@ class ManageEmployeeController extends AsyncNotifier<List<EmployeeModel>> {
   Future<void> createEmployee(CreateEmployeeModel newEmployee) async {
     final token = ref.read(userProvider)!.token;
     final repo = ref.read(manageEmployeeRepositoryProvider);
-
-    await repo.createEmployee(token, newEmployee);
+    try {
+      await repo.createEmployee(token, newEmployee);
+    } catch (e) {
+      throw Exception('An error occurred');
+    }
 
     state = const AsyncLoading();
 

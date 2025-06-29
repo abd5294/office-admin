@@ -37,7 +37,7 @@ class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
       checkInOutControllerProvider(_selectedImage?.path),
       (previous, next) {
         if (next is CheckInOutSuccess) {
-          showSnackBar(context, 'Successfully Checked In');
+          showSnackBar(context, 'Check In Successful');
           context.pop();
         }
         if (next is CheckInOutFailure) {

@@ -39,7 +39,7 @@ class ManageEmployeeRepository {
         options: Options(headers: {'Authorization': token}),
       );
     } catch (e) {
-      print(e.toString());
+      rethrow;
     }
   }
 
