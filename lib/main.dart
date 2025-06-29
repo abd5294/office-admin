@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Office',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: 'Poppins'),
       routerConfig: router,
       debugShowCheckedModeBanner: false,
     );

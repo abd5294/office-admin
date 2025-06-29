@@ -19,6 +19,7 @@ class MainTextColumn extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
+            fontFamily: 'Poppins',
             fontSize: 24,
             fontWeight: FontWeight.w600,
             height: 1,
@@ -28,6 +29,7 @@ class MainTextColumn extends StatelessWidget {
           subTitle,
           style: TextStyle(
             fontSize: 14,
+            fontFamily: 'Poppins',
             fontWeight: FontWeight.w800,
             height: 1.8,
             color: Color(0xFF666666),

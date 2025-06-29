@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:office/core/consts/constants.dart';
-import 'package:office/core/themes/app_color.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/auth/controller/auth_controller.dart';
 import 'package:office/features/auth/controller/auth_state.dart';
-import 'package:office/features/update_password/view/forget_password_screen.dart';
 import 'package:office/features/home/view/pages/home_screen.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
@@ -74,13 +72,10 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
             children: [
               Align(
                 alignment: Alignment.center,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: SizedBox(
-                    height: 96,
-                    width: 96,
-                    child: Image.network(displayImage),
-                  ),
+                child: SizedBox(
+                  height: 70,
+                  width: 250,
+                  child: Image.asset('assets/images/logo.webp'),
                 ),
               ),
               const SizedBox(height: 40),
@@ -102,20 +97,6 @@ class _AuthScreenState extends ConsumerState<LoginScreen> {
                 onChange: (value) {},
               ),
               const SizedBox(height: 12),
-              InkWell(
-                onTap: () {
-                  context.push(ForgotPasswordScreen.route);
-                },
-                child: const Text(
-                  'Forget Password?',
-                  style: TextStyle(
-                    color: Palette.primaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 18),
               LargeButton(
                 text: 'Login',
                 onPressed: () {
