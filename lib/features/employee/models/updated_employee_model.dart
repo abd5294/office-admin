@@ -7,6 +7,7 @@ class UpdateEmployeeModel {
   final String designation;
   final String address;
   final String dob;
+  final bool? isDeactivated;
 
   UpdateEmployeeModel({
     required this.name,
@@ -17,6 +18,7 @@ class UpdateEmployeeModel {
     required this.designation,
     required this.address,
     required this.dob,
+    this.isDeactivated = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -29,6 +31,7 @@ class UpdateEmployeeModel {
       'Address': address,
       'Gender': gender,
       'Dob': dob,
+      'IsDeactivated': isDeactivated,
     };
   }
 }

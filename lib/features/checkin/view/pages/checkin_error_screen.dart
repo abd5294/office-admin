@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
@@ -11,6 +9,7 @@ class CheckinErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formattedString = errorString.substring(7, errorString.length);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -20,7 +19,7 @@ class CheckinErrorScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                errorString,
+                formattedString,
                 style: TextStyle(fontSize: 44, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 24),

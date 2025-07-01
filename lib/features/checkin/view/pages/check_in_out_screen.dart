@@ -79,7 +79,7 @@ class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
             child: Column(
               children: [
                 _selectedImage != null
-                    ? Image.file(_selectedImage!)
+                    ? Image.file(_selectedImage!, height: 400)
                     : const Icon(
                       Icons.image_rounded,
                       size: 300,

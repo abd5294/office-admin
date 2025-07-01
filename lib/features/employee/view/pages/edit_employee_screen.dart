@@ -63,6 +63,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   ];
   String? selectedGender;
   String? selectedBloodGroup;
+  bool isDeactivated = false;
 
   @override
   void initState() {
@@ -303,34 +304,27 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                     }).toList(),
               ),
               const SizedBox(height: 8),
+              const Text(
+                'Employee Status (Deactivated)',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF2F3036),
+                ),
+              ),
+              Switch(
+                value: isDeactivated,
+                onChanged: (bool value) {
+                  setState(() {
+                    isDeactivated = !isDeactivated;
+                  });
+                },
+              ),
+
+              const SizedBox(height: 8),
               LargeButton(
                 text: 'Edit Employee',
                 onPressed: () {
-                  final bloodGroup =
-                      bloodGroupController.text.trim().toUpperCase();
-                  final validBloodGroups = [
-                    'A+',
-                    'A-',
-                    'B+',
-                    'B-',
-                    'AB+',
-                    'AB-',
-                    'O+',
-                    'O-',
-                  ];
-
-                  if (!validBloodGroups.contains(bloodGroup)) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Please enter a valid blood group (e.g., A+, O-, AB+).',
-                        ),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                    return;
-                  }
-
                   final updatedEmployee = UpdateEmployeeModel(
                     name: nameController.text.trim(),
                     email: emailController.text.trim(),
@@ -340,6 +334,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                     designation: designationController.text.trim(),
                     address: addressController.text.trim(),
                     dob: dobController.text.trim(),
+                    isDeactivated: isDeactivated,
                   );
                   try {
                     empState.updateEmployee(updatedEmployee, widget.id);

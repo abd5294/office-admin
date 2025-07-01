@@ -74,6 +74,7 @@ class UserModel {
     String? bloodGroup,
     List<dynamic>? emergencyContacts,
     String? token,
+    bool? isDeactivated,
   }) {
     return UserModel(
       id: id ?? this.id,

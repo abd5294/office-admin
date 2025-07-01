@@ -19,8 +19,8 @@ class AuthRepository {
       final response = await dio.post(
         '/users/login',
         data: jsonEncode({
-          'email': 'john@example.com',
-          'password': 'helloworld123',
+          'email': 'sathak@thepilot.in',
+          'password': 'Thepilot\$789',
         }),
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
