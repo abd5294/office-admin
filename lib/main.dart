@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Office',
+      title: 'The Pilot HR',
       theme: ThemeData(fontFamily: 'Poppins'),
       routerConfig: router,
       debugShowCheckedModeBanner: false,

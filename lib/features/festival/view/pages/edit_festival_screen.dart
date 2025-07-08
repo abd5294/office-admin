@@ -91,32 +91,76 @@ class _EditFestivalScreenState extends ConsumerState<EditFestivalScreen> {
                     const SizedBox(height: 8),
                     Text('Leave Type', style: _labelStyle),
                     const SizedBox(height: 4),
-                    DropdownButton<String>(
-                      value: typeController.text,
-                      items:
-                          types.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                      onChanged: (String? newValue) {
-                        if (newValue != null) {
-                          setState(() {
-                            typeController.text = newValue;
-                          });
+                    DropdownButtonFormField<String>(
+                      value:
+                          typeController.text.isNotEmpty
+                              ? typeController.text
+                              : null,
+                      decoration: InputDecoration(
+                        hintText: "Select Leave Type",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 14,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'full-day',
+                          child: Text('Full Day'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'half-day',
+                          child: Text('Half Day'),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) {
+                          typeController.text = value;
                         }
                       },
                     ),
-                    Text('Date', style: _labelStyle),
+
                     const SizedBox(height: 8),
+                    Text('Date', style: _labelStyle),
+                    const SizedBox(height: 4),
                     TextField(
                       controller: dateController,
                       readOnly: true,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Date of Festival',
                         hintText: 'Select The Date of Festival',
-                        border: OutlineInputBorder(),
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 14,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
                       ),
                       onTap: () async {
                         final pickedDate = await showDatePicker(

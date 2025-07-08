@@ -221,10 +221,27 @@ class _UpdateProfileScreenState extends ConsumerState<UpdateProfileScreen> {
               TextField(
                 controller: dobController,
                 readOnly: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Date of Birth',
                   hintText: 'Select Date of Birth',
-                  border: OutlineInputBorder(),
+                  hintStyle: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 14,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade300,
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade300,
+                      width: 2,
+                    ),
+                  ),
                 ),
                 onTap: () async {
                   final pickedDate = await showDatePicker(

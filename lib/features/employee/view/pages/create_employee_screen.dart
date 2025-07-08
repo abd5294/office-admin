@@ -33,7 +33,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
   final emergencyContactsController = TextEditingController();
   final List<String> genderOptions = ['Male', 'Female', 'Others'];
   final List<String> bloodGroupOptions = [
-    'B+',
+    'A+',
     'B+',
     'AB+',
     'O+',
@@ -207,10 +207,27 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               TextField(
                 controller: dobController,
                 readOnly: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Date of Birth',
                   hintText: 'Select Date of Birth',
-                  border: OutlineInputBorder(),
+                  hintStyle: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 14,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade300,
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade300,
+                      width: 2,
+                    ),
+                  ),
                 ),
                 onTap: () async {
                   final pickedDate = await showDatePicker(

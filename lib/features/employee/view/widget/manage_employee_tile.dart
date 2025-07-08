@@ -61,11 +61,11 @@ class _ManageEmployeeTileState extends ConsumerState<ManageEmployeeTile> {
               borderRadius: BorderRadius.circular(12),
               color: Colors.white,
               boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  spreadRadius: 3,
-                  blurRadius: 15,
-                ),
+                // BoxShadow(
+                //   color: Colors.black12,
+                //   spreadRadius: 3,
+                //   blurRadius: 15,
+                // ),
               ],
             ),
             width: MediaQuery.of(context).size.width,

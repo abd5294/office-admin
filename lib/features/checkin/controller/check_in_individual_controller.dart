@@ -85,7 +85,7 @@ class CheckInIndividualController
     final year = int.parse(parts[2]);
 
     final dateTime = DateTime.utc(year, month, day, 0, 0);
-    return '${dateTime.toIso8601String()}Z';
+    return '${dateTime.toUtc().toIso8601String()}Z';
   }
 }
 

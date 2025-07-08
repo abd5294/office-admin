@@ -82,10 +82,47 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
 
                     Text('Leave Type', style: _labelStyle),
                     const SizedBox(height: 4),
-                    CustomTextField(
-                      controller: typeController,
-                      hintText: 'Enter full-day or half-day',
-                      onChange: (_) {},
+                    DropdownButtonFormField<String>(
+                      value:
+                          typeController.text.isNotEmpty
+                              ? typeController.text
+                              : null,
+                      decoration: InputDecoration(
+                        hintText: "Select Leave Type",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 14,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'full-day',
+                          child: Text('Full Day'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'half-day',
+                          child: Text('Half Day'),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        if (value != null) {
+                          typeController.text = value;
+                        }
+                      },
                     ),
 
                     const SizedBox(height: 8),
@@ -94,10 +131,27 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
                     TextField(
                       controller: dateController,
                       readOnly: true,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Date of Festival',
                         hintText: 'Select The Date of Festival',
-                        border: OutlineInputBorder(),
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 14,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
                       ),
                       onTap: () async {
                         final pickedDate = await showDatePicker(
@@ -113,7 +167,7 @@ class _CreateFestivalScreenState extends ConsumerState<CreateFestivalScreen> {
                                 pickedDate.year,
                                 pickedDate.month,
                                 pickedDate.day,
-                              ).toUtc().toIso8601String();
+                              ).toString();
 
                           dateController.text = formattedDate;
                         }

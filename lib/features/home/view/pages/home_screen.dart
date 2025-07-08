@@ -60,28 +60,28 @@ class HomeScreen extends ConsumerWidget {
                       mainAxisSpacing: 17,
                       crossAxisSpacing: 9,
                       children: [
-                        StaggeredGridTile.extent(
-                          crossAxisCellCount: 2,
-                          mainAxisExtent: 108,
-                          child: GestureDetector(
-                            onTap: () {
-                              user.role == 'admin'
-                                  ? context.push(EmployeeScreen.route)
-                                  : context.push(CheckInOutScreen.route);
-                            },
-                            child: CustomCard(
-                              title:
-                                  user.role == 'admin'
-                                      ? 'Employees Page'
-                                      : 'Check In / Check Out',
-                              subTitle:
-                                  user.role == 'admin'
-                                      ? 'View your employees'
-                                      : 'Click to Check In / Check Out',
-                              backgroundColor: Colors.black,
-                            ),
-                          ),
-                        ),
+                        // StaggeredGridTile.extent(
+                        //   crossAxisCellCount: 2,
+                        //   mainAxisExtent: 108,
+                        //   child: GestureDetector(
+                        //     onTap: () {
+                        //       user.role == 'admin'
+                        //           ? context.push(EmployeeScreen.route)
+                        //           : context.push(CheckInOutScreen.route);
+                        //     },
+                        //     child: CustomCard(
+                        //       title:
+                        //           user.role == 'admin'
+                        //               ? 'Employees Page'
+                        //               : 'Check In / Check Out',
+                        //       subTitle:
+                        //           user.role == 'admin'
+                        //               ? 'View your employees'
+                        //               : 'Click to Check In / Check Out',
+                        //       backgroundColor: Colors.black,
+                        //     ),
+                        //   ),
+                        // ),
                         StaggeredGridTile.extent(
                           crossAxisCellCount: 1,
                           mainAxisExtent: 124,

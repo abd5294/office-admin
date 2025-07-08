@@ -16,12 +16,15 @@ class AuthRepository {
 
   Future<UserModel?> login(String email, String password) async {
     try {
+      // final response = await dio.post(
+      //   '/users/login',
+      //   data: jsonEncode({
+      //     'email': 'sathak@thepilot.in',
+      //     'password': 'Thepilot\$789',
+      //   }),
       final response = await dio.post(
         '/users/login',
-        data: jsonEncode({
-          'email': 'sathak@thepilot.in',
-          'password': 'Thepilot\$789',
-        }),
+        data: jsonEncode({'email': email, 'password': password}),
         options: Options(headers: {'Content-Type': 'application/json'}),
       );
       if (response.data != null && response.data['data'] != null) {
