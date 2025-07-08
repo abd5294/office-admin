@@ -232,23 +232,46 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                 onTap: () async {
                   final pickedDate = await showDatePicker(
                     context: context,
-                    initialDate: DateTime(2000),
+                    initialDate:
+                        dobController.text.isNotEmpty
+                            ? DateTime.tryParse(
+                                  dobController.text,
+                                )?.toLocal() ??
+                                DateTime(2000)
+                            : DateTime(2000),
                     firstDate: DateTime(1900),
                     lastDate: DateTime.now(),
                   );
 
                   if (pickedDate != null) {
-                    final formattedDate =
-                        DateTime(
-                          pickedDate.year,
-                          pickedDate.month,
-                          pickedDate.day,
-                        ).toUtc().toIso8601String();
-
-                    dobController.text = formattedDate;
+                    // Store in UTC ISO string
+                    dobController.text = pickedDate.toUtc().toIso8601String();
+                    setState(() {}); // To refresh the displayed value
                   }
                 },
+                // Show local date in the field
+                // Use buildCounter as a hack to format the display value
+                // Or use a ValueListenableBuilder/another controller, but for simplicity:
               ),
+              // Show the local formatted date below the field if dobController has value
+              if (dobController.text.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 4.0, left: 4.0),
+                  child: Text(
+                    // Parse UTC and show in local
+                    () {
+                      try {
+                        final utcDate =
+                            DateTime.parse(dobController.text).toUtc();
+                        final localDate = utcDate.toLocal();
+                        return "Local Date: ${localDate.year.toString().padLeft(4, '0')}-${localDate.month.toString().padLeft(2, '0')}-${localDate.day.toString().padLeft(2, '0')}";
+                      } catch (_) {
+                        return "Local Date: " + dobController.text;
+                      }
+                    }(),
+                    style: TextStyle(color: Colors.grey.shade700, fontSize: 13),
+                  ),
+                ),
 
               const SizedBox(height: 8),
 
