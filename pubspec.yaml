@@ -46,7 +46,13 @@ dependencies:
   shared_preferences: ^2.5.3
   flutter_svg: ^2.2.0
   table_calendar: ^3.2.0
+#   flutter_launcher_icons: ^0.13.1
 
+# flutter_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/images/app-icon.png" # or your new logo path
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
