@@ -11,18 +11,18 @@ import 'package:office/features/checkin/view/pages/checkin_error_screen.dart';
 import 'package:office/shared/widgets/large_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class CheckInOutScreen extends ConsumerStatefulWidget {
-  static const route = '/check-in-out-employee';
+class CheckInScreen extends ConsumerStatefulWidget {
+  static const route = '/check-in-employee';
 
-  const CheckInOutScreen({super.key});
+  const CheckInScreen({super.key});
 
   @override
-  ConsumerState<CheckInOutScreen> createState() => _CheckInOutScreenState();
+  ConsumerState<CheckInScreen> createState() => _CheckInScreenState();
 }
 
-class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
+class _CheckInScreenState extends ConsumerState<CheckInScreen> {
   File? _selectedImage;
-  String type = '';
+  String type = 'checkin';
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
           ),
         ),
         title: const Text(
-          'Check In/Check Out',
+          'Check In',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -103,27 +103,7 @@ class _CheckInOutScreenState extends ConsumerState<CheckInOutScreen> {
                   ),
                 ),
                 SizedBox(height: 12),
-                ToggleButtons(
-                  isSelected: [type == 'checkin', type == 'checkout'],
-                  onPressed: (index) {
-                    setState(() {
-                      type = index == 0 ? 'checkin' : 'checkout';
-                    });
-                  },
-                  fillColor: Palette.primaryColor,
-                  selectedColor: Colors.white,
-                  textStyle: TextStyle(fontWeight: FontWeight.bold),
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text('Check In'),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text('Check Out'),
-                    ),
-                  ],
-                ),
+
                 SizedBox(height: 12),
                 LargeButton(
                   text: _selectedImage != null ? type : 'Open Camera',

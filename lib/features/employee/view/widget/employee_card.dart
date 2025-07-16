@@ -3,6 +3,7 @@ import 'package:office/core/themes/app_color.dart';
 
 class EmployeeInfoCard extends StatelessWidget {
   final String name;
+  final String designation;
   final String email;
   final String phone;
   final String bloodGroup;
@@ -11,6 +12,7 @@ class EmployeeInfoCard extends StatelessWidget {
   const EmployeeInfoCard({
     super.key,
     required this.name,
+    required this.designation,
     required this.email,
     required this.phone,
     required this.bloodGroup,
@@ -57,6 +59,23 @@ class EmployeeInfoCard extends StatelessWidget {
             ),
             Text(
               email,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Designation',
+              style: TextStyle(
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Text(
+              designation,
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,

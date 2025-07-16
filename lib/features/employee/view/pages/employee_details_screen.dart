@@ -77,12 +77,13 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                           children: [
                             StaggeredGridTile.extent(
                               crossAxisCellCount: 2,
-                              mainAxisExtent: 172,
+                              mainAxisExtent: 204,
                               child: EmployeeInfoCard(
                                 name: data.user['name'],
                                 email: data.user['email'],
                                 phone: data.user['phone'],
                                 bloodGroup: data.user['bloodType'],
+                                designation: data.user['designation'],
                                 role: data.user['role'],
                               ),
                             ),
