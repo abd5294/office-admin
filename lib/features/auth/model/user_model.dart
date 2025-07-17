@@ -11,6 +11,8 @@ class UserModel {
   final String bloodGroup;
   final List<dynamic> emergencyContacts;
   final String token;
+  final String department;
+  final String dateOfJoining;
 
   UserModel({
     required this.id,
@@ -25,6 +27,8 @@ class UserModel {
     required this.bloodGroup,
     required this.emergencyContacts,
     required this.phone,
+    required this.department,
+    required this.dateOfJoining,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> map, String token) {
@@ -41,6 +45,8 @@ class UserModel {
       phone: map['Phone'] ?? '',
       emergencyContacts: map['EmergencyContacts'] ?? '',
       token: token,
+      department: map['Department']['name'],
+      dateOfJoining: map['DateOfJoining'],
     );
   }
 
@@ -75,6 +81,8 @@ class UserModel {
     List<dynamic>? emergencyContacts,
     String? token,
     bool? isDeactivated,
+    String? dateOfJoining,
+    String? department,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -89,6 +97,8 @@ class UserModel {
       bloodGroup: bloodGroup ?? this.bloodGroup,
       emergencyContacts: emergencyContacts ?? this.emergencyContacts,
       token: token ?? this.token,
+      dateOfJoining: dateOfJoining ?? this.dateOfJoining,
+      department: department ?? this.department,
     );
   }
 }

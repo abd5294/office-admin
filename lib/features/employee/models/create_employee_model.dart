@@ -11,6 +11,8 @@ class CreateEmployeeModel {
   final String gender;
   final String phone;
   final String dob;
+  final String department;
+  final String dateOfJoining;
   final List<String> emergencyContacts;
 
   CreateEmployeeModel({
@@ -27,6 +29,8 @@ class CreateEmployeeModel {
     required this.phone,
     required this.dob,
     required this.emergencyContacts,
+    required this.department,
+    required this.dateOfJoining,
   });
 
   Map<String, dynamic> toMap() {
@@ -44,6 +48,8 @@ class CreateEmployeeModel {
       'phone': phone,
       'DOB': dob,
       'emergencyContacts': emergencyContacts,
+      'DateOfJoining': dateOfJoining,
+      'department': department,
     };
   }
 }

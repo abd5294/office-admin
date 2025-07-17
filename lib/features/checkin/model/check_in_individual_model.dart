@@ -1,5 +1,3 @@
-import 'package:office/core/consts/constants.dart';
-
 class CheckInIndividualModel {
   final String name;
   final String time;

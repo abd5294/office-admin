@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:office/core/themes/app_color.dart';
 import 'package:office/core/utils/show_snackbar.dart';
 import 'package:office/features/employee/controller/manage_employee_controller.dart';
-import 'package:office/features/employee/models/updated_employee_model.dart';
+import 'package:office/features/employee/models/update_employee_model.dart';
 import 'package:office/shared/widgets/custom_text_field.dart';
 import 'package:office/shared/widgets/large_button.dart';
 
@@ -263,7 +263,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
                         final localDate = utcDate.toLocal();
                         return "Local Date: ${localDate.year.toString().padLeft(4, '0')}-${localDate.month.toString().padLeft(2, '0')}-${localDate.day.toString().padLeft(2, '0')}";
                       } catch (_) {
-                        return "Local Date: " + dobController.text;
+                        return "Local Date: ${dobController.text}";
                       }
                     }(),
                     style: TextStyle(color: Colors.grey.shade700, fontSize: 13),

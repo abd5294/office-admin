@@ -72,7 +72,7 @@ class HomeScreen extends ConsumerWidget {
                           children: [
                             StaggeredGridTile.extent(
                               crossAxisCellCount: 2,
-                              mainAxisExtent: 204,
+                              mainAxisExtent: 240,
                               child: EmployeeInfoCard(
                                 name: user.name,
                                 designation: user.designation,
@@ -80,6 +80,8 @@ class HomeScreen extends ConsumerWidget {
                                 phone: user.phone,
                                 bloodGroup: user.bloodGroup,
                                 role: user.role,
+                                dateOfJoining: user.dateOfJoining,
+                                department: user.department,
                               ),
                             ),
                             user.role == "admin"

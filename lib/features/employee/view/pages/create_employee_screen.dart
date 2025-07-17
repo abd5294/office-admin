@@ -31,6 +31,8 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
   final phoneController = TextEditingController();
   final dobController = TextEditingController();
   final emergencyContactsController = TextEditingController();
+  final dateOfJoiningController = TextEditingController();
+  final departmentController = TextEditingController();
   final List<String> genderOptions = ['Male', 'Female', 'Others'];
   final List<String> bloodGroupOptions = [
     'A+',
@@ -168,6 +170,17 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               ),
               const SizedBox(height: 8),
 
+              const Text('department', style: _labelStyle),
+              const SizedBox(height: 4),
+
+              CustomTextField(
+                controller: phoneController,
+                hintText: 'Enter employee\'s department',
+                isNumeric: false,
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
+
               const Text('Gender', style: _labelStyle),
               const SizedBox(height: 4),
               DropdownButton<String>(
@@ -201,6 +214,60 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               ),
               const SizedBox(height: 8),
 
+              const Text('Date of joining', style: _labelStyle),
+              const SizedBox(height: 4),
+
+              TextField(
+                controller: dobController,
+                readOnly: true,
+                decoration: InputDecoration(
+                  labelText: 'Date of Joining',
+                  hintText: 'Select Date of joining',
+                  hintStyle: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 14,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade300,
+                      width: 2,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade300,
+                      width: 2,
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  final pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate:
+                        dateOfJoiningController.text.isNotEmpty
+                            ? DateTime.tryParse(
+                                  dateOfJoiningController.text,
+                                )?.toLocal() ??
+                                DateTime(2000)
+                            : DateTime(2000),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime.now(),
+                  );
+
+                  if (pickedDate != null) {
+                    // Store in UTC ISO string
+                    dobController.text = pickedDate.toUtc().toIso8601String();
+                    setState(() {}); // To refresh the displayed value
+                  }
+                },
+                // Show local date in the field
+                // Use buildCounter as a hack to format the display value
+                // Or use a ValueListenableBuilder/another controller, but for simplicity:
+              ),
+
+              const SizedBox(height: 4),
               const Text('DOB', style: _labelStyle),
               const SizedBox(height: 4),
 
@@ -266,7 +333,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                         final localDate = utcDate.toLocal();
                         return "Local Date: ${localDate.year.toString().padLeft(4, '0')}-${localDate.month.toString().padLeft(2, '0')}-${localDate.day.toString().padLeft(2, '0')}";
                       } catch (_) {
-                        return "Local Date: " + dobController.text;
+                        return "Local Date: ${dobController.text}";
                       }
                     }(),
                     style: TextStyle(color: Colors.grey.shade700, fontSize: 13),
@@ -298,6 +365,8 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                       genderController.text.isEmpty ||
                       phoneController.text.isEmpty ||
                       dobController.text.isEmpty ||
+                      departmentController.text.isEmpty ||
+                      dateOfJoiningController.text.isEmpty ||
                       emergencyContactsController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -339,6 +408,8 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                             .split(',')
                             .map((e) => e.trim())
                             .toList(),
+                    department: departmentController.text.trim(),
+                    dateOfJoining: dateOfJoiningController.text.trim(),
                   );
                   try {
                     empState.createEmployee(newEmployee);

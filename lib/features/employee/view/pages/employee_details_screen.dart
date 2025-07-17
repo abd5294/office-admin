@@ -85,6 +85,8 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                                 bloodGroup: data.user['bloodType'],
                                 designation: data.user['designation'],
                                 role: data.user['role'],
+                                dateOfJoining: user.dateOfJoining,
+                                department: user.department,
                               ),
                             ),
                             StaggeredGridTile.extent(

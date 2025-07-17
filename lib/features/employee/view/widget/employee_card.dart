@@ -8,6 +8,8 @@ class EmployeeInfoCard extends StatelessWidget {
   final String phone;
   final String bloodGroup;
   final String role;
+  final String department;
+  final String dateOfJoining;
 
   const EmployeeInfoCard({
     super.key,
@@ -17,6 +19,8 @@ class EmployeeInfoCard extends StatelessWidget {
     required this.phone,
     required this.bloodGroup,
     required this.role,
+    required this.department,
+    required this.dateOfJoining,
   });
 
   @override
@@ -127,6 +131,23 @@ class EmployeeInfoCard extends StatelessWidget {
             ),
             Text(
               role,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Department',
+              style: TextStyle(
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Text(
+              department,
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
