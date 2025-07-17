@@ -21,6 +21,8 @@ class EditEmployeeScreen extends ConsumerStatefulWidget {
   final String gender;
   final String dob;
   final String emergencyContacts;
+  final String department;
+  final String dateOfJoining;
 
   const EditEmployeeScreen({
     super.key,
@@ -34,6 +36,8 @@ class EditEmployeeScreen extends ConsumerStatefulWidget {
     required this.gender,
     required this.dob,
     required this.emergencyContacts,
+    required this.department,
+    required this.dateOfJoining,
   });
 
   @override
@@ -49,6 +53,8 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
   final addressController = TextEditingController();
   final genderController = TextEditingController();
   final dobController = TextEditingController();
+  final departmentController = TextEditingController();
+  final dateOfJoiningController = TextEditingController();
   final emergencyContactsController = TextEditingController();
   final List<String> options = ['Male', 'Female', 'Others'];
   final List<String> bloodGroupOptions = [
@@ -72,7 +78,7 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     emailController.text = widget.email;
     phoneController.text = widget.phone;
     bloodGroupController.text = widget.bloodGroup;
-
+    departmentController.text = widget.department;
     designationController.text = widget.designation;
     addressController.text = widget.address;
     genderController.text = widget.gender;
@@ -176,6 +182,16 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
               ),
               const SizedBox(height: 8),
 
+              const Text('Department', style: _labelStyle),
+              const SizedBox(height: 4),
+
+              CustomTextField(
+                controller: departmentController,
+                hintText: 'Enter employee\'s department',
+                isNumeric: false,
+                onChange: (value) {},
+              ),
+              const SizedBox(height: 8),
               const Text(
                 'Address',
                 style: TextStyle(
@@ -396,4 +412,10 @@ class _EditEmployeeScreenState extends ConsumerState<EditEmployeeScreen> {
     if (s.isEmpty) return s;
     return s[0].toUpperCase() + s.substring(1);
   }
+
+  static const _labelStyle = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: Color(0xFF2F3036),
+  );
 }

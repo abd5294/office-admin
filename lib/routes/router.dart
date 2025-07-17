@@ -77,6 +77,8 @@ final GoRouter router = GoRouter(
         final dob = state.uri.queryParameters['dob'] ?? '';
         final emergencyContacts =
             state.uri.queryParameters['emergencyContacts'] ?? '';
+        final department = state.uri.queryParameters['department'] ?? '';
+        final dateOfJoining = state.uri.queryParameters['dateOfJoining'] ?? '';
 
         return EditEmployeeScreen(
           id: int.parse(id!),
@@ -89,6 +91,8 @@ final GoRouter router = GoRouter(
           gender: gender,
           dob: dob,
           emergencyContacts: emergencyContacts,
+          department: department,
+          dateOfJoining: dateOfJoining,
         );
       },
     ),

@@ -85,22 +85,25 @@ class _ManageEmployeeScreenState extends ConsumerState<ManageEmployeeScreen> {
                         return Container(
                           color: Colors.transparent,
                           child: ListView.separated(
-                            itemBuilder:
-                                (context, index) => ManageEmployeeTile(
-                                  id: data[index].id,
-                                  name: data[index].name,
-                                  email: data[index].email,
-                                  phone: data[index].phone,
-                                  bloodGroup: data[index].bloodType,
-                                  role: data[index].role,
-                                  designation: data[index].designation,
-                                  address: data[index].address,
-                                  gender: data[index].gender,
-                                  dob: data[index].dob,
-                                  emergencyContacts:
-                                      data[index].emergencyContacts,
-                                  index: index + 1,
-                                ),
+                            itemBuilder: (context, index) {
+                              return ManageEmployeeTile(
+                                id: data[index].id,
+                                name: data[index].name,
+                                email: data[index].email,
+                                phone: data[index].phone,
+                                bloodGroup: data[index].bloodType,
+                                role: data[index].role,
+                                designation: data[index].designation,
+                                address: data[index].address,
+                                gender: data[index].gender,
+                                dob: data[index].dob,
+                                department: data[index].department,
+                                dateOfJoining: data[index].dateOfJoining,
+                                emergencyContacts:
+                                    data[index].emergencyContacts,
+                                index: index + 1,
+                              );
+                            },
                             separatorBuilder:
                                 (context, index) => const SizedBox(height: 8),
                             itemCount: data.length,

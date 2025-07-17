@@ -18,6 +18,8 @@ class ManageEmployeeTile extends ConsumerStatefulWidget {
   final String gender;
   final String dob;
   final List<dynamic> emergencyContacts;
+  final String department;
+  final String dateOfJoining;
   final int index;
 
   const ManageEmployeeTile({
@@ -34,6 +36,8 @@ class ManageEmployeeTile extends ConsumerStatefulWidget {
     required this.gender,
     required this.dob,
     required this.emergencyContacts,
+    required this.department,
+    required this.dateOfJoining,
   });
 
   @override
@@ -131,7 +135,9 @@ class _ManageEmployeeTileState extends ConsumerState<ManageEmployeeTile> {
                             '&address=${widget.address}'
                             '&gender=${widget.gender}'
                             '&dob=${widget.dob}'
-                            '&emergencyContacts=${widget.emergencyContacts}',
+                            '&emergencyContacts=${widget.emergencyContacts}'
+                            '&department=${widget.department}'
+                            '&dateOfJoining=${widget.dateOfJoining}',
                           );
                         },
                         child: Container(

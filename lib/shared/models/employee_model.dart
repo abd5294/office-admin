@@ -11,6 +11,8 @@ class EmployeeModel {
   final String gender;
   final String phone;
   final String dob;
+  final String dateOfJoining;
+  final String department;
   final List<dynamic> emergencyContacts;
 
   EmployeeModel(
@@ -26,6 +28,8 @@ class EmployeeModel {
     this.gender,
     this.phone,
     this.dob,
+    this.dateOfJoining,
+    this.department,
     this.emergencyContacts,
   );
 
@@ -43,6 +47,8 @@ class EmployeeModel {
       map['Gender'],
       map['Phone'],
       map['DOB'],
+      map['DateOfJoining'],
+      map['Department']['name'],
       map['EmergencyContacts'],
     );
   }
