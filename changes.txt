@@ -1,0 +1,57 @@
+Changes
+
+- Match based on wifi SSID to allow check in / checkout
+
+- Below that, there will calendar (Checkin / Checkout 9:40 and 6:00) (Mark green or red)
+		- Orange present but not on time
+		- blue approved leave
+		- Red unapproved leave
+		- Half blue, half green  (extra colour mixture) (Mudinchal)
+		- Green Correct
+
+- In leave application, Show total leaves and the stats
+    - Leave date
+    - Kind (Sick leave / plan leave) (new)
+    - Full day / half day
+    - Reason.
+    - Comment (new) (admin)
+
+		(fix create leave)
+
+- Festival leaves
+    - A simple list of details DONE
+- Company Memos
+    - Title
+    - Description
+    - Id (sequential)
+
+# Changes in Admin
+# Employee Inside page
+	(all detail cards)
+    - Department
+    - Date of joining
+    - Designation
+
+	- Leave Heading, (Dropdown) Total, leaves taken, approved count and unapproved count.
+	- Checkin details (First discussed calendar same)
+		- calendar
+		- Show January (27/30)
+		- Green present (on time)
+		- Orange present but not on time
+		- blue approved leave
+		- Red unapproved leave
+		- Half blue, half green
+
+- Leave application
+	- Provide comment on the choice (add)
+	- Add notifications, whenever it receives the leave (Admin) 
+
+# Memo
+	- add a floating button to create departments
+	- departments will be each folder
+		- Folder
+
+# CheckIns/Checkout (Current) 
+
+- Show a list of users, who has not applied for leave and no checks
+- Allow to be tagged as present or unapproved

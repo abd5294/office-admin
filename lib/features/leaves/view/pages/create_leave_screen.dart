@@ -20,8 +20,11 @@ class _CreateLeaveScreenState extends ConsumerState<CreateLeaveScreen> {
   final reasonController = TextEditingController();
   final dateController = TextEditingController();
   final typeController = TextEditingController();
+  final kindController = TextEditingController();
   final leaveOptions = ['Half Day', 'Full Day'];
+  final kindOptions = ['Sick leave', 'Planned leave'];
   String? selectedLeaveType;
+  String? selectedLeaveKind;
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +144,37 @@ class _CreateLeaveScreenState extends ConsumerState<CreateLeaveScreen> {
                   }).toList(),
             ),
 
+            const Text(
+              'Kind of leave',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 8),
+            DropdownButton<String>(
+              hint: Text("Select Kind"),
+              value: selectedLeaveKind,
+              onChanged: (String? newValue) {
+                String formattedString = newValue!.toLowerCase().replaceAll(
+                  ' ',
+                  '-',
+                );
+                kindController.text = formattedString;
+                setState(() {
+                  selectedLeaveKind = newValue;
+                });
+              },
+              items:
+                  kindOptions.map((String kind) {
+                    return DropdownMenuItem<String>(
+                      value: kind,
+                      child: Text(kind),
+                    );
+                  }).toList(),
+            ),
+
             const Spacer(),
             LargeButton(
               text: 'Send Application',
@@ -175,6 +209,7 @@ class _CreateLeaveScreenState extends ConsumerState<CreateLeaveScreen> {
                   reason: reasonController.text,
                   date: dateController.text,
                   type: typeController.text,
+                  kind: kindController.text,
                 );
                 controller.createLeaveApplication(newApplication);
                 context.pop();
