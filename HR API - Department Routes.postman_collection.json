@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "02aa8a05-7d39-4ee8-996a-a75ae09dab10",
+		"name": "HR API - Department Routes",
+		"description": "Department management endpoints for the HR API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11840368",
+		"_collection_link": "https://planetary-resonance-762317.postman.co/workspace/ThePilot---HR~4a07ce0c-f821-4be0-858b-7faecf700ab2/collection/11840368-02aa8a05-7d39-4ee8-996a-a75ae09dab10?action=share&source=collection_link&creator=11840368"
+	},
+	"item": [
+		{
+			"name": "Create Department",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Engineering\",\n    \"description\": \"Software development and engineering team\",\n    \"headOfDepartment\": \"John Doe\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/departments/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"departments",
+						""
+					]
+				},
+				"description": "Create a new department (Admin only - Auth Level 1)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Department",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Software Engineering\",\n    \"description\": \"Updated software development and engineering team\",\n    \"headOfDepartment\": \"Jane Smith\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/departments/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"departments",
+						"1"
+					]
+				},
+				"description": "Update an existing department (Admin only - Auth Level 1)"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Department",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/departments/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"departments",
+						"1"
+					]
+				},
+				"description": "Delete a department (Admin only - Auth Level 1)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Departments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/departments/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"departments",
+						""
+					]
+				},
+				"description": "Get all departments (Authenticated users - Auth Level 2)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Department by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/departments/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"departments",
+						"1"
+					]
+				},
+				"description": "Get a specific department by ID (Authenticated users - Auth Level 2)"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
