@@ -9,12 +9,9 @@ Changes
 		- Half blue, half green  (extra colour mixture) (Mudinchal)
 		- Green Correct
 
-- In leave application, Show total leaves and the stats
-
 # Changes in Admin
 # Employee Inside page
 
-	- Leave Heading, (Dropdown) Total, leaves taken, approved count and unapproved count.
 	- Checkin details (First discussed calendar same)
 		- calendar
 		- Show January (27/30)

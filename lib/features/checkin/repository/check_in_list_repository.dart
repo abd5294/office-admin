@@ -18,11 +18,11 @@ class CheckInListRepository {
         '/checks/$id',
         options: Options(headers: {'Authorization': token}),
       );
-
       final checkIns =
           (response.data['data'] as List)
               .map((el) => CheckInListModel.fromMap(el))
               .toList();
+
       return checkIns;
     } catch (e) {
       throw 'Failed to fetch check in details';

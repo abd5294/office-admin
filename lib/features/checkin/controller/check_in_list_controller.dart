@@ -26,7 +26,7 @@ class CheckInListController
           final dateString = e.date.substring(0, 10);
           DateTime date = DateTime.parse(dateString);
           String formattedDate = '${date.day}/${date.month}/${date.year}';
-          return CheckInListModel(formattedDate);
+          return CheckInListModel(formattedDate, e.time);
         }).toList();
 
     final seenDates = <String>{};

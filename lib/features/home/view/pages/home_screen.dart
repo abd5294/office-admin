@@ -13,6 +13,7 @@ import 'package:office/features/employee/view/pages/manage_employee_screen.dart'
 import 'package:office/features/employee/view/widget/employee_card.dart';
 import 'package:office/features/festival/view/pages/festival_leaves_screen.dart';
 import 'package:office/features/leaves/controller/leave_application_controller.dart';
+import 'package:office/features/leaves/model/leave_application_model.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 import 'package:office/features/memo/view/memo_screen.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
@@ -138,30 +139,171 @@ class HomeScreen extends ConsumerWidget {
 
                             leaveApplicationState.when(
                               data: (data) {
+                                List<List> choice = [];
+                                for (LeaveApplicationModel model in data) {
+                                  choice.add([
+                                    model.date.split('T')[0],
+                                    model.choice,
+                                  ]);
+                                }
+
                                 return checkinState.when(
-                                  data: (data) {
-                                    List checkIndates = List.generate(
-                                      data.length,
-                                      (index) {
-                                        return data[index];
-                                      },
-                                    );
+                                  data: (checkinData) {
+                                    final Map<DateTime, Color> dateColors = {};
+
+                                    for (var e in checkinData) {
+                                      final parts = e.date.split('/');
+                                      final date = DateTime(
+                                        int.parse(parts[2]),
+                                        int.parse(parts[1]),
+                                        int.parse(parts[0]),
+                                      );
+
+                                      final timeParts = e.time.split(':');
+                                      final checkinTime = TimeOfDay(
+                                        hour: int.parse(timeParts[0]),
+                                        minute: int.parse(timeParts[1]),
+                                      );
+
+                                      final start = const TimeOfDay(
+                                        hour: 9,
+                                        minute: 40,
+                                      );
+                                      final end = const TimeOfDay(
+                                        hour: 18,
+                                        minute: 0,
+                                      );
+
+                                      bool isBetween(
+                                        TimeOfDay t,
+                                        TimeOfDay start,
+                                        TimeOfDay end,
+                                      ) {
+                                        final totalMinutes =
+                                            t.hour * 60 + t.minute;
+                                        final startMinutes =
+                                            start.hour * 60 + start.minute;
+                                        final endMinutes =
+                                            end.hour * 60 + end.minute;
+                                        return totalMinutes >= startMinutes &&
+                                            totalMinutes <= endMinutes;
+                                      }
+
+                                      if (isBetween(checkinTime, start, end)) {
+                                        dateColors[DateTime(
+                                              date.year,
+                                              date.month,
+                                              date.day,
+                                            )] =
+                                            Colors.orange;
+                                      } else {
+                                        dateColors[DateTime(
+                                              date.year,
+                                              date.month,
+                                              date.day,
+                                            )] =
+                                            Colors.green;
+                                      }
+                                    }
+
+                                    // Step 2: Overwrite with leave colors
+                                    for (var c in choice) {
+                                      final dateParts = c[0].split(
+                                        '-',
+                                      ); // YYYY-MM-DD
+                                      final leaveDate = DateTime(
+                                        int.parse(dateParts[0]),
+                                        int.parse(dateParts[1]),
+                                        int.parse(dateParts[2]),
+                                      );
+
+                                      final leaveStatus = c[1];
+                                      if (leaveStatus == 'accepted') {
+                                        dateColors[leaveDate] = Colors.blue;
+                                      } else if (leaveStatus == 'denied') {
+                                        dateColors[leaveDate] = Colors.red;
+                                      }
+                                    }
 
                                     return StaggeredGridTile.extent(
                                       crossAxisCellCount: 2,
                                       mainAxisExtent: 350,
                                       child: TableCalendar(
+                                        headerStyle: const HeaderStyle(
+                                          formatButtonVisible: false,
+                                        ),
+                                        calendarStyle: const CalendarStyle(
+                                          outsideDaysVisible: false,
+                                          defaultDecoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
                                         focusedDay: DateTime.now(),
                                         firstDay: DateTime(2000),
                                         lastDay: DateTime(2100),
+                                        calendarFormat: CalendarFormat.month,
+
+                                        calendarBuilders: CalendarBuilders(
+                                          defaultBuilder: (
+                                            context,
+                                            day,
+                                            focusedDay,
+                                          ) {
+                                            final today = DateTime.now();
+                                            final dateOnly = DateTime(
+                                              day.year,
+                                              day.month,
+                                              day.day,
+                                            );
+
+                                            // Skip coloring for future days
+                                            if (dateOnly.isAfter(
+                                              DateTime(
+                                                today.year,
+                                                today.month,
+                                                today.day,
+                                              ),
+                                            )) {
+                                              return Center(
+                                                child: Text(
+                                                  '${day.day}',
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+
+                                            // Get the color for this date
+                                            final color = dateColors[dateOnly];
+
+                                            return Container(
+                                              width: 36,
+                                              height: 36,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color:
+                                                    color ?? Colors.transparent,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                '${day.day}',
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                       ),
                                     );
                                   },
                                   error:
-                                      (error, stackTrace) =>
-                                          Text('checkin cannot be fetched'),
+                                      (error, stackTrace) => const Text(
+                                        'checkin cannot be fetched',
+                                      ),
                                   loading:
-                                      () => Center(
+                                      () => const Center(
                                         child: CircularProgressIndicator(),
                                       ),
                                 );
@@ -178,7 +320,7 @@ class HomeScreen extends ConsumerWidget {
                                 );
                               },
                               loading: () {
-                                return Center(
+                                return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               },
