@@ -15,6 +15,7 @@ import 'package:office/features/festival/view/pages/festival_leaves_screen.dart'
 import 'package:office/features/leaves/controller/leave_application_controller.dart';
 import 'package:office/features/leaves/repository/leave_application_repository.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
+import 'package:office/features/memo/view/memo_screen.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -235,6 +236,34 @@ class HomeScreen extends ConsumerWidget {
                                 ),
                               ),
                             ),
+                            if (user.role != "admin")
+                              StaggeredGridTile.extent(
+                                crossAxisCellCount: 2,
+                                mainAxisExtent: 124,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.push(MemoListScreen.route);
+                                  },
+                                  child: CustomCard(
+                                    title: 'Memo List',
+                                    subTitle: 'See the list of memos',
+                                  ),
+                                ),
+                              ),
+                            if (user.role == "admin")
+                              StaggeredGridTile.extent(
+                                crossAxisCellCount: 2,
+                                mainAxisExtent: 124,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.push(MemoListScreen.route);
+                                  },
+                                  child: CustomCard(
+                                    title: 'Memo Manager',
+                                    subTitle: 'Manage the memos',
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ],

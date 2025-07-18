@@ -4,6 +4,7 @@ import 'package:office/features/auth/view/login_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_screen.dart';
 import 'package:office/features/checkin/view/pages/checkin_error_screen.dart';
 import 'package:office/features/employee/view/pages/update_profile_screen.dart';
+import 'package:office/features/memo/view/memo_screen.dart';
 import 'package:office/features/update_password/view/confirm_password_screen.dart';
 import 'package:office/features/update_password/view/forget_password_screen.dart';
 import 'package:office/features/update_password/view/otp_screen.dart';
@@ -208,6 +209,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: CheckOutScreen.route,
       builder: (context, state) => CheckOutScreen(),
+    ),
+    GoRoute(
+      path: MemoListScreen.route,
+      builder: (context, state) => MemoListScreen(),
     ),
   ],
 );
