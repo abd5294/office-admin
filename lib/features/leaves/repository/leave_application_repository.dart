@@ -25,7 +25,6 @@ class LeaveApplicationRepository {
           final user = el['user']['name'];
           return LeaveApplicationModel.fromMap({...el, 'name': user});
         }).toList();
-
     return leaves;
   }
 

@@ -25,6 +25,8 @@ class EmployeeInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String dateStr = dateOfJoining;
+    String formatted = dateStr.split("T")[0];
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -165,7 +167,7 @@ class EmployeeInfoCard extends StatelessWidget {
               ),
             ),
             Text(
-              dateOfJoining,
+              formatted,
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,

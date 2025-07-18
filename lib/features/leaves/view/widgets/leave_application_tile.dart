@@ -17,6 +17,7 @@ class LeaveApplicationTile extends ConsumerStatefulWidget {
   final int index;
   final UserModel user;
   final int id;
+  final String? comment;
 
   const LeaveApplicationTile({
     super.key,
@@ -28,6 +29,7 @@ class LeaveApplicationTile extends ConsumerStatefulWidget {
     required this.dateOfLeave,
     required this.typeOfLeave,
     required this.id,
+    this.comment,
   });
 
   @override
@@ -37,6 +39,7 @@ class LeaveApplicationTile extends ConsumerStatefulWidget {
 
 class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
   bool isExpanded = false;
+  final commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -144,6 +147,7 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                                 context: context,
                                 builder: (context) {
                                   return CustomAlertDialog(
+                                    controller: commentController,
                                     title: 'Cancel Application?',
                                     subTitle:
                                         'Are you sure you want to cancel this application?',
@@ -157,6 +161,8 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                                             date: widget.dateOfLeave,
                                             choice: 'denied',
                                             id: widget.id,
+                                            comment:
+                                                commentController.text.trim(),
                                           );
                                       leaveController.updateLeaveApplication(
                                         updatedLeave,
@@ -283,6 +289,7 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                       reason: widget.reason,
                       dateOfLeave: widget.dateOfLeave,
                       typeOfLeave: widget.typeOfLeave,
+                      comment: widget.comment,
                     )
                     : const SizedBox.shrink(),
           ),
@@ -299,6 +306,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
   final UserModel user;
   final String dateOfLeave;
   final String typeOfLeave;
+  final String? comment;
 
   const LeaveApplicationExpandedTile({
     super.key,
@@ -308,6 +316,7 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
     required this.reason,
     required this.dateOfLeave,
     required this.typeOfLeave,
+    this.comment,
   });
 
   @override
@@ -430,6 +439,31 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
+                status == 'denied'
+                    ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Comment',
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Text(
+                          comment!,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                      ],
+                    )
+                    : SizedBox.shrink(),
               ],
             ),
           ),

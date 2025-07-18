@@ -10,27 +10,9 @@ Changes
 		- Green Correct
 
 - In leave application, Show total leaves and the stats
-    - Leave date
-    - Kind (Sick leave / plan leave) (new)
-    - Full day / half day
-    - Reason.
-    - Comment (new) (admin)
-
-		(fix create leave)
-
-- Festival leaves
-    - A simple list of details DONE
-- Company Memos
-    - Title
-    - Description
-    - Id (sequential)
 
 # Changes in Admin
 # Employee Inside page
-	(all detail cards)
-    - Department
-    - Date of joining
-    - Designation
 
 	- Leave Heading, (Dropdown) Total, leaves taken, approved count and unapproved count.
 	- Checkin details (First discussed calendar same)
@@ -43,13 +25,7 @@ Changes
 		- Half blue, half green
 
 - Leave application
-	- Provide comment on the choice (add)
 	- Add notifications, whenever it receives the leave (Admin) 
-
-# Memo
-	- add a floating button to create departments
-	- departments will be each folder
-		- Folder
 
 # CheckIns/Checkout (Current) 
 

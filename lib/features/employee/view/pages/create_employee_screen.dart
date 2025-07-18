@@ -174,7 +174,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               const SizedBox(height: 4),
 
               CustomTextField(
-                controller: phoneController,
+                controller: departmentController,
                 hintText: 'Enter employee\'s department ID',
                 isNumeric: true,
                 onChange: (value) {},
@@ -218,7 +218,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               const SizedBox(height: 4),
 
               TextField(
-                controller: dobController,
+                controller: dateOfJoiningController,
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Date of Joining',
@@ -258,7 +258,8 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
 
                   if (pickedDate != null) {
                     // Store in UTC ISO string
-                    dobController.text = pickedDate.toUtc().toIso8601String();
+                    dateOfJoiningController.text =
+                        pickedDate.toUtc().toIso8601String();
                     setState(() {}); // To refresh the displayed value
                   }
                 },
@@ -345,6 +346,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               const Text('Emergency Contacts', style: _labelStyle),
               const SizedBox(height: 4),
               CustomTextField(
+                isNumeric: true,
                 controller: emergencyContactsController,
                 hintText: 'Enter contact numbers (comma separated)',
                 onChange: (value) {},

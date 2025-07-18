@@ -157,25 +157,6 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                                   ),
                                 )
                                 : SizedBox.shrink(),
-
-                            _isVisible
-                                ? StaggeredGridTile.extent(
-                                  crossAxisCellCount: 1,
-                                  mainAxisExtent: 96,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      context.push(
-                                        '${CheckInListScreen.route}?id=${widget.id}&name=${data.user['name']}',
-                                      );
-                                    },
-                                    child: CustomCard(
-                                      title: 'Check In details',
-                                      subTitle: 'View Check In details',
-                                      isCheckInDetails: true,
-                                    ),
-                                  ),
-                                )
-                                : SizedBox.shrink(),
                           ],
                         ),
                       ],

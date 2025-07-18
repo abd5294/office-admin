@@ -5,6 +5,7 @@ class LeaveApplicationModel {
   final String date;
   final String choice;
   final int id;
+  String? comment;
 
   LeaveApplicationModel({
     required this.name,
@@ -13,6 +14,7 @@ class LeaveApplicationModel {
     required this.date,
     required this.choice,
     required this.id,
+    this.comment,
   });
 
   factory LeaveApplicationModel.fromMap(Map<String, dynamic> map) {
@@ -23,6 +25,7 @@ class LeaveApplicationModel {
       date: map['date'] ?? '',
       choice: map['choice'] ?? '',
       id: map['ID']?.toInt() ?? 0,
+      comment: map['comment'] ?? '',
     );
   }
 
@@ -34,6 +37,7 @@ class LeaveApplicationModel {
       'date': date,
       'choice': choice,
       'ID': id,
+      'comment': comment,
     };
   }
 }

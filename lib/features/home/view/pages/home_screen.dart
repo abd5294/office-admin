@@ -13,7 +13,6 @@ import 'package:office/features/employee/view/pages/manage_employee_screen.dart'
 import 'package:office/features/employee/view/widget/employee_card.dart';
 import 'package:office/features/festival/view/pages/festival_leaves_screen.dart';
 import 'package:office/features/leaves/controller/leave_application_controller.dart';
-import 'package:office/features/leaves/repository/leave_application_repository.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 import 'package:office/features/memo/view/memo_screen.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';

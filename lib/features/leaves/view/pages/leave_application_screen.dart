@@ -106,6 +106,7 @@ class LeaveApplicationScreen extends ConsumerWidget {
                                   status: data[index].choice,
                                   user: user,
                                   id: data[index].id,
+                                  comment: data[index].comment,
                                 ),
                             separatorBuilder:
                                 (context, index) => const SizedBox(height: 12),

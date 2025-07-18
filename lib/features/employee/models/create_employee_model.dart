@@ -49,7 +49,7 @@ class CreateEmployeeModel {
       'DOB': dob,
       'emergencyContacts': emergencyContacts,
       'DateOfJoining': dateOfJoining,
-      'department': department,
+      'departmentID': department,
     };
   }
 }
