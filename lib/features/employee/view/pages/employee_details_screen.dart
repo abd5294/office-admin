@@ -6,7 +6,6 @@ import 'package:office/core/providers/user_provider.dart';
 import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/employee/controller/employee_details_controller.dart';
 import 'package:office/features/employee/view/widget/employee_card.dart';
-import 'package:office/features/employee/view/widget/leave_timeline_list.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
@@ -24,6 +23,7 @@ class EmployeeDetailsScreen extends ConsumerStatefulWidget {
 }
 
 class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
+  bool _isVisible = false;
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider)!;
@@ -77,7 +77,7 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                           children: [
                             StaggeredGridTile.extent(
                               crossAxisCellCount: 2,
-                              mainAxisExtent: 240,
+                              mainAxisExtent: 270,
                               child: EmployeeInfoCard(
                                 name: data.user['name'],
                                 email: data.user['email'],
@@ -90,60 +90,94 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                               ),
                             ),
                             StaggeredGridTile.extent(
-                              crossAxisCellCount: 1,
-                              mainAxisExtent: 96,
-                              child: EmployeeLeaveCard(
-                                type: 'Approved',
-                                count: data.leaves['approved_leaves'],
-                                totalCount: data.leaves['total_leaves_taken'],
+                              crossAxisCellCount: 2,
+                              mainAxisExtent: 35,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Leave Stats',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                      height: 1,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _isVisible = !_isVisible;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _isVisible
+                                          ? Icons.keyboard_arrow_down_rounded
+                                          : Icons.keyboard_arrow_up_rounded,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            StaggeredGridTile.extent(
-                              crossAxisCellCount: 1,
-                              mainAxisExtent: 96,
-                              child: EmployeeLeaveCard(
-                                type: 'unapproved',
-                                count: data.leaves['unapproved_leaves'],
-                                totalCount: data.leaves['total_leaves_taken'],
-                              ),
-                            ),
-                            StaggeredGridTile.extent(
-                              crossAxisCellCount: 1,
-                              mainAxisExtent: 96,
-                              child: EmployeeLeaveCard(
-                                type: 'remaining',
-                                count: data.leaves['remaining_leaves'],
-                                totalCount: data.leaves['total_leaves_taken'],
-                              ),
-                            ),
-                            StaggeredGridTile.extent(
-                              crossAxisCellCount: 1,
-                              mainAxisExtent: 96,
-                              child: GestureDetector(
-                                onTap: () {
-                                  context.push(
-                                    '${CheckInListScreen.route}?id=${widget.id}&name=${data.user['name']}',
-                                  );
-                                },
-                                child: CustomCard(
-                                  title: 'Check In details',
-                                  subTitle: 'View Check In details',
-                                  isCheckInDetails: true,
-                                ),
-                              ),
-                            ),
+                            _isVisible
+                                ? StaggeredGridTile.extent(
+                                  crossAxisCellCount: 1,
+                                  mainAxisExtent: 96,
+                                  child: EmployeeLeaveCard(
+                                    type: 'Approved',
+                                    count: data.leaves['approved_leaves'],
+                                    totalCount:
+                                        data.leaves['total_leaves_taken'],
+                                  ),
+                                )
+                                : SizedBox.shrink(),
+
+                            _isVisible
+                                ? StaggeredGridTile.extent(
+                                  crossAxisCellCount: 1,
+                                  mainAxisExtent: 96,
+                                  child: EmployeeLeaveCard(
+                                    type: 'unapproved',
+                                    count: data.leaves['unapproved_leaves'],
+                                    totalCount:
+                                        data.leaves['total_leaves_taken'],
+                                  ),
+                                )
+                                : SizedBox.shrink(),
+
+                            _isVisible
+                                ? StaggeredGridTile.extent(
+                                  crossAxisCellCount: 1,
+                                  mainAxisExtent: 96,
+                                  child: EmployeeLeaveCard(
+                                    type: 'remaining',
+                                    count: data.leaves['remaining_leaves'],
+                                    totalCount:
+                                        data.leaves['total_leaves_taken'],
+                                  ),
+                                )
+                                : SizedBox.shrink(),
+
+                            _isVisible
+                                ? StaggeredGridTile.extent(
+                                  crossAxisCellCount: 1,
+                                  mainAxisExtent: 96,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      context.push(
+                                        '${CheckInListScreen.route}?id=${widget.id}&name=${data.user['name']}',
+                                      );
+                                    },
+                                    child: CustomCard(
+                                      title: 'Check In details',
+                                      subTitle: 'View Check In details',
+                                      isCheckInDetails: true,
+                                    ),
+                                  ),
+                                )
+                                : SizedBox.shrink(),
                           ],
                         ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'Timeline Of Leaves',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        LeaveTimeLineList(timeLine: data.holidays),
                       ],
                     ),
                   ),

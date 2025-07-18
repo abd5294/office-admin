@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
+import 'package:office/features/checkin/controller/check_in_list_controller.dart';
 import 'package:office/features/checkin/view/pages/check_in_screen.dart';
 import 'package:office/features/checkin/view/pages/check_out_screen.dart';
 import 'package:office/features/employee/controller/manage_employee_controller.dart';
@@ -11,11 +12,14 @@ import 'package:office/features/employee/view/pages/employee_screen.dart';
 import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
 import 'package:office/features/employee/view/widget/employee_card.dart';
 import 'package:office/features/festival/view/pages/festival_leaves_screen.dart';
+import 'package:office/features/leaves/controller/leave_application_controller.dart';
+import 'package:office/features/leaves/repository/leave_application_repository.dart';
 import 'package:office/features/leaves/view/pages/leave_application_screen.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
 import 'package:office/shared/widgets/custom_card.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class HomeScreen extends ConsumerWidget {
   static const route = '/home';
@@ -26,6 +30,9 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
     final empState = ref.watch(manageEmployeeControllerProvider);
+    final leaveApplicationState = ref.watch(leaveApplicationControllerProvider);
+    final checkinState = ref.watch(checkInListControllerProvider(user.id));
+
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -72,7 +79,7 @@ class HomeScreen extends ConsumerWidget {
                           children: [
                             StaggeredGridTile.extent(
                               crossAxisCellCount: 2,
-                              mainAxisExtent: 240,
+                              mainAxisExtent: 270,
                               child: EmployeeInfoCard(
                                 name: user.name,
                                 designation: user.designation,
@@ -128,6 +135,54 @@ class HomeScreen extends ConsumerWidget {
                                   ),
                                 ),
                               ),
+
+                            leaveApplicationState.when(
+                              data: (data) {
+                                return checkinState.when(
+                                  data: (data) {
+                                    List checkIndates = List.generate(
+                                      data.length,
+                                      (index) {
+                                        return data[index];
+                                      },
+                                    );
+
+                                    return StaggeredGridTile.extent(
+                                      crossAxisCellCount: 2,
+                                      mainAxisExtent: 350,
+                                      child: TableCalendar(
+                                        focusedDay: DateTime.now(),
+                                        firstDay: DateTime(2000),
+                                        lastDay: DateTime(2100),
+                                      ),
+                                    );
+                                  },
+                                  error:
+                                      (error, stackTrace) =>
+                                          Text('checkin cannot be fetched'),
+                                  loading:
+                                      () => Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                );
+                              },
+                              error: (error, stackTrace) {
+                                return StaggeredGridTile.extent(
+                                  crossAxisCellCount: 2,
+                                  mainAxisExtent: 350,
+                                  child: TableCalendar(
+                                    focusedDay: DateTime.now(),
+                                    firstDay: DateTime(2000),
+                                    lastDay: DateTime(2100),
+                                  ),
+                                );
+                              },
+                              loading: () {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
+                            ),
 
                             StaggeredGridTile.extent(
                               crossAxisCellCount: 2,

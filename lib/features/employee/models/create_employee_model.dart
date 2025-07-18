@@ -11,7 +11,7 @@ class CreateEmployeeModel {
   final String gender;
   final String phone;
   final String dob;
-  final String department;
+  final int department;
   final String dateOfJoining;
   final List<String> emergencyContacts;
 

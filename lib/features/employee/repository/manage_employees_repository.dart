@@ -60,7 +60,6 @@ class ManageEmployeeRepository {
   Future createEmployee(String token, CreateEmployeeModel newEmployee) async {
     final employeeMap = jsonEncode(newEmployee.toMap());
     try {
-      print(employeeMap);
       await dio.post(
         '/users',
         data: employeeMap,

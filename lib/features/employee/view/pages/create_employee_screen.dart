@@ -170,13 +170,13 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
               ),
               const SizedBox(height: 8),
 
-              const Text('department', style: _labelStyle),
+              const Text('Department ID', style: _labelStyle),
               const SizedBox(height: 4),
 
               CustomTextField(
                 controller: phoneController,
-                hintText: 'Enter employee\'s department',
-                isNumeric: false,
+                hintText: 'Enter employee\'s department ID',
+                isNumeric: true,
                 onChange: (value) {},
               ),
               const SizedBox(height: 8),
@@ -408,7 +408,7 @@ class _CreateEmployeeScreenState extends ConsumerState<CreateEmployeeScreen> {
                             .split(',')
                             .map((e) => e.trim())
                             .toList(),
-                    department: departmentController.text.trim(),
+                    department: int.parse(departmentController.text),
                     dateOfJoining: dateOfJoiningController.text.trim(),
                   );
                   try {

@@ -155,6 +155,24 @@ class EmployeeInfoCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 4),
+
+            Text(
+              'Date of joining',
+              style: TextStyle(
+                color: Colors.black.withAlpha(123),
+                fontSize: 8,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Text(
+              dateOfJoining,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+            ),
+            const SizedBox(height: 4),
           ],
         ),
       ),
