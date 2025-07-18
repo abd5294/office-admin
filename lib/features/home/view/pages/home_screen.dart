@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:office/core/providers/user_provider.dart';
 import 'package:office/features/checkin/controller/check_in_list_controller.dart';
 import 'package:office/features/checkin/view/pages/check_in_screen.dart';
 import 'package:office/features/checkin/view/pages/check_out_screen.dart';
-import 'package:office/features/employee/controller/manage_employee_controller.dart';
 import 'package:office/features/employee/view/pages/employee_details_screen.dart';
 import 'package:office/features/employee/view/pages/employee_screen.dart';
 import 'package:office/features/employee/view/pages/manage_employee_screen.dart';
@@ -30,7 +30,6 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider)!;
-    final empState = ref.watch(manageEmployeeControllerProvider);
     final leaveApplicationState = ref.watch(leaveApplicationControllerProvider);
     final checkinState = ref.watch(checkInListControllerProvider(user.id));
 
@@ -206,11 +205,8 @@ class HomeScreen extends ConsumerWidget {
                                       }
                                     }
 
-                                    // Step 2: Overwrite with leave colors
                                     for (var c in choice) {
-                                      final dateParts = c[0].split(
-                                        '-',
-                                      ); // YYYY-MM-DD
+                                      final dateParts = c[0].split('-');
                                       final leaveDate = DateTime(
                                         int.parse(dateParts[0]),
                                         int.parse(dateParts[1]),
@@ -244,6 +240,45 @@ class HomeScreen extends ConsumerWidget {
                                         calendarFormat: CalendarFormat.month,
 
                                         calendarBuilders: CalendarBuilders(
+                                          headerTitleBuilder: (context, day) {
+                                            final daysInMonth =
+                                                DateUtils.getDaysInMonth(
+                                                  day.year,
+                                                  day.month,
+                                                );
+
+                                            final totalPresent =
+                                                dateColors.keys
+                                                    .where(
+                                                      (d) =>
+                                                          d.year == day.year &&
+                                                          d.month == day.month,
+                                                    )
+                                                    .length;
+
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  '${DateFormat.MMMM().format(day)} ${day.year}',
+                                                  style: const TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 12),
+                                                Text(
+                                                  '$totalPresent / $daysInMonth ',
+                                                  textAlign: TextAlign.end,
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          },
                                           defaultBuilder: (
                                             context,
                                             day,
@@ -274,7 +309,6 @@ class HomeScreen extends ConsumerWidget {
                                               );
                                             }
 
-                                            // Get the color for this date
                                             final color = dateColors[dateOnly];
 
                                             return Container(
