@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:office/core/themes/app_color.dart';
 
 class EmployeeInfoCard extends StatelessWidget {
   final String name;
@@ -208,34 +207,8 @@ class EmployeeLeaveCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'No of $type leaves',
+              type,
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-            ),
-            RichText(
-              text: TextSpan(
-                text: '${totalCount.toString()} ',
-                style: TextStyle(
-                  height: 1.3,
-                  color: Palette.primaryColor,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.italic,
-                ),
-                children: [
-                  TextSpan(
-                    text:
-                        type == 'unapproved'
-                            ? 'Allowed unapproved leaves'
-                            : 'Total leaves',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 10,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ],
-              ),
             ),
             Spacer(),
             Row(
@@ -243,7 +216,7 @@ class EmployeeLeaveCard extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  count.toString(),
+                  totalCount.toString(),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 24,

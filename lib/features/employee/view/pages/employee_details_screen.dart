@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:go_router/go_router.dart';
 import 'package:office/core/providers/user_provider.dart';
-import 'package:office/features/checkin/view/pages/check_in_list_screen.dart';
 import 'package:office/features/employee/controller/employee_details_controller.dart';
 import 'package:office/features/employee/view/widget/employee_card.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
-import 'package:office/shared/widgets/custom_card.dart';
 import 'package:office/shared/widgets/main_text_column.dart';
 
 class EmployeeDetailsScreen extends ConsumerStatefulWidget {
@@ -37,6 +34,9 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
         bottom: false,
         child: employeeDetailsState.when(
           data: (data) {
+            final remainingLeaves = data.leaves['remaining_leaves'];
+            final leavesTaken = data.leaves['total_leaves_taken'];
+            final totalLeaves = remainingLeaves + leavesTaken;
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: const PreferredSize(
@@ -121,13 +121,12 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                             ),
                             _isVisible
                                 ? StaggeredGridTile.extent(
-                                  crossAxisCellCount: 1,
+                                  crossAxisCellCount: 2,
                                   mainAxisExtent: 96,
                                   child: EmployeeLeaveCard(
-                                    type: 'Approved',
+                                    type: 'Total Leaves',
                                     count: data.leaves['approved_leaves'],
-                                    totalCount:
-                                        data.leaves['total_leaves_taken'],
+                                    totalCount: totalLeaves,
                                   ),
                                 )
                                 : SizedBox.shrink(),
@@ -137,10 +136,9 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                                   crossAxisCellCount: 1,
                                   mainAxisExtent: 96,
                                   child: EmployeeLeaveCard(
-                                    type: 'unapproved',
+                                    type: 'Leaves Taken',
                                     count: data.leaves['unapproved_leaves'],
-                                    totalCount:
-                                        data.leaves['total_leaves_taken'],
+                                    totalCount: leavesTaken,
                                   ),
                                 )
                                 : SizedBox.shrink(),
@@ -150,10 +148,9 @@ class _EmployeeDetailsScreenState extends ConsumerState<EmployeeDetailsScreen> {
                                   crossAxisCellCount: 1,
                                   mainAxisExtent: 96,
                                   child: EmployeeLeaveCard(
-                                    type: 'remaining',
+                                    type: 'Leaves Remaining',
                                     count: data.leaves['remaining_leaves'],
-                                    totalCount:
-                                        data.leaves['total_leaves_taken'],
+                                    totalCount: remainingLeaves,
                                   ),
                                 )
                                 : SizedBox.shrink(),
