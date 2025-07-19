@@ -18,6 +18,9 @@ class ManageDepartmentTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        context.push('/memo-by-dept', extra: department);
+      },
       child: Column(
         children: [
           Container(
@@ -116,6 +119,9 @@ class ManageDepartmentTile extends StatelessWidget {
                       ),
                       const SizedBox(width: 12),
                       GestureDetector(
+                        onTap: () {
+                          context.push('/memo-by-dept', extra: department);
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             color: Palette.primaryColor,

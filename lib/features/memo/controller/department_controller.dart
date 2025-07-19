@@ -16,8 +16,11 @@ class DepartmentController extends AsyncNotifier<List<Department>> {
   Future<List<Department>> build() async {
     _token = ref.read(userProvider)!.token;
     _repo = ref.read(departmentRepositoryProvider);
-    final departments = await _repo.getListOfDepartments(_token);
-
+    List<Department> departments = await _repo.getListOfDepartments(_token);
+    departments = [
+      Department(id: -1, name: 'All', description: ""),
+      ...departments,
+    ];
     if (departments.isEmpty) {
       throw 'No Departments Found';
     }
