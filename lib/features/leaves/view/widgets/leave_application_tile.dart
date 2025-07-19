@@ -17,12 +17,14 @@ class LeaveApplicationTile extends ConsumerStatefulWidget {
   final int index;
   final UserModel user;
   final int id;
+  final String kind;
   final String? comment;
 
   const LeaveApplicationTile({
     super.key,
     required this.index,
     required this.status,
+    required this.kind,
     required this.name,
     required this.user,
     required this.reason,
@@ -161,6 +163,7 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                                             date: widget.dateOfLeave,
                                             choice: 'denied',
                                             id: widget.id,
+                                            kind: widget.kind,
                                             comment:
                                                 commentController.text.trim(),
                                           );
@@ -228,6 +231,7 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                                             reason: widget.reason,
                                             type: widget.typeOfLeave,
                                             date: widget.dateOfLeave,
+                                            kind: widget.kind,
                                             choice: 'accepted',
                                             id: widget.id,
                                           );
@@ -289,6 +293,7 @@ class _LeaveApplicationTileState extends ConsumerState<LeaveApplicationTile> {
                       reason: widget.reason,
                       dateOfLeave: widget.dateOfLeave,
                       typeOfLeave: widget.typeOfLeave,
+                      kind: widget.kind,
                       comment: widget.comment,
                     )
                     : const SizedBox.shrink(),
@@ -307,11 +312,13 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
   final String dateOfLeave;
   final String typeOfLeave;
   final String? comment;
+  final String kind;
 
   const LeaveApplicationExpandedTile({
     super.key,
     required this.user,
     required this.name,
+    required this.kind,
     required this.status,
     required this.reason,
     required this.dateOfLeave,
@@ -438,7 +445,22 @@ class LeaveApplicationExpandedTile extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                const SizedBox(height: 4),
+                Text(
+                  'Kind of leave',
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 8,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  kind,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                  ),
+                ),
                 status == 'denied'
                     ? Column(
                       mainAxisAlignment: MainAxisAlignment.start,

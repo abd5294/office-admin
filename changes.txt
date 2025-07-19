@@ -1,30 +1,8 @@
-Changes
+Issues not fixed
 
-- Match based on wifi SSID to allow check in / checkout
+•⁠  ⁠Department updation should be like a dropdown in create, or update user.
 
-- Below that, there will calendar (Checkin / Checkout 9:40 and 6:00) (Mark green or red)
-		- Orange present but not on time
-		- blue approved leave
-		- Red unapproved leave
-		- Half blue, half green  (extra colour mixture) (Mudinchal)
-		- Green Correct
+# CheckIns/Checkout (Current)  (Two Routes under app route should be used)
 
-# Changes in Admin
-# Employee Inside page
-
-	- Checkin details (First discussed calendar same)
-		- calendar
-		- Show January (27/30)
-		- Green present (on time)
-		- Orange present but not on time
-		- blue approved leave
-		- Red unapproved leave
-		- Half blue, half green
-
-- Leave application
-	- Add notifications, whenever it receives the leave (Admin) 
-
-# CheckIns/Checkout (Current) 
-
-- Show a list of users, who has not applied for leave and no checks
-- Allow to be tagged as present or unapproved
+•⁠  ⁠Show a list of users, who has not applied for leave and no checks (Get Employees not properly present for currrent date ROUTE NAME)
+•⁠  ⁠Allow to be tagged as present or unapproved (POST Create Correct Checks for today ROUTE NAME)

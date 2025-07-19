@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:office/features/memo/model/memo_model.dart';
-import 'package:office/core/themes/app_color.dart';
 import 'package:office/core/utils/format_date.dart';
 
 class MemoTimelineItem extends StatelessWidget {

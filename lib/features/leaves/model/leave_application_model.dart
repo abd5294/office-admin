@@ -6,6 +6,7 @@ class LeaveApplicationModel {
   final String choice;
   final int id;
   String? comment;
+  final String kind;
 
   LeaveApplicationModel({
     required this.name,
@@ -14,6 +15,7 @@ class LeaveApplicationModel {
     required this.date,
     required this.choice,
     required this.id,
+    required this.kind,
     this.comment,
   });
 
@@ -26,6 +28,7 @@ class LeaveApplicationModel {
       choice: map['choice'] ?? '',
       id: map['ID']?.toInt() ?? 0,
       comment: map['comment'] ?? '',
+      kind: map['kind'] ?? '',
     );
   }
 
@@ -38,6 +41,7 @@ class LeaveApplicationModel {
       'choice': choice,
       'ID': id,
       'comment': comment,
+      'kind': kind,
     };
   }
 }

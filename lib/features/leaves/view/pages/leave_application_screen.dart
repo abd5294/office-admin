@@ -168,6 +168,7 @@ class LeaveApplicationScreen extends ConsumerWidget {
                                   name: data[index].name,
                                   dateOfLeave: data[index].date,
                                   reason: data[index].reason,
+                                  kind: data[index].kind,
                                   typeOfLeave: data[index].type,
                                   index: index + 1,
                                   status: data[index].choice,
