@@ -9,12 +9,12 @@ import 'package:office/core/providers/user_provider.dart';
 
 class MemoTimelineItem extends ConsumerWidget {
   final Memo memo;
-  final VoidCallback onDelete;
+  // final VoidCallback onDelete;
 
   const MemoTimelineItem({
     super.key,
     required this.memo,
-    required this.onDelete,
+    // required this.onDelete,
   });
 
   @override
@@ -103,28 +103,28 @@ class MemoTimelineItem extends ConsumerWidget {
                   ),
                   const SizedBox(width: 8),
                   GestureDetector(
-                    // onTap: () async {
-                    //   final messenger = ScaffoldMessenger.of(context);
-                    //   try {
-                    //     await ref
-                    //         .read(adminMemoControllerProvider.notifier)
-                    //         .deleteMemo(memo.id);
-                    //     messenger.showSnackBar(
-                    //       const SnackBar(
-                    //         content: Text('Memo deleted successfully'),
-                    //       ),
-                    //     );
-                    //     // Refresh the memo list after deletion
-                    //     ref.invalidate(adminMemoControllerProvider);
-                    //   } catch (error) {
-                    //     messenger.showSnackBar(
-                    //       SnackBar(
-                    //         content: Text('Failed to delete memo: $error'),
-                    //       ),
-                    //     );
-                    //   }
-                    // },
-                    onTap: onDelete,
+                    onTap: () async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      try {
+                        await ref
+                            .read(adminMemoControllerProvider.notifier)
+                            .deleteMemo(memo.id);
+                        messenger.showSnackBar(
+                          const SnackBar(
+                            content: Text('Memo deleted successfully'),
+                          ),
+                        );
+                        // Refresh the memo list after deletion
+                        ref.invalidate(adminMemoControllerProvider);
+                      } catch (error) {
+                        messenger.showSnackBar(
+                          SnackBar(
+                            content: Text('Failed to delete memo: $error'),
+                          ),
+                        );
+                      }
+                    },
+                    // onTap: onDelete,
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.red,

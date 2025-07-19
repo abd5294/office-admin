@@ -12,6 +12,8 @@ class MemoTimeLineList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print("REFFBUILD");
+
     return Stack(
       children: [
         Positioned(
@@ -26,14 +28,7 @@ class MemoTimeLineList extends ConsumerWidget {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             final memo = timeLine[index];
-            return MemoTimelineItem(
-              memo: memo,
-              onDelete: () async {
-                await ref
-                    .read(adminMemoControllerProvider.notifier)
-                    .deleteMemo(memo.id);
-              },
-            );
+            return MemoTimelineItem(memo: memo);
           },
           separatorBuilder: (context, index) => const SizedBox(height: 12),
           itemCount: timeLine.length,
