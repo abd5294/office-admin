@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:office/features/memo/controller/memo_controller.dart';
 import 'package:office/features/memo/model/memo_model.dart';
+import 'package:office/core/themes/app_color.dart';
 import 'package:office/core/utils/format_date.dart';
+import 'package:office/core/providers/user_provider.dart';
 
-class MemoTimelineItem extends StatelessWidget {
+class MemoTimelineItem extends ConsumerWidget {
   final Memo memo;
+  final VoidCallback onDelete;
 
-  const MemoTimelineItem({super.key, required this.memo});
+  const MemoTimelineItem({
+    super.key,
+    required this.memo,
+    required this.onDelete,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(userProvider);
+
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: Row(
@@ -49,7 +61,6 @@ class MemoTimelineItem extends StatelessWidget {
                           style: const TextStyle(fontSize: 14),
                         ),
                       ],
-
                       const SizedBox(height: 12),
                       Text(
                         formatCustomDate(memo.createdAt),
@@ -71,6 +82,63 @@ class MemoTimelineItem extends StatelessWidget {
                     ],
                   ),
                 ),
+                if (user != null && user.role == 'admin') ...[
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () {
+                      context.push('/edit-memo', extra: memo);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Palette.primaryColor,
+                        shape: BoxShape.circle,
+                      ),
+                      padding: const EdgeInsets.all(4),
+                      child: const Icon(
+                        Icons.edit_rounded,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    // onTap: () async {
+                    //   final messenger = ScaffoldMessenger.of(context);
+                    //   try {
+                    //     await ref
+                    //         .read(adminMemoControllerProvider.notifier)
+                    //         .deleteMemo(memo.id);
+                    //     messenger.showSnackBar(
+                    //       const SnackBar(
+                    //         content: Text('Memo deleted successfully'),
+                    //       ),
+                    //     );
+                    //     // Refresh the memo list after deletion
+                    //     ref.invalidate(adminMemoControllerProvider);
+                    //   } catch (error) {
+                    //     messenger.showSnackBar(
+                    //       SnackBar(
+                    //         content: Text('Failed to delete memo: $error'),
+                    //       ),
+                    //     );
+                    //   }
+                    // },
+                    onTap: onDelete,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                      padding: const EdgeInsets.all(4),
+                      child: const Icon(
+                        Icons.delete_rounded,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
