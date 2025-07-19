@@ -4,6 +4,11 @@ import 'package:office/features/auth/view/login_screen.dart';
 import 'package:office/features/checkin/view/pages/check_in_screen.dart';
 import 'package:office/features/checkin/view/pages/checkin_error_screen.dart';
 import 'package:office/features/employee/view/pages/update_profile_screen.dart';
+import 'package:office/features/memo/model/department_model.dart';
+import 'package:office/features/memo/view/create_department_screen.dart';
+import 'package:office/features/memo/view/edit_department_screen.dart';
+import 'package:office/features/memo/view/memo_by_dept_screen.dart';
+import 'package:office/features/memo/view/memo_department.dart';
 import 'package:office/features/memo/view/memo_screen.dart';
 import 'package:office/features/update_password/view/confirm_password_screen.dart';
 import 'package:office/features/update_password/view/forget_password_screen.dart';
@@ -213,6 +218,28 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: MemoListScreen.route,
       builder: (context, state) => MemoListScreen(),
+    ),
+    GoRoute(
+      path: MemoDepartmentsScreen.route,
+      builder: (context, state) => MemoDepartmentsScreen(),
+    ),
+    GoRoute(
+      path: CreateDepartmentScreen.route,
+      builder: (context, state) => CreateDepartmentScreen(),
+    ),
+    GoRoute(
+      path: EditDepartmentScreen.route,
+      builder: (context, state) {
+        final deps = state.extra as Department;
+        return EditDepartmentScreen(department: deps);
+      },
+    ),
+    GoRoute(
+      path: MemoByDeptScreen.route,
+      builder: (context, state) {
+        final deps = state.extra as Department;
+        return MemoByDeptScreen(department: deps);
+      },
     ),
   ],
 );

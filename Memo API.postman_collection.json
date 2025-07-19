@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "06ca67f7-9e32-4e56-9198-faa1b6313734",
+		"name": "Memo API",
+		"description": "HR System Memo Management API endpoints with authentication middleware",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11840368",
+		"_collection_link": "https://planetary-resonance-762317.postman.co/workspace/ThePilot---HR~4a07ce0c-f821-4be0-858b-7faecf700ab2/collection/11840368-06ca67f7-9e32-4e56-9198-faa1b6313734?action=share&source=collection_link&creator=11840368"
+	},
+	"item": [
+		{
+			"name": "Create Memo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Monthly Team Meeting\",\n  \"description\": \"All team members are required to attend the monthly meeting on Friday at 2 PM.\",\n  \"department_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Creates a new memo. Requires Admin role (Role Level 1).\n\nRequest Body:\n- title (string, required): The title of the memo\n- description (string, required): The content/description of the memo\n- department_id (number, optional): ID of the department this memo is for. If null, memo is for all departments"
+			},
+			"response": [
+				{
+					"name": "Success - Memo Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Monthly Team Meeting\",\n  \"description\": \"All team members are required to attend the monthly meeting on Friday at 2 PM.\",\n  \"department_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"ID\": 1,\n    \"CreatedAt\": \"2025-07-17T10:30:00Z\",\n    \"UpdatedAt\": \"2025-07-17T10:30:00Z\",\n    \"DeletedAt\": null,\n    \"title\": \"Monthly Team Meeting\",\n    \"description\": \"All team members are required to attend the monthly meeting on Friday at 2 PM.\",\n    \"department_id\": 1,\n    \"department\": null\n  }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Memo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Updated Monthly Team Meeting\",\n  \"description\": \"Updated description: All team members are required to attend the monthly meeting on Monday at 3 PM.\",\n  \"department_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{memoId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{memoId}}"
+					]
+				},
+				"description": "Updates an existing memo by ID. Requires Admin role (Role Level 1).\n\nPath Parameters:\n- id (number, required): The ID of the memo to update\n\nRequest Body:\n- title (string, required): Updated title of the memo\n- description (string, required): Updated content/description of the memo\n- department_id (number, optional): Updated department ID"
+			},
+			"response": [
+				{
+					"name": "Success - Memo Updated",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Monthly Team Meeting\",\n  \"description\": \"Updated description: All team members are required to attend the monthly meeting on Monday at 3 PM.\",\n  \"department_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"ID\": 1,\n    \"CreatedAt\": \"2025-07-17T10:30:00Z\",\n    \"UpdatedAt\": \"2025-07-17T11:00:00Z\",\n    \"DeletedAt\": null,\n    \"title\": \"Updated Monthly Team Meeting\",\n    \"description\": \"Updated description: All team members are required to attend the monthly meeting on Monday at 3 PM.\",\n    \"department_id\": 2,\n    \"department\": null\n  }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Memo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{memoId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{memoId}}"
+					]
+				},
+				"description": "Deletes a memo by ID. Requires Admin role (Role Level 1).\n\nPath Parameters:\n- id (number, required): The ID of the memo to delete"
+			},
+			"response": [
+				{
+					"name": "Success - Memo Deleted",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Memos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Retrieves all memos in the system. Requires Admin role (Role Level 1)."
+			},
+			"response": [
+				{
+					"name": "Success - All Memos Retrieved",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"success\",\n  \"data\": [\n    {\n      \"ID\": 1,\n      \"CreatedAt\": \"2025-07-17T10:30:00Z\",\n      \"UpdatedAt\": \"2025-07-17T10:30:00Z\",\n      \"DeletedAt\": null,\n      \"title\": \"Monthly Team Meeting\",\n      \"description\": \"All team members are required to attend the monthly meeting on Friday at 2 PM.\",\n      \"department_id\": 1,\n      \"department\": null\n    },\n    {\n      \"ID\": 2,\n      \"CreatedAt\": \"2025-07-17T09:00:00Z\",\n      \"UpdatedAt\": \"2025-07-17T09:00:00Z\",\n      \"DeletedAt\": null,\n      \"title\": \"Safety Guidelines\",\n      \"description\": \"Please review the updated safety guidelines attached to this memo.\",\n      \"department_id\": null,\n      \"department\": null\n    }\n  ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Memo by ID (Admin)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{memoId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{memoId}}"
+					]
+				},
+				"description": "Retrieves a specific memo by its ID. Requires Admin role (Role Level 1).\n\nPath Parameters:\n- id (number, required): The ID of the memo to retrieve\n\nNote: This endpoint conflicts with the user memo endpoint. In the actual implementation, consider using different routes like /admin/{id} and /user/{userId}"
+			},
+			"response": [
+				{
+					"name": "Success - Memo Retrieved",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"ID\": 1,\n    \"CreatedAt\": \"2025-07-17T10:30:00Z\",\n    \"UpdatedAt\": \"2025-07-17T10:30:00Z\",\n    \"DeletedAt\": null,\n    \"title\": \"Monthly Team Meeting\",\n    \"description\": \"All team members are required to attend the monthly meeting on Friday at 2 PM.\",\n    \"department_id\": 1,\n    \"department\": null\n  }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Memo by Department ID (Admin)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/department/:deptid",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"department",
+						":deptid"
+					],
+					"variable": [
+						{
+							"key": "deptid",
+							"value": ""
+						}
+					]
+				},
+				"description": "Retrieves a specific memo by its ID. Requires Admin role (Role Level 1).\n\nPath Parameters:\n- id (number, required): The ID of the memo to retrieve\n\nNote: This endpoint conflicts with the user memo endpoint. In the actual implementation, consider using different routes like /admin/{id} and /user/{userId}"
+			},
+			"response": [
+				{
+					"name": "Success - Memo Retrieved",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"ID\": 1,\n    \"CreatedAt\": \"2025-07-17T10:30:00Z\",\n    \"UpdatedAt\": \"2025-07-17T10:30:00Z\",\n    \"DeletedAt\": null,\n    \"title\": \"Monthly Team Meeting\",\n    \"description\": \"All team members are required to attend the monthly meeting on Friday at 2 PM.\",\n    \"department_id\": 1,\n    \"department\": null\n  }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Available Memos for User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/individual/user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"individual",
+						"user"
+					]
+				},
+				"description": "Retrieves memos available for a specific user. Requires User role (Role Level 2).\n\nThis includes:\n- Memos assigned to the user's department\n- Memos with no department assignment (company-wide memos)\n\nPath Parameters:\n- userId (number, required): The ID of the user\n\nNote: This endpoint conflicts with the admin memo endpoint. In the actual implementation, consider using different routes like /admin/{id} and /user/{userId}"
+			},
+			"response": [
+				{
+					"name": "Success - User Memos Retrieved",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"status\": \"success\",\n  \"data\": [\n    {\n      \"ID\": 1,\n      \"CreatedAt\": \"2025-07-17T10:30:00Z\",\n      \"UpdatedAt\": \"2025-07-17T10:30:00Z\",\n      \"DeletedAt\": null,\n      \"title\": \"Monthly Team Meeting\",\n      \"description\": \"All team members are required to attend the monthly meeting on Friday at 2 PM.\",\n      \"department_id\": 1,\n      \"department\": null\n    },\n    {\n      \"ID\": 2,\n      \"CreatedAt\": \"2025-07-17T09:00:00Z\",\n      \"UpdatedAt\": \"2025-07-17T09:00:00Z\",\n      \"DeletedAt\": null,\n      \"title\": \"Company-wide Safety Guidelines\",\n      \"description\": \"Please review the updated safety guidelines attached to this memo.\",\n      \"department_id\": null,\n      \"department\": null\n    }\n  ]\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/memos",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "your_auth_token_here",
+			"type": "string"
+		},
+		{
+			"key": "memoId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
