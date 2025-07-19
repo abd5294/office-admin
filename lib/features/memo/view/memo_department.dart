@@ -11,6 +11,7 @@ import 'package:office/core/themes/app_color.dart';
 import 'package:office/features/festival/view/pages/create_festival_screen.dart';
 import 'package:office/features/memo/controller/department_controller.dart';
 import 'package:office/features/memo/view/create_department_screen.dart';
+import 'package:office/features/memo/view/create_memo_screen.dart';
 import 'package:office/features/memo/widgets/manage_department_tile.dart';
 import 'package:office/shared/widgets/custom_app_bar.dart';
 import 'package:office/shared/widgets/custom_bottom_sheet.dart';
@@ -58,7 +59,7 @@ class MemoDepartmentsScreen extends ConsumerWidget {
                   child: FloatingActionButton(
                     heroTag: 'addNotifications',
                     onPressed: () {
-                      context.push(CreateFestivalScreen.route);
+                      context.push(CreateMemoScreen.route);
                     },
                     shape: const CircleBorder(),
                     backgroundColor: Palette.primaryColor,

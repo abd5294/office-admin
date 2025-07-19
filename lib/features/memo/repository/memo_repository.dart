@@ -77,7 +77,8 @@ class MemoRepository {
     final body = {
       'title': title,
       'description': description,
-      if (departmentId != null) 'department_id': departmentId,
+      if (departmentId != null && departmentId != -1)
+        'department_id': departmentId,
     };
     final response = await dio.post(
       '/memos/',
@@ -86,6 +87,7 @@ class MemoRepository {
         headers: {'Authorization': token, 'Content-Type': 'application/json'},
       ),
     );
+
     return Memo.fromMap(response.data['data']);
   }
 
@@ -100,7 +102,8 @@ class MemoRepository {
     final body = {
       'title': title,
       'description': description,
-      if (departmentId != null) 'department_id': departmentId,
+      if (departmentId != null && departmentId != -1)
+        'department_id': departmentId,
     };
     final response = await dio.put(
       '/memos/$memoId',

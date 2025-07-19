@@ -5,8 +5,11 @@ import 'package:office/features/checkin/view/pages/check_in_screen.dart';
 import 'package:office/features/checkin/view/pages/checkin_error_screen.dart';
 import 'package:office/features/employee/view/pages/update_profile_screen.dart';
 import 'package:office/features/memo/model/department_model.dart';
+import 'package:office/features/memo/model/memo_model.dart';
 import 'package:office/features/memo/view/create_department_screen.dart';
+import 'package:office/features/memo/view/create_memo_screen.dart';
 import 'package:office/features/memo/view/edit_department_screen.dart';
+import 'package:office/features/memo/view/edit_memo_screen.dart';
 import 'package:office/features/memo/view/memo_by_dept_screen.dart';
 import 'package:office/features/memo/view/memo_department.dart';
 import 'package:office/features/memo/view/memo_screen.dart';
@@ -239,6 +242,17 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final deps = state.extra as Department;
         return MemoByDeptScreen(department: deps);
+      },
+    ),
+    GoRoute(
+      path: CreateMemoScreen.route,
+      builder: (context, state) => CreateMemoScreen(),
+    ),
+    GoRoute(
+      path: EditMemoScreen.route,
+      builder: (context, state) {
+        final memo = state.extra as Memo;
+        return EditMemoScreen(memo: memo);
       },
     ),
   ],
